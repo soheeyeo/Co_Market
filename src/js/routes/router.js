@@ -4,6 +4,17 @@ export default class Router {
             console.error('Can not initailize routes!')
         }
         this.routes = routes;
+
+        // routes를 순회하며 특정 id값을 파싱하여 전달
+        for(const key in routes) {
+            const route = routes[key];
+            if(key.indexOf(':') > -1) {
+                const [_, routeName, ...param] = key.split('/');
+                this.routes['/' + routeName] = route;
+                delete this.routes[key];
+            }
+        }
+        console.log(this.routes);
     }
     
     init(rootElementId) {
@@ -34,12 +45,15 @@ export default class Router {
     }
     
     routing(pathname) {
-        const [_, routeName, ...param] = pathname.split('/');
+        const [_, routeName, param] = pathname.split('/');
         let view = '';
     
         // routes[pathname] Class를 컴포넌트로 받아서 페이지를 전달
         if(this.routes[pathname]) {
             const component = new this.routes[pathname];
+            view = component.render();
+        } else if(param) {
+            const component = new this.routes['/' + routeName](param);
             view = component.render();
         }
     

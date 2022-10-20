@@ -1,5 +1,5 @@
-import Router from '../routes/router.js';
-import { Main, Login, ProductDetail } from './views/index.js';
+import Router from './js/routes/router.js';
+import { Main, Login, ProductDetail } from './js/views/index.js';
 
 export default class App {
     constructor(props) {

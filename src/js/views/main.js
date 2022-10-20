@@ -30,8 +30,6 @@ export default class Main {
 
         container.appendChild(element);
 
-        this.setProductList();
-    
         return container;
     }
 }
