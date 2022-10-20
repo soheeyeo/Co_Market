@@ -5,7 +5,7 @@ export default class Login {
         element.innerText = '로그인 페이지입니다.';
     
         const anchor = document.createElement('a');
-        anchor.href = './';
+        anchor.href = '/';
         anchor.innerText = '메인 페이지 이동';
     
         container.appendChild(anchor);
