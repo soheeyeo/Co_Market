@@ -1,35 +1,57 @@
-export default class Main {
-    render() {
-        const container = document.createElement('div');
-        const element = document.createElement('h1');
-        element.innerText = '메인 페이지입니다.';
-    
-        const anchor = document.createElement('a');
-        anchor.href = '/login';
-        anchor.innerText = '로그인 페이지 이동';
-    
-        container.appendChild(anchor);
+import Component from "../components/abstractComponent.js";
+import { ProductCard } from "../components/ProductCard/index.js";
+const API_URL = 'https://openmarket.weniv.co.kr/';
 
-        const anchor1 = document.createElement('a');
-        anchor1.href = '/detail/1';
-        anchor1.innerText = '1 상품 상세 페이지 이동';
-
-        container.appendChild(anchor1);
-
-        const anchor2 = document.createElement('a');
-        anchor2.href = '/detail/2';
-        anchor2.innerText = '2 상품 상세 페이지 이동';
-    
-        container.appendChild(anchor2);
-
-        const anchor3 = document.createElement('a');
-        anchor3.href = '/detail/3';
-        anchor3.innerText = '3 상품 상세 페이지 이동';
-
-        container.appendChild(anchor3);
-
-        container.appendChild(element);
-
-        return container;
+export default class Main extends Component{
+    constructor(props) {
+        super(props);
+        this.mainElement = document.createElement('main');
+        this.product = {};
     }
+
+    async getProductData() {
+        try {
+            const response = await fetch(API_URL+'products/', {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            const data = await response.json();
+            this.product = await data.results;
+            } catch(err) {
+                console.log('err');
+            }
+    }
+
+    async setProductList() {
+        await this.getProductData();
+        console.log(this.product);
+        
+        this.mainElement.classList.add('product');
+        
+        const mainpageHeader = document.createElement('h1');
+        mainpageHeader.setAttribute('class', 'ir');
+        mainpageHeader.innerText = '메인 페이지';
+        this.mainElement.appendChild(mainpageHeader);
+
+        const productList = document.createElement('ul');
+        productList.setAttribute('class', 'product-list');
+
+        this.product.forEach(async (item) => {
+            const productItem = document.createElement('li');
+            productItem.setAttribute('class', 'product-item');
+            const productCard = new ProductCard({item:item});
+            productItem.appendChild(productCard.render());
+            productList.appendChild(productItem);
+        });
+
+        this.mainElement.append(productList);
+
+        console.log(this.mainElement);
+        }
+
+        render() {
+            this.setProductList();
+        }
 }
