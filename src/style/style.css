@@ -8,7 +8,7 @@
     --sub-border-color: #E0E0E0;
     --bg-color: #FFF;
     --emphasis-txt-color: #828282;
-    --sub-txt-colot: #828282;
+    --sub-txt-color: #828282;
     --btn-border: #BDBDBD;
 }
 
@@ -68,3 +68,64 @@ table, thead, tbody, tr {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
+
+button {
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.main_header {
+    display: block;
+    width: 100%;
+    padding: 10px 320px;
+}
+
+main {
+    padding: 80px 0;
+}
+
+.product_container {
+    width: 1280px;
+    margin: 0 auto;
+}
+
+.product_list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 70px;
+}
+
+.product_img {
+    width: 380px;
+    height: 380px;
+}
+
+.product_img img {
+    border-radius: 10px;
+}
+
+.product_info {
+    margin-top: 16px;
+}
+
+.product_store {
+    display: block;
+    color: #767676;
+}
+
+.product_name {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.price_container {
+    margin-top: 10px;
+}
+.product_price {
+    font-size: 24px;
+    font-weight: 700;
+}
+
