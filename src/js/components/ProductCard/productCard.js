@@ -1,21 +1,23 @@
 import Component from "../abstractComponent.js";
-import { ProductImage, ProductName, ProductPrice } from '../Product/index.js';
+import { ProductImage, ProductStore, ProductName, ProductPrice } from '../Product/index.js';
 
 export default class ProductCard extends Component{
 
     render() {
         const product = document.createElement('a');
         product.setAttribute('href', `/products/${this.props.item.product_id}`);
-        product.setAttribute('class', 'product-item');
+        product.setAttribute('class', 'product_item');
 
-        const productImage = new ProductImage({src:this.props.item.thumbnailImg});
-        const productName = new ProductName({name:this.props.item.productName});
+        const productImage = new ProductImage({src:this.props.item.image});
+        const productStore = new ProductStore({store:this.props.item.store_name});
+        const productName = new ProductName({name:this.props.item.product_name});
         const productPrice = new ProductPrice({price:this.props.item.price});
 
+        const productInfo = document.createElement('div');
+        productInfo.setAttribute('class', 'product_info');
+        productInfo.append(productStore.render(), productName.render(), productPrice.render());
 
-        product.appendChild(productImage.render());
-        product.appendChild(productName.render());
-        product.appendChild(productPrice.render());
+        product.append(productImage.render(), productInfo);
 
     return product;
     }
