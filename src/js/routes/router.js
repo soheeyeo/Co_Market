@@ -26,11 +26,11 @@ export default class Router {
     
         this.routing(window.location.pathname);
     
-        // a 태그 클릭시 url 이동
+        // 클릭한 요소의 상위요소 중 a 태그가 있다면 url 이동
         window.addEventListener('click', (e) => {
-            if(e.target.tagName.toLowerCase() === 'a') {
+            if(e.target.closest('a')) {
                 e.preventDefault();
-                this.navigateTo(e.target.href);
+                this.navigateTo(e.target.closest('a').href);
             }
         });
         
