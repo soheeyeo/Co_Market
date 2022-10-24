@@ -15,7 +15,10 @@ export default class ProductCard extends Component{
 
         const productInfo = document.createElement('div');
         productInfo.setAttribute('class', 'product_info');
-        productInfo.append(productStore.render(), productName.render(), productPrice.render());
+        const productTitleContainer = document.createElement('div');
+        productTitleContainer.setAttribute('class', 'product_title_container');
+        productTitleContainer.append(productStore.render(), productName.render());
+        productInfo.append(productTitleContainer, productPrice.render());
 
         product.append(productImage.render(), productInfo);
 
