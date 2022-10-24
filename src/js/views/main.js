@@ -1,5 +1,6 @@
 import Component from "../components/abstractComponent.js";
 import ProductList from '../components/ProductList/productList.js';
+import Header from "../components/Header/header.js";
 
 export default class Main extends Component{
     constructor(props) {
@@ -8,16 +9,12 @@ export default class Main extends Component{
     }
 
         render() {
-            const mainHeader = document.createElement('header');
-            mainHeader.setAttribute('class', 'main_header');
-            const txt = document.createElement('h1');
-            txt.innerText = '메인 페이지';
-            mainHeader.appendChild(txt);
+            const mainHeader = new Header();
 
             const mainElement = document.createElement('main');
             const productList = new ProductList();
             mainElement.appendChild(productList.render());
 
-            this.target.append(mainHeader, mainElement);
+            this.target.append(mainHeader.render(), mainElement);
         }
 }
