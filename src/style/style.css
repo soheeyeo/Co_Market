@@ -76,9 +76,81 @@ button {
 }
 
 .main_header {
-    display: block;
+    position: fixed;
     width: 100%;
-    padding: 10px 320px;
+    padding: 10px 80px;
+    background-color: var(--bg-color);
+}
+
+.header_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo_img {
+    width: 98px;
+    height: 54px;
+    background-image: url(../assets/Logo-Co.svg);
+}
+
+.search_box {
+    padding: 9px 26px;
+    border: 2px solid var(--main-color);
+    border-radius: 50px;
+}
+
+.search_form {
+    display: flex;
+}
+
+.search {
+    border: 0;
+    padding-right: 233px;
+    vertical-align: baseline;
+    font-size: 16px;
+}
+
+.search:focus {
+    outline: none;
+}
+
+.search_icon {
+    width: 28px;
+    height: 28px;
+    background-image: url(../assets/search.svg);
+    background-color: transparent;
+}
+
+.icons_wrapper {
+    display: flex;
+    gap: 26px;
+}
+
+.cart_icon, .login_icon {
+    width: 32px;
+    height: 32px;
+    background-size: 32px 32px;
+    background-color: transparent;
+}
+
+.cart_icon {
+    background-image: url(../assets/icon-shopping-cart.svg);
+    margin-left: 3px;
+}
+
+.login_icon {
+    background-image: url(../assets/icon-user.svg);
+}
+
+.cart_icon_txt, .login_icon_txt {
+    font-size: 12px;
+}
+
+.banner_container {
+    width: 100%;
+    height: 500px;
+    background-color: #C4C4C4;
 }
 
 main {
@@ -86,46 +158,54 @@ main {
 }
 
 .product_container {
-    width: 1280px;
-    margin: 0 auto;
+    margin: 0 30px;
 }
 
 .product_list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 70px;
+    gap: 40px ;
 }
 
-.product_img {
-    width: 380px;
-    height: 380px;
+.product_item {
+    display: block;
+    width: 270px;
+    margin: 0 auto;
 }
 
 .product_img img {
+    width: 270px;
+    height: 270px;
     border-radius: 10px;
+    object-fit: cover;
 }
 
 .product_info {
-    margin-top: 16px;
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
 }
 
 .product_store {
-    display: block;
+    font-size: 14px;
     color: #767676;
 }
 
 .product_name {
     display: block;
-    margin-top: 10px;
-    font-size: 18px;
+    margin-top: 8px;
     line-height: 22px;
 }
 
 .price_container {
-    margin-top: 10px;
+    text-align: right;
 }
+
+.price_container span {
+    padding-left: 5px;
+}
+
 .product_price {
     font-size: 24px;
     font-weight: 700;
 }
-
