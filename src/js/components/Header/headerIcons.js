@@ -6,29 +6,28 @@ export default class HeaderIcons extends Component {
         const iconsWrapper = document.createElement('div');
         iconsWrapper.setAttribute('class', 'icons_wrapper');
 
-        const iconBox = document.createElement('div');
-        iconBox.setAttribute('class', 'icon_box');
-
         const cart = document.createElement('a');
         cart.setAttribute('href', '/cart/');
-
         const cartIcon = document.createElement('div');
         cartIcon.setAttribute('class', 'cart_icon');
+        const cartIconTxt = document.createElement('span');
+        cartIconTxt.setAttribute('class', 'cart_icon_txt');
+        cartIconTxt.innerText = '장바구니';
 
-        cart.appendChild(cartIcon);
+        cart.append(cartIcon, cartIconTxt);
 
         const login = document.createElement('a');
         login.setAttribute('href', '/login/');
-
         const login_icon = document.createElement('div');
         login_icon.setAttribute('class', 'login_icon');
+        const loginIconTxt = document.createElement('span');
+        loginIconTxt.setAttribute('class', 'login_icon_txt');
+        loginIconTxt.innerText = '로그인';
 
-        login.appendChild(login_icon);
+        login.append(login_icon, loginIconTxt);
 
-        iconBox.append(cart, login);
+        iconsWrapper.append(cart, login);
 
-        iconsWrapper.appendChild(iconBox);
-
-        return iconBox;
+        return iconsWrapper;
     }
 }
