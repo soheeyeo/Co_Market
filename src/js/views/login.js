@@ -1,16 +1,26 @@
-export default class Login {
+import Component from "../components/abstractComponent.js";
+import Header from "../components/Header/header.js";
+import LoginForm from "../components/Login/loginForm.js";
+
+export default class Login extends Component{
+    constructor(props) {
+        super(props);
+        this.target = document.querySelector('#root');
+    }
+
     render() {
-        const container = document.createElement('div');
-        const element = document.createElement('h1');
-        element.innerText = '로그인 페이지입니다.';
-    
-        const anchor = document.createElement('a');
-        anchor.href = '/';
-        anchor.innerText = '메인 페이지 이동';
-    
-        container.appendChild(anchor);
-        container.appendChild(element);
-    
-        return container;
+        const header = new Header();
+
+        const loginContainer = document.createElement('section');
+        loginContainer.setAttribute('class', 'login_container');
+        const loginTit = document.createElement('h1');
+        loginTit.setAttribute('class', 'login_tit');
+        loginTit.innerText = '로그인';
+
+        const loginForm = new LoginForm();
+        
+        loginContainer.append(loginTit, loginForm.render());
+
+        this.target.append(header.render(), loginContainer);
     }
 }
