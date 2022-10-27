@@ -3,12 +3,13 @@
 
 :root {
     --main-color: #98B9CD;
+    --accent-color: #586C9D;
     --txt-color: #333;
     --border-color: #C4C4C4;
     --sub-border-color: #E0E0E0;
     --bg-color: #FFF;
     --emphasis-txt-color: #828282;
-    --sub-txt-color: #828282;
+    --sub-txt-color: #767676;
     --btn-border: #BDBDBD;
 }
 
@@ -145,6 +146,7 @@ button {
 
 .cart_icon_txt, .login_icon_txt {
     font-size: 12px;
+    color: var(--accent-color);
 }
 
 .banner_container {
