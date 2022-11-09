@@ -1,5 +1,6 @@
 @charset "utf-8";
-@import "reset.css";
+@import './reset.css';
+@import './font.css';
 
 :root {
     --main-color: #98B9CD;
@@ -22,7 +23,7 @@ body, html {
     height: 100%;
 }
 
-body, button {
+body, input, button {
     font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
 
@@ -45,6 +46,14 @@ a {
 
 table, thead, tbody, tr {
     display: block;
+}
+
+input {
+    border: none;
+}
+
+input:focus {
+    outline: none;
 }
 
 .ir {
@@ -74,6 +83,11 @@ button {
     border: none;
     cursor: pointer;
     padding: 0;
+    background-color: transparent;
+}
+
+section {
+    padding-top: 74px;
 }
 
 .main_header {
@@ -81,6 +95,7 @@ button {
     width: 100%;
     padding: 10px 80px;
     background-color: var(--bg-color);
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header_container {
@@ -210,4 +225,83 @@ main {
 .product_price {
     font-size: 24px;
     font-weight: 700;
+}
+
+.login_container {
+    padding: 165px 0;
+    text-align: center;
+}
+
+.login_tit {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--main-color);
+}
+
+.login_form {
+    width: 550px;
+    margin: 73px auto;
+    padding: 0 35px;
+}
+
+.login_type {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--main-color);
+    gap: 186px;
+}
+
+.login_buyer, .login_seller {
+    padding-bottom: 17px;
+    cursor: pointer;
+}
+
+.input_li {
+    margin: 40px 0;
+    text-align: left;
+}
+
+.input_li input {
+    width: 100%;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.login_btn {
+    padding: 19px 215px;
+    background-color: var(--main-color);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 200px;
+}
+
+.link_wrapper {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--txt-color);
+}
+
+.sign_up_link, .find_pw_link {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--sub-txt-color);
+}
+
+.sign_up_link {
+    margin-right: 14px;
+}
+
+.find_pw_link::before {
+    display: block;
+    float: left;
+    width: 1px;
+    height: 14px;
+    margin-right: 15px;
+    left: 0;
+    background-color: var(--txt-color);
+    content: '';
+    cursor: default;
 }
