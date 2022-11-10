@@ -14,6 +14,8 @@ export default class LoginType extends Component {
 
         loginBuyer.appendChild(loginBuyerTit);
 
+        loginBuyer.classList.add('active');
+
         const loginSeller = document.createElement('li');
         loginSeller.setAttribute('class', 'login_seller');
         const loginSellerTit = document.createElement('span');
@@ -23,6 +25,19 @@ export default class LoginType extends Component {
         loginSeller.appendChild(loginSellerTit);
 
         loginType.append(loginBuyer, loginSeller);
+        
+        function loginToggle() {
+            if(this.className === 'login_buyer') {
+                loginBuyer.classList.add('active');
+                loginSeller.classList.remove('active');
+            } else {
+                loginBuyer.classList.remove('active');
+                loginSeller.classList.add('active');
+            }
+        }
+
+        loginBuyer.addEventListener('click', loginToggle);
+        loginSeller.addEventListener('click', loginToggle);
 
         return loginType;
     }
