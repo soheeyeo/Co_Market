@@ -1,5 +1,5 @@
 import Router from './js/routes/router.js';
-import { Main, Login, ProductDetail } from './js/views/index.js';
+import { Main, Login, SignUp, ProductDetail } from './js/views/index.js';
 
 export default class App {
     constructor(props) {
@@ -11,6 +11,7 @@ export default class App {
         const router = new Router({
             '/': Main,
             '/login': Login,
+            '/signup': SignUp,
             '/detail': ProductDetail,
         });
 
