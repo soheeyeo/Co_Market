@@ -16,8 +16,10 @@ export default class HeaderIcons extends Component {
 
         cart.append(cartIcon, cartIconTxt);
 
-        const login = document.createElement('a');
-        login.setAttribute('href', '/login/');
+        const login = document.createElement('button');
+        login.addEventListener('click', () => {
+            window.location.href = '/login';
+        })
         const login_icon = document.createElement('div');
         login_icon.setAttribute('class', 'login_icon');
         const loginIconTxt = document.createElement('span');

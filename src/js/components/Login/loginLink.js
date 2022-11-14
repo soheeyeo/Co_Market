@@ -8,7 +8,9 @@ export default class LoginLink extends Component {
 
         const signUpLink = document.createElement('a')
         signUpLink.setAttribute('class', 'sign_up_link');
-        signUpLink.setAttribute('href', '/accounts/signup/');
+        signUpLink.addEventListener('click', () => {
+            window.location.href = '/signup';
+        })
         signUpLink.innerText = '회원가입';
 
         const findPwLink = document.createElement('a')
