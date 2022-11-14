@@ -33,7 +33,7 @@ export default class UserInputList extends Component {
         const userNumInput = document.createElement('input');
         userNumInput.setAttribute('class', 'sign_up_input');
         userNumInput.id = 'user_num';
-        userNumInput.type = 'password';
+        userNumInput.type = 'tel';
         userNumInput.name = 'num';
         userNumInput.required = 'required';
 
