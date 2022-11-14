@@ -14,6 +14,8 @@ export default class SignUpType extends Component {
 
         signUpBuyer.appendChild(signUpBuyerTit);
 
+        signUpBuyer.classList.add('active');
+
         const signUpSeller = document.createElement('li');
         signUpSeller.setAttribute('class', 'sign_up_seller');
         const signUpSellerTit = document.createElement('span');
@@ -23,6 +25,19 @@ export default class SignUpType extends Component {
         signUpSeller.appendChild(signUpSellerTit);
 
         signUpType.append(signUpBuyer, signUpSeller);
+
+        function signUpToggle() {
+            if(this.className === 'sign_up_buyer') {
+                signUpBuyer.classList.add('active');
+                signUpSeller.classList.remove('active');
+            } else {
+                signUpBuyer.classList.remove('active');
+                signUpSeller.classList.add('active');
+            }
+        }
+
+        signUpBuyer.addEventListener('click', signUpToggle);
+        signUpSeller.addEventListener('click', signUpToggle);
 
         return signUpType;
     }
