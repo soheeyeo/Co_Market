@@ -5,6 +5,7 @@ export default class LoginInputList extends Component {
     render() {
         const inputLi = document.createElement('ul');
         inputLi.setAttribute('class', 'input_li');
+        inputLi.classList.add('login');
 
         const inputId = document.createElement('li');
         inputId.setAttribute('class', 'input');
@@ -13,7 +14,8 @@ export default class LoginInputList extends Component {
         idLable.for = 'id';
         idLable.innerText = '아이디를 입력하세요.';
         const idInput = document.createElement('input');
-        idInput.setAttribute('id', 'id');
+        idInput.setAttribute('class', 'login_input');
+        idInput.id = 'id';
         idInput.type = 'text';
         idInput.placeholder = '아이디';
         idInput.name = 'id';
@@ -28,7 +30,8 @@ export default class LoginInputList extends Component {
         pwLable.for = 'pw';
         pwLable.innerText = '비밀번호를 입력하세요.';
         const pwInput = document.createElement('input');
-        pwInput.setAttribute('id', 'pw');
+        pwInput.setAttribute('class', 'login_input');
+        pwInput.id = 'pw';
         pwInput.type = 'password';
         pwInput.placeholder = '비밀번호';
         pwInput.name = 'password';
