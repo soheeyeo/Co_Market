@@ -31,7 +31,7 @@ export default class Router {
             if(e.target.closest('a')) {
                 e.preventDefault();
                 this.navigateTo(e.target.closest('a').href);
-            }
+            } 
         });
         
         // 뒤로가기를 할 때 다시 라우팅이 되도록
@@ -58,7 +58,7 @@ export default class Router {
         }
     
         if(view) {
-            this.render(view)
+            this.render(view);
         }
     }
     
