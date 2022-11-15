@@ -32,16 +32,20 @@ export default class Footer extends Component {
         const footerIconLi = document.createElement('ul');
         footerIconLi.setAttribute('class', 'footer_icon_li');
 
-        const linkClass = ['instagram', 'facebook', 'youtube'];
+        const snsLink = ['instagram', 'facebook', 'youtube'];
 
-        for (let j = 0; j < linkClass.length; j++) {
+        for (let j = 0; j < snsLink.length; j++) {
             const li1 = document.createElement('li');
-            li1.setAttribute('class', `${linkClass[j]}`);
 
             const a1 = document.createElement('a');
-            a1.innerText = linkClass[j];
             a1.setAttribute('href', '#');
+            a1.setAttribute('class', `${snsLink[j]}`);
 
+            const span = document.createElement('span');
+            span.innerText = `${snsLink[j]} 이동하기`;
+            span.setAttribute('class', 'ir');
+
+            a1.append(span);
             li1.append(a1);
             footerIconLi.append(li1);
         }
