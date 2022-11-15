@@ -14,7 +14,7 @@ export default class SellerInputList extends Component {
         sellerInputNum.setAttribute('class', 'seller_input');
         const sellerNumLable = document.createElement('lable');
         sellerNumLable.setAttribute('class', 'seller_lable');
-        sellerNumLable.for = 'crn';
+        sellerNumLable.htmlFor = 'crn';
         sellerNumLable.innerText = '사업자 등록번호';
         const sellerInputBtnWrapper = document.createElement('div');
         sellerInputBtnWrapper.setAttribute('class', 'seller_input_btn_wrapper');
@@ -34,7 +34,7 @@ export default class SellerInputList extends Component {
         sellerInputName.setAttribute('class', 'seller_input');
         const sellerNameLable = document.createElement('lable');
         sellerNameLable.setAttribute('class', 'seller_lable');
-        sellerNameLable.for = 'store_name';
+        sellerNameLable.htmlFor = 'store_name';
         sellerNameLable.innerText = '스토어 이름';
         const sellerNameInput = document.createElement('input');
         sellerNameInput.setAttribute('class', 'sign_up_input');

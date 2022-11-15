@@ -13,7 +13,7 @@ export default class UserInputList extends Component {
         userInputName.setAttribute('class', 'user_input');
         const userNameLable = document.createElement('lable');
         userNameLable.setAttribute('class', 'user_lable');
-        userNameLable.for = 'name';
+        userNameLable.htmlFor = 'name';
         userNameLable.innerText = '이름';
         const userNameInput = document.createElement('input');
         userNameInput.setAttribute('class', 'sign_up_input');
@@ -28,7 +28,7 @@ export default class UserInputList extends Component {
         userInputNum.setAttribute('class', 'user_input');
         const userNumLable = document.createElement('lable');
         userNumLable.setAttribute('class', 'user_lable');
-        userNumLable.for = 'num';
+        userNumLable.htmlFor = 'num';
         userNumLable.innerText = '휴대폰번호';
         const userNumInput = document.createElement('input');
         userNumInput.setAttribute('class', 'sign_up_input');

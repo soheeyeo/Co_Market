@@ -11,7 +11,7 @@ export default class LoginInputList extends Component {
         inputId.setAttribute('class', 'input');
         const idLable = document.createElement('lable');
         idLable.setAttribute('class', 'ir');
-        idLable.for = 'id';
+        idLable.htmlFor = 'id';
         idLable.innerText = '아이디를 입력하세요.';
         const idInput = document.createElement('input');
         idInput.setAttribute('class', 'login_input');
@@ -27,7 +27,7 @@ export default class LoginInputList extends Component {
         inputPw.setAttribute('class', 'input');
         const pwLable = document.createElement('lable');
         pwLable.setAttribute('class', 'ir');
-        pwLable.for = 'pw';
+        pwLable.htmlFor = 'pw';
         pwLable.innerText = '비밀번호를 입력하세요.';
         const pwInput = document.createElement('input');
         pwInput.setAttribute('class', 'login_input');

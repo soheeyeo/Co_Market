@@ -14,7 +14,7 @@ export default class SignUpInputList extends Component {
         accountInputId.setAttribute('class', 'account_input');
         const accountIdLable = document.createElement('lable');
         accountIdLable.setAttribute('class', 'account_lable');
-        accountIdLable.for = 'id';
+        accountIdLable.htmlFor = 'id';
         accountIdLable.innerText = '아이디';
         const idInputBtnWrapper = document.createElement('div');
         idInputBtnWrapper.setAttribute('class', 'id_input_btn_wrapper');
@@ -34,7 +34,7 @@ export default class SignUpInputList extends Component {
         accountInputPw.setAttribute('class', 'account_input');
         const accountPwLable = document.createElement('lable');
         accountPwLable.setAttribute('class', 'account_lable');
-        accountPwLable.for = 'pw';
+        accountPwLable.htmlFor = 'pw';
         accountPwLable.innerText = '비밀번호';
         const accountPwInput = document.createElement('input');
         accountPwInput.setAttribute('class', 'sign_up_input');
@@ -49,7 +49,7 @@ export default class SignUpInputList extends Component {
         accountPwCheck.setAttribute('class', 'account_input');
         const accountPwCheckLable = document.createElement('lable');
         accountPwCheckLable.setAttribute('class', 'account_lable');
-        accountPwCheckLable.for = 'pw_check';
+        accountPwCheckLable.htmlFor = 'pw_check';
         accountPwCheckLable.innerText = '비밀번호 확인';
         const accountPwCheckInput = document.createElement('input');
         accountPwCheckInput.setAttribute('class', 'sign_up_input');
