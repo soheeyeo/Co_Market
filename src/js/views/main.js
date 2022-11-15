@@ -2,6 +2,7 @@ import Component from "../components/abstractComponent.js";
 import ProductList from '../components/ProductList/productList.js';
 import Header from "../components/Header/header.js";
 import EventBanner from "../components/Banner/banner.js";
+import Footer from "../components/Footer/footer.js";
 
 export default class Main extends Component{
     constructor(props) {
@@ -18,6 +19,8 @@ export default class Main extends Component{
             const productList = new ProductList();
             mainElement.appendChild(productList.render());
 
-            this.target.append(mainHeader.render(), eventBanner.render(), mainElement);
+            const footer = new Footer();
+
+            this.target.append(mainHeader.render(), eventBanner.render(), mainElement, footer.render());
         }
 }
