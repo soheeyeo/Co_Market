@@ -4,7 +4,11 @@ export default class ProductName extends Component{
 
     render() {
         const productName = document.createElement('strong');
-        productName.setAttribute('class', 'product_name');
+        if(window.location.pathname === '/') {
+            productName.setAttribute('class', 'product_name');
+        } else if (window.location.pathname === '/detail') {
+            productName.setAttribute('class', 'product_detail_name');
+        }
         productName.innerText = this.props.name;
         return productName;
     }

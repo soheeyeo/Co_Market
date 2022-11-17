@@ -4,10 +4,21 @@ export default class ProductPrice extends Component{
 
     render() {
         const productPriceContainer = document.createElement('div');
-        productPriceContainer.setAttribute('class', 'price_container');
+
+        if(window.location.pathname === '/') {
+            productPriceContainer.setAttribute('class', 'price_container');
+        } else if(window.location.pathname === '/seller') {
+            productPriceContainer.setAttribute('class', 'price_detail_container');
+        }
 
         const productPrice = document.createElement('strong');
-        productPrice.setAttribute('class', 'product_price');
+
+        if(window.location.pathname === '/') {
+            productPrice.setAttribute('class', 'product_price');
+        } else if(window.location.pathname === '/seller') {
+            productPrice.setAttribute('class', 'product_detail_price');
+        }
+
         productPrice.innerText = this.props.price;
 
         const priceType = document.createElement('span');

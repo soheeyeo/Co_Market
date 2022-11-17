@@ -3,14 +3,19 @@ import Component from "../abstractComponent.js";
 export default class ProductImage extends Component{
 
     render() {
-        const productImgContainer = document.createElement('div');
-        productImgContainer.setAttribute('class', 'product_img');
+        const productImgWrapper = document.createElement('div');
+
+        if(window.location.pathname === '/') {
+            productImgWrapper.setAttribute('class', 'product_img');
+        } else if(window.location.pathname === '/seller') {
+            productImgWrapper.setAttribute('class', 'product_detail_img');
+        }
 
         const productImg = document.createElement('img');
         productImg.setAttribute('src', `${this.props.src}`);
         productImg.setAttribute('alt', `상품이미지`);
-        productImgContainer.appendChild(productImg);
+        productImgWrapper.appendChild(productImg);
 
-        return productImgContainer;
+        return productImgWrapper;
     }
 }
