@@ -10,7 +10,24 @@ export default async function getProductData() {
         });
         const data = await response.json();
         this.product = await data.results;
-        } catch(err) {
+    } catch(err) {
             console.log('err');
-        }
+    }
+}
+
+export async function getProductDetail() {
+    try {
+        const productId = window.location.pathname.split('/')[2];
+
+        const response = await fetch(API_URL+`products/${productId}/`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        const data = await response.json();
+        this.product = await data;
+    } catch(err) {
+            console.log('err');
+    }
 }
