@@ -5,7 +5,7 @@ export default class ProductCard extends Component{
 
     render() {
         const product = document.createElement('a');
-        product.setAttribute('href', `/products/${this.props.item.product_id}`);
+        product.setAttribute('href', `/product/${this.props.item.product_id}`);
         product.setAttribute('class', 'product_item');
 
         const productImage = new ProductImage({src:this.props.item.image});

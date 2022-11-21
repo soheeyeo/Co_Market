@@ -12,7 +12,7 @@ export default class App {
             '/': Main,
             '/login': Login,
             '/signup': SignUp,
-            '/detail': ProductDetail,
+            '/product/:id': ProductDetail,
         });
 
         router.init(el);
