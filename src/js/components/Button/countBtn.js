@@ -6,7 +6,7 @@ export default class CountBtn extends Component {
         const countBtn = document.createElement('div');
         countBtn.setAttribute('class', 'count_btn');
 
-        const mBtn = documet.createElement('input');
+        const mBtn = document.createElement('input');
         mBtn.setAttribute('class', 'm_btn');
         mBtn.type = 'button';
         mBtn.value = '-';
@@ -22,9 +22,6 @@ export default class CountBtn extends Component {
 
         countBtn.append(mBtn, count, pBtn);
 
-        countNum = count.innerText;
-        mBtn.addEventListner('click', () => {
-            countNum = parseInt(countNum) + 1;
-        })
+        return countBtn;
     }
 }
