@@ -7,7 +7,7 @@ export default class ProductImage extends Component{
 
         if(window.location.pathname === '/') {
             productImgWrapper.setAttribute('class', 'product_img');
-        } else if(window.location.pathname === '/seller') {
+        } else if(window.location.pathname.includes('/product/')) {
             productImgWrapper.setAttribute('class', 'product_detail_img');
         }
 

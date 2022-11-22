@@ -7,7 +7,7 @@ export default class ProductStore extends Component {
 
         if(window.location.pathname === '/') {
             productStore.setAttribute('class', 'product_store');
-        } else if(window.location.pathname === '/seller') {
+        } else if(window.location.pathname.includes('/product/')) {
             productStore.setAttribute('class', 'product_detail_store');
         }
 
