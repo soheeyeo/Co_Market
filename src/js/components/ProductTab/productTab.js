@@ -3,8 +3,8 @@ import Component from "../abstractComponent.js";
 export default class ProductTab extends Component {
 
     render() {
-        const productTabWrapper = document.createElement('section');
-        productTabWrapper.setAttribute('class', 'product_tab_wrapper');
+        const productTabContainer = document.createElement('section');
+        productTabContainer.setAttribute('class', 'product_tab_container');
 
         const detailBtnLi = document.createElement('ul');
         detailBtnLi.setAttribute('class', 'detail_tab_li');
@@ -36,8 +36,8 @@ export default class ProductTab extends Component {
             }
         }
 
-        productTabWrapper.appendChild(detailBtnLi);
+        productTabContainer.appendChild(detailBtnLi);
 
-        return productTabWrapper;
+        return productTabContainer;
     }
 }
