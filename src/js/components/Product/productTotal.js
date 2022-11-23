@@ -12,13 +12,21 @@ export default class ProductTotal extends Component {
 
         const totalCount = document.createElement('span');
         totalCount.setAttribute('class', 'total_count');
-        totalCount.innerHTML = `총 수랑 <strong>1</strong>개`;
+        totalCount.innerHTML = `총 수량 <strong>1</strong>개`;
 
-        const totalPrice = document.createElement('span');
+        const totalPriceContainer = document.createElement('div');
+        totalPriceContainer.setAttribute('class', 'total_price_container');
+
+        const totalPrice = document.createElement('strong');
         totalPrice.setAttribute('class', 'total_price');
         totalPrice.innerHTML = this.props.price;
 
-        totalWrapper.append(totalTxt, totalCount, totalPrice);
+        const priceType = document.createElement('span');
+        priceType.innerText = '원';
+
+        totalPriceContainer.append(totalPrice, priceType);
+
+        totalWrapper.append(totalTxt, totalCount, totalPriceContainer);
 
         return totalWrapper;
     }
