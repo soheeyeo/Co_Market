@@ -16,8 +16,8 @@ export default class SignUpInputList extends Component {
         accountIdLable.setAttribute('class', 'account_lable');
         accountIdLable.htmlFor = 'id';
         accountIdLable.innerText = '아이디';
-        const idInputBtnWrapper = document.createElement('div');
-        idInputBtnWrapper.setAttribute('class', 'id_input_btn_wrapper');
+        const idInputBtnContainer = document.createElement('div');
+        idInputBtnContainer.setAttribute('class', 'id_input_btn_container');
         const accountIdInput = document.createElement('input');
         accountIdInput.setAttribute('class', 'sign_up_input');
         accountIdInput.id = 'account_id';
@@ -27,8 +27,8 @@ export default class SignUpInputList extends Component {
 
         const checkIdBtn = new CheckIdBtn();
 
-        idInputBtnWrapper.append(accountIdInput, checkIdBtn.render());
-        accountInputId.append(accountIdLable, idInputBtnWrapper);
+        idInputBtnContainer.append(accountIdInput, checkIdBtn.render());
+        accountInputId.append(accountIdLable, idInputBtnContainer);
         
         const accountInputPw = document.createElement('li');
         accountInputPw.setAttribute('class', 'account_input');

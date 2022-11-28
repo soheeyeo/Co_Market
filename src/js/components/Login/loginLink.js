@@ -3,8 +3,8 @@ import Component from "../abstractComponent.js";
 export default class LoginLink extends Component {
     
     render() {
-        const linkWrapper = document.createElement('div');
-        linkWrapper.setAttribute('class', 'link_wrapper');
+        const linkContainer = document.createElement('div');
+        linkContainer.setAttribute('class', 'link_container');
 
         const signUpLink = document.createElement('a')
         signUpLink.setAttribute('class', 'sign_up_link');
@@ -17,8 +17,8 @@ export default class LoginLink extends Component {
         findPwLink.setAttribute('class', 'find_pw_link');
         findPwLink.innerText = '비밀번호 찾기';
 
-        linkWrapper.append(signUpLink, findPwLink);
+        linkContainer.append(signUpLink, findPwLink);
 
-        return linkWrapper;
+        return linkContainer;
     }
 }

@@ -23,7 +23,7 @@ export default class Footer extends Component {
 
             const a = document.createElement('a');
             a.innerText = innerTxt[i];
-            a.setAttribute('href', '#');
+            a.setAttribute('href', '/');
 
             li.append(a);
             footerLinkLi.append(li);
@@ -38,7 +38,7 @@ export default class Footer extends Component {
             const li1 = document.createElement('li');
 
             const a1 = document.createElement('a');
-            a1.setAttribute('href', '#');
+            a1.setAttribute('href', '/');
             a1.setAttribute('class', `${snsLink[j]}`);
 
             const span = document.createElement('span');
@@ -52,8 +52,8 @@ export default class Footer extends Component {
 
         footerLinkContainer.append(footerLinkLi, footerIconLi);
 
-        const footerInfoWrapper = document.createElement('div');
-        footerInfoWrapper.setAttribute('class', 'footer_info_wrapper');
+        const footerInfoContainer = document.createElement('div');
+        footerInfoContainer.setAttribute('class', 'footer_info_container');
         const dl = document.createElement('dl');
         dl.setAttribute('class', 'footer_corp_info');
         const dt = document.createElement('dt');
@@ -69,9 +69,9 @@ export default class Footer extends Component {
 
         dl.append(dt, dd1, dd2, dd3, dd4);
 
-        footerInfoWrapper.appendChild(dl);
+        footerInfoContainer.appendChild(dl);
 
-        footerContainer.append(footerLinkContainer, footerInfoWrapper);
+        footerContainer.append(footerLinkContainer, footerInfoContainer);
 
         mainFooter.appendChild(footerContainer);
 

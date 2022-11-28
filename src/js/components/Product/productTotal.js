@@ -3,8 +3,8 @@ import Component from "../abstractComponent.js";
 export default class ProductTotal extends Component {
 
     render() {
-        const totalWrapper = document.createElement('div');
-        totalWrapper.setAttribute('class', 'total_wrapper');
+        const totalContainer = document.createElement('div');
+        totalContainer.setAttribute('class', 'total_container');
 
         const totalTxt = document.createElement('span');
         totalTxt.setAttribute('class', 'total_txt');
@@ -26,8 +26,8 @@ export default class ProductTotal extends Component {
 
         totalPriceContainer.append(totalPrice, priceType);
 
-        totalWrapper.append(totalTxt, totalCount, totalPriceContainer);
+        totalContainer.append(totalTxt, totalCount, totalPriceContainer);
 
-        return totalWrapper;
+        return totalContainer;
     }
 }

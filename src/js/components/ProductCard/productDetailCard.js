@@ -30,8 +30,8 @@ export default class ProductDetailCard extends Component {
 
         productInfo.append(productDetailStore.render(), prodcutDetailName.render(), productDetailPrice.render());
 
-        const shippingWrapper = document.createElement('div');
-        shippingWrapper.setAttribute('class', 'shipping_wrapper');
+        const shippingContainer = document.createElement('div');
+        shippingContainer.setAttribute('class', 'shipping_container');
 
         const shipping = ['택배배송', '무료배송'];
 
@@ -39,23 +39,23 @@ export default class ProductDetailCard extends Component {
             const span = document.createElement('span');
             span.setAttribute('class', 'shipping');
             span.innerText = `${shipping[i]}`;
-            shippingWrapper.append(span);
+            shippingContainer.append(span);
         }
 
         const countBtn = new CountBtn;
 
         const productTotal = new ProductTotal({price:this.props.item.price});
 
-        const btnWrapper = document.createElement('div');
-        btnWrapper.setAttribute('class', 'btn_wrapper');
+        const btnContainer = document.createElement('div');
+        btnContainer.setAttribute('class', 'btn_container');
 
         const buyBtn = new BuyBtn;
 
         const cartBtn = new CartBtn;
 
-        btnWrapper.append(buyBtn.render(), cartBtn.render());
+        btnContainer.append(buyBtn.render(), cartBtn.render());
 
-        productDetailInfoContainer.append(productInfo, shippingWrapper, countBtn.render(), productTotal.render(), btnWrapper);
+        productDetailInfoContainer.append(productInfo, shippingContainer, countBtn.render(), productTotal.render(), btnContainer);
 
         productDetailContainer.append(productDetailImage.render(), productDetailInfoContainer);
 

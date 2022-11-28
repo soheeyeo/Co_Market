@@ -3,8 +3,8 @@ import Component from "../abstractComponent.js";
 export default class HeaderIcons extends Component {
 
     render() {
-        const iconsWrapper = document.createElement('div');
-        iconsWrapper.setAttribute('class', 'icons_wrapper');
+        const iconsContainer = document.createElement('div');
+        iconsContainer.setAttribute('class', 'icons_container');
 
         const cart = document.createElement('a');
         cart.setAttribute('href', '/cart/');
@@ -28,8 +28,8 @@ export default class HeaderIcons extends Component {
 
         login.append(login_icon, loginIconTxt);
 
-        iconsWrapper.append(cart, login);
+        iconsContainer.append(cart, login);
 
-        return iconsWrapper;
+        return iconsContainer;
     }
 }

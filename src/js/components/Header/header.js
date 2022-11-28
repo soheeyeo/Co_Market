@@ -12,8 +12,8 @@ export default class Header extends Component {
 
         mainHeader.appendChild(headerContainer);
 
-        const logoWrapper = document.createElement('div');
-        logoWrapper.setAttribute('class', 'logo_wrapper');
+        const logoContainer = document.createElement('div');
+        logoContainer.setAttribute('class', 'logo_container');
         const logo = document.createElement('a');
         logo.setAttribute('href', '/');
         logo.setAttribute('class', 'logo');
@@ -21,12 +21,12 @@ export default class Header extends Component {
         logoImg.setAttribute('class', 'logo_img');
 
         logo.appendChild(logoImg);
-        logoWrapper.appendChild(logo);
+        logoContainer.appendChild(logo);
 
         const search = new Search();
         const headerIcons = new HeaderIcons();
 
-        headerContainer.append(logoWrapper, search.render(), headerIcons.render());
+        headerContainer.append(logoContainer, search.render(), headerIcons.render());
 
         return mainHeader;
     }
