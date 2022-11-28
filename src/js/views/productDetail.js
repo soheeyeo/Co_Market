@@ -12,10 +12,14 @@ export default class ProductDetail extends Component {
     render() {
         const header = new Header;
 
+        const main = document.createElement('main');
+
         const productDetailContents = new ProductDetailContents;
 
         const productTab = new ProductTab;
 
-        this.target.append(header.render(), productDetailContents.render(), productTab.render());
+        main.append(productDetailContents.render(), productTab.render());
+
+        this.target.append(header.render(), main);
     }
 }
