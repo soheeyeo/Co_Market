@@ -19,7 +19,7 @@ export default class ProductPrice extends Component{
             productPrice.setAttribute('class', 'product_detail_price');
         }
 
-        productPrice.innerText = this.props.price;
+        productPrice.innerText = this.props.price.toLocaleString('ko-KR');
 
         const priceType = document.createElement('span');
         priceType.innerText = '원';
