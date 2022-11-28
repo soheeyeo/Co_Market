@@ -4,12 +4,14 @@ export default class Router {
             console.error('Can not initailize routes!')
         }
         this.routes = routes;
+        this.routeParam = {};
 
         // routes를 순회하며 특정 id값을 파싱하여 전달
         for(const key in routes) {
             const route = routes[key];
             if(key.indexOf(':') > -1) {
-                const [_, routeName, ...param] = key.split('/');
+                const [_, routeName, param] = key.split('/');
+                this.routeParam[routeName] =param.replace(':', '');
                 this.routes['/' + routeName] = route;
                 delete this.routes[key];
             }
@@ -28,9 +30,9 @@ export default class Router {
     
         // 클릭한 요소의 상위요소 중 a 태그가 있다면 url 이동
         window.addEventListener('click', (e) => {
-            if(e.target.closest('a')) {
+            if(e.target.tagName === 'a') {
                 e.preventDefault();
-                this.navigateTo(e.target.closest('a').href);
+                this.navigateTo(e.target.href);
             } 
         });
         
@@ -53,7 +55,9 @@ export default class Router {
             const component = new this.routes[pathname];
             view = component.render();
         } else if(param) {
-            const component = new this.routes['/' + routeName](param);
+            const routeParam = {};
+            routeParam[this.routeParam[routeName]] = param;
+            const component = new this.routes['/' + routeName](routeParam);
             view = component.render();
         }
     
