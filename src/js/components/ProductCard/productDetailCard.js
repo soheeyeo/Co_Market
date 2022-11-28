@@ -42,7 +42,7 @@ export default class ProductDetailCard extends Component {
             shippingContainer.append(span);
         }
 
-        const countBtn = new CountBtn;
+        const countBtn = new CountBtn({stock:this.props.item.stock, price:this.props.item.price});
 
         const productTotal = new ProductTotal({price:this.props.item.price});
 
