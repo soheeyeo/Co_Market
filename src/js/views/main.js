@@ -5,12 +5,10 @@ import EventBanner from "../components/Banner/banner.js";
 import Footer from "../components/Footer/footer.js";
 
 export default class Main extends Component{
-    constructor(props) {
-        super(props);
-        this.target = document.querySelector('#root');
-    }
 
         render() {
+            const frag = document.createDocumentFragment();
+
             const mainHeader = new Header();
 
             const eventBanner = new EventBanner();
@@ -21,6 +19,8 @@ export default class Main extends Component{
 
             const footer = new Footer();
 
-            this.target.append(mainHeader.render(), eventBanner.render(), mainElement, footer.render());
+            frag.append(mainHeader.render(), eventBanner.render(), mainElement, footer.render());
+
+            return frag;
         }
 }

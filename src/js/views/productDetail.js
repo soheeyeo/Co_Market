@@ -4,12 +4,10 @@ import ProductDetailContents from "../components/ProductDetailContents/productDe
 import ProductTab from "../components/ProductTab/productTab.js";
 
 export default class ProductDetail extends Component {
-    constructor(props) {
-        super(props);
-        this.target = document.querySelector('#root');
-    }
 
     render() {
+        const frag = document.createDocumentFragment();
+
         const header = new Header;
 
         const main = document.createElement('main');
@@ -20,6 +18,8 @@ export default class ProductDetail extends Component {
 
         main.append(productDetailContents.render(), productTab.render());
 
-        this.target.append(header.render(), main);
+        frag.append(header.render(), main);
+
+        return frag;
     }
 }

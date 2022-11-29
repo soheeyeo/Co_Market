@@ -3,12 +3,10 @@ import Header from "../components/Header/header.js";
 import LoginForm from "../components/Login/loginForm.js";
 
 export default class Login extends Component{
-    constructor(props) {
-        super(props);
-        this.target = document.querySelector('#root');
-    }
 
     render() {
+        const frag = document.createDocumentFragment();
+
         const header = new Header();
 
         const loginContainer = document.createElement('section');
@@ -21,6 +19,8 @@ export default class Login extends Component{
         
         loginContainer.append(loginTit, loginForm.render());
 
-        this.target.append(header.render(), loginContainer);
+        frag.append(header.render(), loginContainer);
+
+        return frag;
     }
 }

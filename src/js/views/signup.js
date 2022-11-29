@@ -3,12 +3,10 @@ import Header from "../components/Header/header.js";
 import SignUpForm from "../components/Signup/signUpForm.js";
 
 export default class SignUp extends Component{
-    constructor(props) {
-        super(props);
-        this.target = document.querySelector('#root');
-    }
 
     render() {
+        const frag = document.createDocumentFragment();
+
         const header = new Header();
 
         const signUpContainer = document.createElement('section');
@@ -21,6 +19,8 @@ export default class SignUp extends Component{
         
         signUpContainer.append(signUpTit, signUpForm.render());
 
-        this.target.append(header.render(), signUpContainer);
+        frag.append(header.render(), signUpContainer);
+
+        return frag;
     }
 }
