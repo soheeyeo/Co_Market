@@ -10,6 +10,8 @@ export default class ProductTotal extends Component {
         totalTxt.setAttribute('class', 'total_txt');
         totalTxt.innerText = '총 상품 금액';
 
+        const totalQtyContainer = document.createElement('div');
+
         const totalCount = document.createElement('span');
         totalCount.setAttribute('class', 'total_count');
         totalCount.innerHTML = `총 수량 <strong>1</strong>개`;
@@ -26,7 +28,9 @@ export default class ProductTotal extends Component {
 
         totalPriceContainer.append(totalPrice, priceType);
 
-        totalContainer.append(totalTxt, totalCount, totalPriceContainer);
+        totalQtyContainer.append(totalCount, totalPriceContainer);
+
+        totalContainer.append(totalTxt, totalQtyContainer);
 
         return totalContainer;
     }
