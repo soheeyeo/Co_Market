@@ -402,7 +402,6 @@ main {
     height: 1px;
     margin: -1px;
     overflow: hidden;
-    /* display: none; */
 }
 
 .agreement {
@@ -419,7 +418,7 @@ main {
     display: inline-block;
 }
 
-.form_check_container label::before {
+.form_check_container input[type="checkbox"] + label::before {
     display: inline-block;
     content: '';
     width: 16px;
@@ -430,14 +429,8 @@ main {
     background-size: 16px 16px;
 }
 
-.form_check_container input[type="checkbox"]:checked+.form_check_container label::after {
-    content: '';
-    width: 16px;
-    height: 16px;
-    margin-right: 8px;
-    vertical-align: bottom;
+.form_check_container input[type="checkbox"]:checked + label::before {
     background-image: url(../assets/check-box-Fill.svg);
-    background-size: 16px 16px;
 }
 
 .main_footer {
@@ -616,14 +609,17 @@ main {
     overflow: hidden;
 }
 
-.count_btn input {
+.m_btn, .p_btn {
     font-size: 36px;
     background-color: #FFF;
     color: var(--border-color);
+    cursor: pointer;
 }
 
-.count_btn span {
+.count {
+    display: inline;
     padding: 14px;
+    font-size: 18px;
     color: var(--txt-color);
     border-width: 0 1px 0;
     border-style: solid;
@@ -632,12 +628,15 @@ main {
 }
 
 .total_container {
+    display: flex;
+    justify-content: space-between;
     padding: 32px 0;
     border-top: 2px solid var(--border-color);
+    align-items: baseline;
+
 }
 
 .total_txt {
-    margin-right: 221px;
     font-size: 18px;
     font-weight: 500;
 }
