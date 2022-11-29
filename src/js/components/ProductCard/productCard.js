@@ -8,9 +8,9 @@ export default class ProductCard extends Component{
         product.setAttribute('href', `/product/${this.props.item.product_id}`);
         product.setAttribute('class', 'product_item');
 
-        product.addEventListener('click', () => {
-            window.location.href = `/product/${this.props.item.product_id}`;
-        })
+        // product.addEventListener('click', () => {
+        //     window.location.href = `/product/${this.props.item.product_id}`;
+        // })
 
         const productImage = new ProductImage({src:this.props.item.image});
         const productStore = new ProductStore({store:this.props.item.store_name});
