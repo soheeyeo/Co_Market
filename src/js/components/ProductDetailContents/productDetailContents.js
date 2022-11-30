@@ -6,23 +6,25 @@ export default class ProductDetailContents extends Component {
     constructor(props) {
         super(props);
         this.getProductDetail = getProductDetail;
-        this.sectionElement = document.createElement('section');
-        this.product = {};
-    }
-    
-    async setProductDetail() {
-        await this.getProductDetail();
-
-        this.sectionElement.classList.add('product_detail_container');
-
-        const productDetailCard = new ProductDetailCard({item:this.product});
-        this.sectionElement.append(productDetailCard.render());
+        this.getProductDetail();
+        this.state = {
+            product:{
+                price: {}
+            }
+        }
     }
 
     render() {
-        this.setProductDetail();
-        console.log(window.location.pathname);
+        const DetailContainer = document.createElement('section');
+        DetailContainer.setAttribute('class', 'product_detail_container')
 
-        return this.sectionElement;
+        const heading = document.createElement('h1');
+        heading.setAttribute('class', 'ir');
+        heading.innerText = '상품 상세 정보 페이지';
+
+        const productDetailCard = new ProductDetailCard({item:this.state.product});
+        DetailContainer.append(productDetailCard.render());
+
+        return DetailContainer;
     }
 }

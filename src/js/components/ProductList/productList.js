@@ -6,35 +6,33 @@ export default class ProductList extends Component{
     constructor(props) {
         super(props);
         this.getProductData = getProductData;
-        this.sectionElement = document.createElement('section');
-        this.product = {};
+        this.getProductData();
+        this.state = {
+            product:[]
+        }
     }
 
-    async setProductList() {
-        await this.getProductData();
-        console.log(this.product);
-        
-        this.sectionElement.classList.add('product_container');
-        
+    render() {
+        const productContainer = document.createElement('section');
+        productContainer.setAttribute('class', 'product_container');
+
+        const heading = document.createElement('h1');
+        heading.setAttribute('class', 'ir');
+        heading.innerText = '메인 페이지';
+    
         const productList = document.createElement('ul');
         productList.setAttribute('class', 'product_list');
     
-        this.product.forEach(async (item) => {
+        this.state.product.forEach(async (item) => {
             const productItem = document.createElement('li');
             const productCard = new ProductCard({item:item});
             productItem.appendChild(productCard.render());
             productList.appendChild(productItem);
         });
     
-        this.sectionElement.append(productList);
-    
-        console.log(this.sectionElement);
-        }
+        productContainer.append(productList);
 
-        render() {
-            this.setProductList();
-
-            return this.sectionElement;
-        }
+        return productContainer;
+    }
 }
 

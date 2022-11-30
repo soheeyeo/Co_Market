@@ -9,7 +9,7 @@ export default async function getProductData() {
             },
         });
         const data = await response.json();
-        this.product = await data.results;
+        this.setState({product:data.results});
     } catch(err) {
             console.log('err');
     }
@@ -26,7 +26,7 @@ export async function getProductDetail() {
             },
         });
         const data = await response.json();
-        this.product = await data;
+        this.setState({product:data});
     } catch(err) {
             console.log('err');
     }

@@ -15,7 +15,7 @@ export default class Main extends Component{
 
             const mainElement = document.createElement('main');
             const productList = new ProductList();
-            mainElement.appendChild(productList.render());
+            mainElement.appendChild(productList.initialize());
 
             const footer = new Footer();
 
