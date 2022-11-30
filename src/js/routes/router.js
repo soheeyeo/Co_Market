@@ -16,7 +16,6 @@ export default class Router {
                 delete this.routes[key];
             }
         }
-        console.log(this.routes);
     }
     
     init(rootElementId) {
@@ -30,9 +29,9 @@ export default class Router {
     
         // 클릭한 요소의 상위요소 중 a 태그가 있다면 url 이동
         window.addEventListener('click', (e) => {
-            if(e.target.tagName === 'a') {
+            if(e.target.closest('a')) {
                 e.preventDefault();
-                this.navigateTo(e.target.href);
+                this.navigateTo(e.target.closest('a').href);
             } 
         });
         
@@ -53,12 +52,12 @@ export default class Router {
         // routes[pathname] Class를 컴포넌트로 받아서 페이지를 전달
         if(this.routes[pathname]) {
             const component = new this.routes[pathname];
-            view = component.render();
+            view = component.initialize();
         } else if(param) {
             const routeParam = {};
             routeParam[this.routeParam[routeName]] = param;
             const component = new this.routes['/' + routeName](routeParam);
-            view = component.render();
+            view = component.initialize();
         }
     
         if(view) {
