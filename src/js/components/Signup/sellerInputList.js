@@ -12,10 +12,10 @@ export default class SellerInputList extends Component {
 
         const sellerInputNum = document.createElement('li');
         sellerInputNum.setAttribute('class', 'seller_input');
-        const sellerNumLable = document.createElement('lable');
-        sellerNumLable.setAttribute('class', 'seller_lable');
-        sellerNumLable.htmlFor = 'crn';
-        sellerNumLable.innerText = '사업자 등록번호';
+        const sellerNumLabel = document.createElement('label');
+        sellerNumLabel.setAttribute('class', 'seller_label');
+        sellerNumLabel.htmlFor = 'crn';
+        sellerNumLabel.innerText = '사업자 등록번호';
         const sellerInputBtnContainer = document.createElement('div');
         sellerInputBtnContainer.setAttribute('class', 'seller_input_btn_container');
         const sellerNumInput = document.createElement('input');
@@ -28,14 +28,14 @@ export default class SellerInputList extends Component {
         const checkCrnBtn = new CheckCrnBtn();
 
         sellerInputBtnContainer.append(sellerNumInput, checkCrnBtn.render());
-        sellerInputNum.append(sellerNumLable, sellerInputBtnContainer);
+        sellerInputNum.append(sellerNumLabel, sellerInputBtnContainer);
         
         const sellerInputName = document.createElement('li');
         sellerInputName.setAttribute('class', 'seller_input');
-        const sellerNameLable = document.createElement('lable');
-        sellerNameLable.setAttribute('class', 'seller_lable');
-        sellerNameLable.htmlFor = 'store_name';
-        sellerNameLable.innerText = '스토어 이름';
+        const sellerNameLabel = document.createElement('label');
+        sellerNameLabel.setAttribute('class', 'seller_label');
+        sellerNameLabel.htmlFor = 'store_name';
+        sellerNameLabel.innerText = '스토어 이름';
         const sellerNameInput = document.createElement('input');
         sellerNameInput.setAttribute('class', 'sign_up_input');
         sellerNameInput.id = 'store_name';
@@ -43,7 +43,7 @@ export default class SellerInputList extends Component {
         sellerNameInput.name = 'store_name';
         sellerNameInput.required = 'required';
 
-        sellerInputName.append(sellerNameLable, sellerNameInput);
+        sellerInputName.append(sellerNameLabel, sellerNameInput);
 
         sellerInputLi.append(sellerInputNum, sellerInputName);
 

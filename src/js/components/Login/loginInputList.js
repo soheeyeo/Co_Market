@@ -9,10 +9,10 @@ export default class LoginInputList extends Component {
 
         const inputId = document.createElement('li');
         inputId.setAttribute('class', 'input');
-        const idLable = document.createElement('lable');
-        idLable.setAttribute('class', 'ir');
-        idLable.htmlFor = 'id';
-        idLable.innerText = '아이디를 입력하세요.';
+        const idLabel = document.createElement('label');
+        idLabel.setAttribute('class', 'ir');
+        idLabel.htmlFor = 'id';
+        idLabel.innerText = '아이디를 입력하세요.';
         const idInput = document.createElement('input');
         idInput.setAttribute('class', 'login_input');
         idInput.id = 'id';
@@ -21,14 +21,14 @@ export default class LoginInputList extends Component {
         idInput.name = 'id';
         idInput.required = 'required';
 
-        inputId.append(idLable, idInput);
+        inputId.append(idLabel, idInput);
         
         const inputPw = document.createElement('li');
         inputPw.setAttribute('class', 'input');
-        const pwLable = document.createElement('lable');
-        pwLable.setAttribute('class', 'ir');
-        pwLable.htmlFor = 'pw';
-        pwLable.innerText = '비밀번호를 입력하세요.';
+        const pwLabel = document.createElement('label');
+        pwLabel.setAttribute('class', 'ir');
+        pwLabel.htmlFor = 'pw';
+        pwLabel.innerText = '비밀번호를 입력하세요.';
         const pwInput = document.createElement('input');
         pwInput.setAttribute('class', 'login_input');
         pwInput.id = 'pw';
@@ -37,7 +37,7 @@ export default class LoginInputList extends Component {
         pwInput.name = 'password';
         pwInput.required = 'required';
 
-        inputPw.append(pwLable, pwInput);
+        inputPw.append(pwLabel, pwInput);
         
         inputLi.append(inputId, inputPw);
 

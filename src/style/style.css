@@ -303,7 +303,7 @@ main {
     margin-top: 10px;
 }
 
-.account_lable, .user_lable, .seller_lable {
+.account_label, .user_label, .seller_label {
     color: var(--sub-txt-color);
 }
 

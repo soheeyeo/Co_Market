@@ -12,10 +12,10 @@ export default class SignUpInputList extends Component {
 
         const accountInputId = document.createElement('li');
         accountInputId.setAttribute('class', 'account_input');
-        const accountIdLable = document.createElement('lable');
-        accountIdLable.setAttribute('class', 'account_lable');
-        accountIdLable.htmlFor = 'id';
-        accountIdLable.innerText = '아이디';
+        const accountIdLabel = document.createElement('label');
+        accountIdLabel.setAttribute('class', 'account_label');
+        accountIdLabel.htmlFor = 'id';
+        accountIdLabel.innerText = '아이디';
         const idInputBtnContainer = document.createElement('div');
         idInputBtnContainer.setAttribute('class', 'id_input_btn_container');
         const accountIdInput = document.createElement('input');
@@ -28,14 +28,14 @@ export default class SignUpInputList extends Component {
         const checkIdBtn = new CheckIdBtn();
 
         idInputBtnContainer.append(accountIdInput, checkIdBtn.render());
-        accountInputId.append(accountIdLable, idInputBtnContainer);
+        accountInputId.append(accountIdLabel, idInputBtnContainer);
         
         const accountInputPw = document.createElement('li');
         accountInputPw.setAttribute('class', 'account_input');
-        const accountPwLable = document.createElement('lable');
-        accountPwLable.setAttribute('class', 'account_lable');
-        accountPwLable.htmlFor = 'pw';
-        accountPwLable.innerText = '비밀번호';
+        const accountPwLabel = document.createElement('label');
+        accountPwLabel.setAttribute('class', 'account_label');
+        accountPwLabel.htmlFor = 'pw';
+        accountPwLabel.innerText = '비밀번호';
         const accountPwInput = document.createElement('input');
         accountPwInput.setAttribute('class', 'sign_up_input');
         accountPwInput.id = 'account_pw';
@@ -43,14 +43,14 @@ export default class SignUpInputList extends Component {
         accountPwInput.name = 'password';
         accountPwInput.required = 'required';
 
-        accountInputPw.append(accountPwLable, accountPwInput);
+        accountInputPw.append(accountPwLabel, accountPwInput);
 
         const accountPwCheck = document.createElement('li');
         accountPwCheck.setAttribute('class', 'account_input');
-        const accountPwCheckLable = document.createElement('lable');
-        accountPwCheckLable.setAttribute('class', 'account_lable');
-        accountPwCheckLable.htmlFor = 'pw_check';
-        accountPwCheckLable.innerText = '비밀번호 확인';
+        const accountPwCheckLabel = document.createElement('label');
+        accountPwCheckLabel.setAttribute('class', 'account_label');
+        accountPwCheckLabel.htmlFor = 'pw_check';
+        accountPwCheckLabel.innerText = '비밀번호 확인';
         const accountPwCheckInput = document.createElement('input');
         accountPwCheckInput.setAttribute('class', 'sign_up_input');
         accountPwCheckInput.id = 'account_pw_check';
@@ -58,7 +58,7 @@ export default class SignUpInputList extends Component {
         accountPwCheckInput.name = 'password_check';
         accountPwCheckInput.required = 'required';
 
-        accountPwCheck.append(accountPwCheckLable, accountPwCheckInput);
+        accountPwCheck.append(accountPwCheckLabel, accountPwCheckInput);
         
         accountInputLi.append(accountInputId, accountInputPw, accountPwCheck);
 
