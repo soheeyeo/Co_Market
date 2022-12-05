@@ -12,53 +12,79 @@ import CartBtn from "../Button/cartBtn.js";
 export default class ProductDetailCard extends Component {
 
     render() {
-        const productDetailContainer = document.createElement('div');
-        productDetailContainer.setAttribute('class', 'product_detail_card');
+        if(window.location.pathname.includes('/product/')) {
+            const productDetailContainer = document.createElement('div');
+            productDetailContainer.setAttribute('class', 'product_detail_card');
+    
+            const productDetailImage = new ProductImage({src:this.props.item.image});
+    
+            const productDetailInfoContainer = document.createElement('div');
+            productDetailInfoContainer.setAttribute('class', 'product_detail_info_container');
+    
+            const productInfo = document.createElement('div');
+    
+            const productDetailStore = new ProductStore({store:this.props.item.store_name});
+    
+            const prodcutDetailName = new ProductName({name:this.props.item.product_name});
+    
+            const productDetailPrice = new ProductPrice({price:this.props.item.price});
+    
+            productInfo.append(productDetailStore.render(), prodcutDetailName.render(), productDetailPrice.render());
+    
+            const shippingContainer = document.createElement('div');
+            shippingContainer.setAttribute('class', 'shipping_container');
+    
+            const shipping = document.createElement('span');
+            shipping.setAttribute('class', 'shipping');
+            shipping.innerText = `택배 배송 / ${this.props.item.shipping_fee > 0 ? this.props.item.shipping_fee+'원' : '무료배송'}`;
 
-        const productDetailImage = new ProductImage({src:this.props.item.image});
+            shippingContainer.append(shipping);
+    
+            const countBtn = new CountBtn({stock:this.props.item.stock, price:this.props.item.price});
+    
+            const productTotal = new ProductTotal({price:this.props.item.price});
+    
+            const btnContainer = document.createElement('div');
+            btnContainer.setAttribute('class', 'btn_container');
+    
+            const buyBtn = new BuyBtn;
+    
+            const cartBtn = new CartBtn;
+    
+            btnContainer.append(buyBtn.render(), cartBtn.render());
+    
+            productDetailInfoContainer.append(productInfo, shippingContainer, countBtn.render(), productTotal.render(), btnContainer);
+    
+            productDetailContainer.append(productDetailImage.render(), productDetailInfoContainer);
+    
+            return productDetailContainer;
 
-        const productDetailInfoContainer = document.createElement('div');
-        productDetailInfoContainer.setAttribute('class', 'product_detail_info_container');
+        } else if(window.location.pathname === '/cart') {
+            const frag = document.createDocumentFragment();
 
-        const productInfo = document.createElement('div');
+            const cartItemImg = new ProductImage({src:this.props.item.image});
 
-        const productDetailStore = new ProductStore({store:this.props.item.store_name});
+            const cartItemInfoContainer = document.createElement('div');
+            cartItemInfoContainer.setAttribute('class', 'cart_item_info_container');
+            const cartItemStore = new ProductStore({store:this.props.item.store_name});
+            const cartItemName = new ProductName({name:this.props.item.product_name});
+            const cartItemPrice = new ProductPrice({price:this.props.item.price});
+            const shippingContainer = document.createElement('div');
+            shippingContainer.setAttribute('class', 'shipping_container');
 
-        const prodcutDetailName = new ProductName({name:this.props.item.product_name});
 
-        const productDetailPrice = new ProductPrice({price:this.props.item.price});
+            const shipping = document.createElement('span');
+            shipping.setAttribute('class', 'shipping');
+            shipping.innerText = `택배 배송 / ${this.props.item.shippingFee>0?this.props.item.shippingFee+'원':'무료배송'}`;
 
-        productInfo.append(productDetailStore.render(), prodcutDetailName.render(), productDetailPrice.render());
+            shippingContainer.append(shipping);
 
-        const shippingContainer = document.createElement('div');
-        shippingContainer.setAttribute('class', 'shipping_container');
+            cartItemInfoContainer.append(cartItemStore.render(), cartItemName.render(), cartItemPrice.render(), shippingContainer);
 
-        const shipping = ['택배배송', '무료배송'];
-
-        for(let i = 0; i < shipping.length; i++) {
-            const span = document.createElement('span');
-            span.setAttribute('class', 'shipping');
-            span.innerText = `${shipping[i]}`;
-            shippingContainer.append(span);
+            frag.append(cartItemImg.render(), cartItemInfoContainer);
+            
+            return frag;
         }
 
-        const countBtn = new CountBtn({stock:this.props.item.stock, price:this.props.item.price});
-
-        const productTotal = new ProductTotal({price:this.props.item.price});
-
-        const btnContainer = document.createElement('div');
-        btnContainer.setAttribute('class', 'btn_container');
-
-        const buyBtn = new BuyBtn;
-
-        const cartBtn = new CartBtn;
-
-        btnContainer.append(buyBtn.render(), cartBtn.render());
-
-        productDetailInfoContainer.append(productInfo, shippingContainer, countBtn.render(), productTotal.render(), btnContainer);
-
-        productDetailContainer.append(productDetailImage.render(), productDetailInfoContainer);
-
-        return productDetailContainer;
     }
 }

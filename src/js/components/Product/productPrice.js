@@ -9,7 +9,9 @@ export default class ProductPrice extends Component{
             productPriceContainer.setAttribute('class', 'price_container');
         } else if(window.location.pathname.includes('/product/')) {
             productPriceContainer.setAttribute('class', 'price_detail_container');
-        }
+        } else if(window.location.pathname === '/cart') {
+            productPriceContainer.setAttribute('class', 'cart_item_price_container');
+        } 
 
         const productPrice = document.createElement('strong');
 
@@ -17,7 +19,9 @@ export default class ProductPrice extends Component{
             productPrice.setAttribute('class', 'product_price');
         } else if(window.location.pathname.includes('/product/')) {
             productPrice.setAttribute('class', 'product_detail_price');
-        }
+        } else if(window.location.pathname === '/cart') {
+            productPrice.setAttribute('class', 'cart_item_price');
+        } 
 
         productPrice.innerText = this.props.price.toLocaleString('ko-KR');
 

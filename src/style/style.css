@@ -593,12 +593,6 @@ main {
     border-bottom: 2px solid var(--border-color);
 }
 
-.shipping:first-child::after {
-    display: inline-block;
-    margin-right: 5px;
-    content: '/';
-}
-
 .count_btn {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
