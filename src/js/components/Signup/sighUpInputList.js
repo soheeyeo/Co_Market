@@ -3,9 +3,12 @@ import CheckIdBtn from "../Button/checkIdBtn.js";
 
 export default class SignUpInputList extends Component {
     
-    render() {
+    render() {        
         const accountInput = document.createElement('fieldset');
         accountInput.setAttribute('class', 'account_input_fieldset');
+
+        const statusMsg = document.createElement('storong');
+        statusMsg.setAttribute('class', 'status_msg');
 
         const accountInputLi = document.createElement('ul');
         accountInputLi.setAttribute('class', 'input_li');
@@ -18,6 +21,7 @@ export default class SignUpInputList extends Component {
         accountIdLabel.innerText = '아이디';
         const idInputBtnContainer = document.createElement('div');
         idInputBtnContainer.setAttribute('class', 'id_input_btn_container');
+
         const accountIdInput = document.createElement('input');
         accountIdInput.setAttribute('class', 'sign_up_input');
         accountIdInput.id = 'account_id';
@@ -28,7 +32,7 @@ export default class SignUpInputList extends Component {
         const checkIdBtn = new CheckIdBtn();
 
         idInputBtnContainer.append(accountIdInput, checkIdBtn.render());
-        accountInputId.append(accountIdLabel, idInputBtnContainer);
+        accountInputId.append(accountIdLabel, idInputBtnContainer, statusMsg);
         
         const accountInputPw = document.createElement('li');
         accountInputPw.setAttribute('class', 'account_input');

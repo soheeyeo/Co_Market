@@ -11,7 +11,6 @@ export default class SignUpForm extends Component {
     render() {
         const sighUpForm = document.createElement('form');
         sighUpForm.setAttribute('class', 'sign_up_form');
-        sighUpForm.method = 'get';
 
         const signUpType = new SignUpType();
         const signUpInputList = new SignUpInputList();
