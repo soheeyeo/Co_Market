@@ -33,6 +33,9 @@ export default class SignUpInputList extends Component {
 
         idInputBtnContainer.append(accountIdInput, checkIdBtn.render());
         accountInputId.append(accountIdLabel, idInputBtnContainer, statusMsg);
+
+        const pwStatusMsg = document.createElement('storong');
+        pwStatusMsg.setAttribute('class', 'status_msg');
         
         const accountInputPw = document.createElement('li');
         accountInputPw.setAttribute('class', 'account_input');
@@ -47,7 +50,18 @@ export default class SignUpInputList extends Component {
         accountPwInput.name = 'password';
         accountPwInput.required = 'required';
 
-        accountInputPw.append(accountPwLabel, accountPwInput);
+        accountInputPw.append(accountPwLabel, accountPwInput, pwStatusMsg);
+
+        //비밀번호 유효성 검사
+        const regExp = /^[A-Za-z0-9]{8,}$/g;
+        accountPwInput.addEventListener('keyup', (e) => {
+            console.log(regExp.test(e.target.vale));
+            if(!regExp.test(e.target.vale)) {
+                pwStatusMsg.innerText = '숫자, 영문 포함 8자 이상이어야 합니다.'
+            } else {
+                pwStatusMsg.style.display = 'none';
+            }
+        })
 
         const accountPwCheck = document.createElement('li');
         accountPwCheck.setAttribute('class', 'account_input');
