@@ -1,6 +1,25 @@
 import Component from "../abstractComponent.js";
 
 export default class CountBtn extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            qty:1
+        };
+        this.totalQty = document.querySelector('.total_count strong');
+    }
+
+    decreaseQty() {
+        const newQty = this.state.qty - 1;
+        if(newQty < 1) return;
+        this.setState({qty:newQty});
+    }
+
+    increaseQty() {
+        const newQty = this.state.qty + 1;
+        if(newQty > this.props.stock) return;
+        this.setState({qty:newQty});
+    }
 
     render() {
         const countBtn = document.createElement('div');
@@ -11,37 +30,18 @@ export default class CountBtn extends Component {
         mBtn.type = 'button';
         mBtn.value = '-';
 
+        mBtn.addEventListener('click', this.decreaseQty.bind(this));
+
         const count = document.createElement('span');
         count.setAttribute('class', 'count');
-        count.innerText = '1';
+        count.innerText = this.state.qty;
 
         const pBtn = document.createElement('input');
         pBtn.setAttribute('class', 'p_btn');
         pBtn.type = 'button';
         pBtn.value = '+';
 
-        let num = parseInt(count.innerText);
-
-        mBtn.addEventListener('click', () => {
-            if(num > 1) {
-                num -= 1;
-                count.innerText = `${num}`;
-                document.querySelector('.total_count strong').innerText = `${num}`;
-                document.querySelector('.total_price').innerText = (num * this.props.price).toLocaleString('ko-KR');
-            } 
-        })
-
-        pBtn.addEventListener('click', () => {
-            if(this.props.stock === num) {
-                pBtn.disabled = true;
-            } else {
-                num += 1;
-                count.innerText = `${num}`;
-                document.querySelector('.total_count strong').innerText = `${num}`;
-                document.querySelector('.total_price').innerText = (num * this.props.price).toLocaleString('ko-KR');
-                console.log(this.props.price)
-            } 
-        })
+        pBtn.addEventListener('click', this.increaseQty.bind(this));
 
         countBtn.append(mBtn, count, pBtn);
 
