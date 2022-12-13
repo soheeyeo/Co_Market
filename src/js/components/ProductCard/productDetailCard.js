@@ -10,6 +10,24 @@ import CartBtn from "../Button/cartBtn.js";
 
 
 export default class ProductDetailCard extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            qty:1
+        };
+    }
+
+    decreaseQty() {
+        const newQty = this.state.qty - 1;
+        if(newQty < 1) return;
+        this.setState({qty:newQty});
+    }
+
+    increaseQty() {
+        const newQty = this.state.qty + 1;
+        if(newQty > this.props.stock) return;
+        this.setState({qty:newQty});
+    }
 
     render() {
         if(window.location.pathname.includes('/product/')) {
@@ -40,9 +58,9 @@ export default class ProductDetailCard extends Component {
 
             shippingContainer.append(shipping);
     
-            const countBtn = new CountBtn({stock:this.props.item.stock, price:this.props.item.price});
+            const countBtn = new CountBtn({qty:this.state.qty, decreaseQty:this.decreaseQty.bind(this), increaseQty:this.increaseQty.bind(this), stock:this.props.item.stock, price:this.props.item.price});
     
-            const productTotal = new ProductTotal({price:this.props.item.price});
+            const productTotal = new ProductTotal({qty:this.state.qty, price:this.props.item.price});
     
             const btnContainer = document.createElement('div');
             btnContainer.setAttribute('class', 'btn_container');
@@ -53,7 +71,7 @@ export default class ProductDetailCard extends Component {
     
             btnContainer.append(buyBtn.render(), cartBtn.render());
     
-            productDetailInfoContainer.append(productInfo, shippingContainer, countBtn.render(), productTotal.render(), btnContainer);
+            productDetailInfoContainer.append(productInfo, shippingContainer, countBtn.initialize(), productTotal.render(), btnContainer);
     
             productDetailContainer.append(productDetailImage.render(), productDetailInfoContainer);
     

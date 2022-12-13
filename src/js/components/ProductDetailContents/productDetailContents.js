@@ -15,16 +15,16 @@ export default class ProductDetailContents extends Component {
     }
 
     render() {
-        const DetailContainer = document.createElement('section');
-        DetailContainer.setAttribute('class', 'product_detail_container')
+        const detailContainer = document.createElement('section');
+        detailContainer.setAttribute('class', 'product_detail_container')
 
         const heading = document.createElement('h1');
         heading.setAttribute('class', 'ir');
         heading.innerText = '상품 상세 정보 페이지';
 
         const productDetailCard = new ProductDetailCard({item:this.state.product});
-        DetailContainer.append(productDetailCard.render());
+        detailContainer.append(productDetailCard.initialize());
 
-        return DetailContainer;
+        return detailContainer;
     }
 }

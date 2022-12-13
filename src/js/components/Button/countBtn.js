@@ -1,25 +1,6 @@
 import Component from "../abstractComponent.js";
 
 export default class CountBtn extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            qty:1
-        };
-        this.totalQty = document.querySelector('.total_count strong');
-    }
-
-    decreaseQty() {
-        const newQty = this.state.qty - 1;
-        if(newQty < 1) return;
-        this.setState({qty:newQty});
-    }
-
-    increaseQty() {
-        const newQty = this.state.qty + 1;
-        if(newQty > this.props.stock) return;
-        this.setState({qty:newQty});
-    }
 
     render() {
         const countBtn = document.createElement('div');
@@ -30,18 +11,18 @@ export default class CountBtn extends Component {
         mBtn.type = 'button';
         mBtn.value = '-';
 
-        mBtn.addEventListener('click', this.decreaseQty.bind(this));
+        mBtn.addEventListener('click', this.props.decreaseQty);
 
         const count = document.createElement('span');
         count.setAttribute('class', 'count');
-        count.innerText = this.state.qty;
+        count.innerText = this.props.qty;
 
         const pBtn = document.createElement('input');
         pBtn.setAttribute('class', 'p_btn');
         pBtn.type = 'button';
         pBtn.value = '+';
 
-        pBtn.addEventListener('click', this.increaseQty.bind(this));
+        pBtn.addEventListener('click', this.props.increaseQty);
 
         countBtn.append(mBtn, count, pBtn);
 
