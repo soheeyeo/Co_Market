@@ -19,7 +19,7 @@ export default class SignUpForm extends Component {
         const agreement = new Agreement();
         const signUpBtn = new SignUpBtn();
 
-        sighUpForm.append(signUpType.render(), signUpInputList.render(),userInputList.render(), sellerInputList.render(), agreement.render(), signUpBtn.render());
+        sighUpForm.append(signUpType.render(), signUpInputList.initialize(), userInputList.render(), sellerInputList.render(), agreement.render(), signUpBtn.render());
 
         return sighUpForm;
     }

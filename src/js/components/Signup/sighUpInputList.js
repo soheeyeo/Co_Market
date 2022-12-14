@@ -2,6 +2,58 @@ import Component from "../abstractComponent.js";
 import CheckIdBtn from "../Button/checkIdBtn.js";
 
 export default class SignUpInputList extends Component {
+    //비밀번호 유효성 검사
+    validatePw() {
+        const regExp = /^[a-zA-Z0-9]{8,20}$/;
+        const pw = document.querySelector('#account_pw').value;
+        const pwStatusMsg = document.querySelector('#account_pw + .status_msg');
+        const checkPwIcon = document.querySelector('.check_icon');
+            if(pw != '') {
+                if(!regExp.test(pw)) {
+                    pwStatusMsg.innerText = '숫자, 영문 포함 8자 이상이어야 합니다.';
+                    pwStatusMsg.style.display = 'block';
+                    checkPwIcon.classList.remove('pw_on');
+                    checkPwIcon.classList.add('pw_off');
+                } else {
+                    pwStatusMsg.style.display = 'none';
+                    checkPwIcon.classList.remove('pw_off');
+                    checkPwIcon.classList.add('pw_on');
+                    this.confirmPw();
+                }
+            } else {
+                pwStatusMsg.style.display = 'none';
+                checkPwIcon.classList.remove('pw_on');
+                checkPwIcon.classList.add('pw_off');
+                this.confirmPw();
+            }
+    }
+
+    //비밀번호 재확인
+    confirmPw() {
+        const pw = document.querySelector('#account_pw').value;
+        const pwCheck =  document.querySelector('#account_pw_check').value;
+        const pwStatusMsg = document.querySelector('#account_pw_check + .status_msg');
+        const checkPwIcon = document.querySelector('.double_check_icon');
+        console.log(pw);
+        console.log(document.querySelector('#account_pw_check').value);
+        if(pwCheck == '') {
+            pwStatusMsg.style.display = 'none';
+            checkPwIcon.classList.remove('pw_on');
+            checkPwIcon.classList.add('pw_off');
+        } else {
+            if(pw === pwCheck) {
+                pwStatusMsg.style.display = 'none';
+                checkPwIcon.classList.remove('pw_off');
+                checkPwIcon.classList.add('pw_on');
+            } else if(pw !== pwCheck) {
+                pwStatusMsg.innerText = '비밀번호가 일치하지 않습니다.';
+                pwStatusMsg.style.display = 'block';
+                checkPwIcon.classList.remove('pw_on');
+                checkPwIcon.classList.add('pw_off');
+            } 
+        }
+
+    }
     
     render() {        
         const accountInput = document.createElement('fieldset');
@@ -33,9 +85,6 @@ export default class SignUpInputList extends Component {
 
         idInputBtnContainer.append(accountIdInput, checkIdBtn.render());
         accountInputId.append(accountIdLabel, idInputBtnContainer, statusMsg);
-
-        const pwStatusMsg = document.createElement('storong');
-        pwStatusMsg.setAttribute('class', 'status_msg');
         
         const accountInputPw = document.createElement('li');
         accountInputPw.setAttribute('class', 'account_input');
@@ -48,20 +97,22 @@ export default class SignUpInputList extends Component {
         accountPwInput.id = 'account_pw';
         accountPwInput.type = 'password';
         accountPwInput.name = 'password';
+        accountPwInput.maxLength = '20';
         accountPwInput.required = 'required';
 
-        accountInputPw.append(accountPwLabel, accountPwInput, pwStatusMsg);
+        const pwStatusMsg = document.createElement('storong');
+        pwStatusMsg.setAttribute('class', 'status_msg');
 
-        //비밀번호 유효성 검사
-        const regExp = /^[A-Za-z0-9]{8,}$/g;
-        accountPwInput.addEventListener('keyup', (e) => {
-            console.log(regExp.test(e.target.vale));
-            if(!regExp.test(e.target.vale)) {
-                pwStatusMsg.innerText = '숫자, 영문 포함 8자 이상이어야 합니다.'
-            } else {
-                pwStatusMsg.style.display = 'none';
-            }
+        accountPwInput.addEventListener('input', (e) => {
+            e.preventDefault();
+            this.validatePw();
         })
+
+        const checkPwIcon = document.createElement('div');
+        checkPwIcon.setAttribute('class', 'check_icon');
+        checkPwIcon.classList.add('pw_off');
+
+        accountInputPw.append(accountPwLabel, accountPwInput, pwStatusMsg, checkPwIcon);
 
         const accountPwCheck = document.createElement('li');
         accountPwCheck.setAttribute('class', 'account_input');
@@ -76,7 +127,19 @@ export default class SignUpInputList extends Component {
         accountPwCheckInput.name = 'password_check';
         accountPwCheckInput.required = 'required';
 
-        accountPwCheck.append(accountPwCheckLabel, accountPwCheckInput);
+        const pwCheckMsg = document.createElement('storong');
+        pwCheckMsg.setAttribute('class', 'status_msg');
+
+        const doubleCheckPwIcon = document.createElement('div');
+        doubleCheckPwIcon.setAttribute('class', 'double_check_icon');
+        doubleCheckPwIcon.classList.add('pw_off');
+
+        accountPwCheckInput.addEventListener('input', (e) => {
+            e.preventDefault();
+            this.validatePw();
+        })
+
+        accountPwCheck.append(accountPwCheckLabel, accountPwCheckInput, pwCheckMsg, doubleCheckPwIcon);
         
         accountInputLi.append(accountInputId, accountInputPw, accountPwCheck);
 
