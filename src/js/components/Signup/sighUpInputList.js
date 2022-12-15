@@ -4,13 +4,13 @@ import CheckIdBtn from "../Button/checkIdBtn.js";
 export default class SignUpInputList extends Component {
     //비밀번호 유효성 검사
     validatePw() {
-        const regExp = /^[a-zA-Z0-9]{8,20}$/;
+        const regExp = /^[a-zA-Z0-9]{8,16}$/;
         const pw = document.querySelector('#account_pw').value;
         const pwStatusMsg = document.querySelector('#account_pw + .status_msg');
         const checkPwIcon = document.querySelector('.check_icon');
             if(pw != '') {
                 if(!regExp.test(pw)) {
-                    pwStatusMsg.innerText = '숫자, 영문 포함 8자 이상이어야 합니다.';
+                    pwStatusMsg.innerText = '8-16자 영문, 숫자를 사용하세요.';
                     pwStatusMsg.style.display = 'block';
                     checkPwIcon.classList.remove('pw_on');
                     checkPwIcon.classList.add('pw_off');
@@ -97,7 +97,7 @@ export default class SignUpInputList extends Component {
         accountPwInput.id = 'account_pw';
         accountPwInput.type = 'password';
         accountPwInput.name = 'password';
-        accountPwInput.maxLength = '20';
+        accountPwInput.maxLength = '16';
         accountPwInput.required = 'required';
 
         const pwStatusMsg = document.createElement('storong');
