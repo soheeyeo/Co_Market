@@ -1,6 +1,17 @@
 import Component from "../abstractComponent.js";
 
 export default class UserInputList extends Component {
+    checkPhoneNum() {
+        const regExp = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/;
+        const phoneNum = document.querySelector('#user_num').value;
+        const statusMsg = document.querySelector('#user_num + .status_msg');
+        console.log(phoneNum);
+        if(!regExp.test(phoneNum) || phoneNum == '') {
+            statusMsg.innerText = "'-' 제외한 숫자만 입력해주세요.";
+        } else {
+            statusMsg.innerText = '';
+        }
+    }
     
     render() {
         const userInput = document.createElement('fieldset');
@@ -36,8 +47,17 @@ export default class UserInputList extends Component {
         userNumInput.type = 'tel';
         userNumInput.name = 'num';
         userNumInput.required = 'required';
+        userNumInput.maxLength = '11'
 
-        userInputNum.append(userNumLabel, userNumInput);
+        const numCheckMsg = document.createElement('storong');
+        numCheckMsg.setAttribute('class', 'status_msg');
+
+        userNumInput.addEventListener('input', (e) => {
+            e.preventDefault();
+            this.checkPhoneNum();
+        })
+
+        userInputNum.append(userNumLabel, userNumInput, numCheckMsg);
 
         userInputLi.append(userInputName, userInputNum);
 
