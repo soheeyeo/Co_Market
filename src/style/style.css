@@ -350,6 +350,10 @@ main {
     margin-top: 16px;
 }
 
+.account_input:nth-child(2) {
+    position: relative;
+}
+
 .account_input input {
     margin-top: 10px;
 }
@@ -363,7 +367,6 @@ main {
 }
 
 .status_msg {
-    display: block;
     margin-top: 10px;
     font-size: 12px;
     color: #EB5757;
@@ -372,6 +375,36 @@ main {
 #account_id {
     width: 346px;
     margin-right: 11px;
+}
+
+.check_icon {
+    position: absolute;
+    top: 40px;
+    right: 15px;
+    background-size: 28px 28px;
+    width: 28px;
+    height: 28px;
+}
+
+.pw_off{
+    background-image: url(../assets/icon-check-off.svg);
+}
+
+.pw_on {
+    background-image: url(../assets/icon-check-on.svg);
+}
+
+.account_input:nth-child(3) {
+    position: relative;
+}
+
+.double_check_icon {
+    position: absolute;
+    top: 40px;
+    right: 15px;
+    background-size: 28px 28px;
+    width: 28px;
+    height: 28px;
 }
 
 #crn {
