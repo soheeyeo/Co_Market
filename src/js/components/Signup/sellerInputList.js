@@ -24,11 +24,15 @@ export default class SellerInputList extends Component {
         sellerNumInput.type = 'text';
         sellerNumInput.name = 'crn';
         sellerNumInput.required = 'required';
+        sellerNumInput.maxLength = '10';
+
+        const crnStatusMsg = document.createElement('storong');
+        crnStatusMsg.setAttribute('class', 'status_msg');
 
         const checkCrnBtn = new CheckCrnBtn();
 
         sellerInputBtnContainer.append(sellerNumInput, checkCrnBtn.render());
-        sellerInputNum.append(sellerNumLabel, sellerInputBtnContainer);
+        sellerInputNum.append(sellerNumLabel, sellerInputBtnContainer, crnStatusMsg);
         
         const sellerInputName = document.createElement('li');
         sellerInputName.setAttribute('class', 'seller_input');

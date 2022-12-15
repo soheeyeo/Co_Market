@@ -63,3 +63,38 @@ export async function checkId() {
         console.log('err');
     }
 }
+
+export async function checkCrn() {
+    try {
+        const crnData = document.getElementById('crn').value;
+        const response = await fetch(API_URL+'accounts/signup/valid/company_registration_number/', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                company_registration_number: crnData,
+            }),
+        });
+        const CrnValidation = await response.json();
+        // 사업자 등록번호 유효성 검사
+        const regExp = /([0-9]{3})([0-9]{2})([0-9]{5})/;
+        const statusMsg = document.querySelector('.seller_input_btn_container + .status_msg');
+
+        if(crnData === '' ) {
+            statusMsg.textContent = '사업자 등록번호를 입력해주세요.'
+            statusMsg.style.color = '#EB5757';
+        } else if(!regExp.test(crnData)) {
+            statusMsg.textContent = '잘못된 사업자 등록번호 형식입니다.'
+            statusMsg.style.color = '#EB5757';
+        } else if(CrnValidation.FAIL_Message === '이미 사용 중인 아이디입니다.') {
+            statusMsg.textContent = '이미 등록된 사업자 등록번호입니다.'
+            statusMsg.style.color = '#EB5757';
+        } else if(CrnValidation.Success)  {
+            statusMsg.textContent = '사용 가능한 사업자 등록번호입니다.'
+            statusMsg.style.color = '#98B9CD';
+        }
+    } catch(err) {
+        console.log('err');
+    }
+}
