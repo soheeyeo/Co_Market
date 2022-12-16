@@ -27,12 +27,15 @@ export default class SignUpType extends Component {
         signUpType.append(signUpBuyer, signUpSeller);
 
         function signUpToggle() {
+            const sellerInput = document.querySelector('.seller_input_fieldset')
             if(this.className === 'sign_up_buyer') {
                 signUpBuyer.classList.add('active');
                 signUpSeller.classList.remove('active');
+                sellerInput.classList.toggle('seller_active', false);
             } else {
                 signUpBuyer.classList.remove('active');
                 signUpSeller.classList.add('active');
+                sellerInput.classList.toggle('seller_active');
             }
         }
 

@@ -53,22 +53,6 @@ export default class SellerInputList extends Component {
 
         sellerInput.appendChild(sellerInputLi);
 
-        function sellerInputToggle() {
-            if(this.className === '.sign_up_seller', '.active') {
-                sellerInput.classList.toggle('seller_active');
-            } else {
-                sellerInput.classList.toggle('seller_active', false);
-            }
-        }
-
-        window.onload = function() {
-            const signUpSeller = document.querySelector('.sign_up_seller', '.active');
-            const signUpBuyer = document.querySelector('.sign_up_buyer', '.active');
-
-            signUpSeller.addEventListener('click', sellerInputToggle);
-            signUpBuyer.addEventListener('click', sellerInputToggle);
-        };
-
         return sellerInput;
     }
 }
