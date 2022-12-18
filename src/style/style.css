@@ -81,7 +81,6 @@ input:focus {
 
 button {
     border: none;
-    cursor: pointer;
     padding: 0;
     background-color: transparent;
 }
@@ -422,10 +421,12 @@ main {
 
 .check_id_btn {
     padding: 17px 32px;
+    cursor: pointer;
 }
 
 .check_crn_btn {
     padding: 17px 46px;
+    cursor: pointer;
 }
 
 .seller_input_fieldset {
@@ -454,6 +455,7 @@ main {
 
 .on {
     background-color: var(--main-color);
+    cursor: pointer;
 }
 
 .link_container {

@@ -7,7 +7,7 @@ import Agreement from "./signUpAgreement.js";
 import SignUpBtn from "../Button/signUpBtn.js";
 
 export default class SignUpForm extends Component {
-
+    
     render() {
         const sighUpForm = document.createElement('form');
         sighUpForm.setAttribute('class', 'sign_up_form');
