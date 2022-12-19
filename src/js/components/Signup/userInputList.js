@@ -5,7 +5,6 @@ export default class UserInputList extends Component {
         const regExp = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/;
         const phoneNum = document.querySelector('#user_num').value;
         const statusMsg = document.querySelector('#user_num + .status_msg');
-        console.log(phoneNum);
         if(!regExp.test(phoneNum) || phoneNum == '') {
             statusMsg.innerText = "'-' 제외한 숫자만 입력해주세요.";
         } else {

@@ -34,8 +34,6 @@ export default class SignUpInputList extends Component {
         const pwCheck =  document.querySelector('#account_pw_check').value;
         const pwStatusMsg = document.querySelector('#account_pw_check + .status_msg');
         const checkPwIcon = document.querySelector('.double_check_icon');
-        console.log(pw);
-        console.log(document.querySelector('#account_pw_check').value);
         if(pwCheck == '') {
             pwStatusMsg.style.display = 'none';
             checkPwIcon.classList.remove('pw_on');
@@ -52,10 +50,9 @@ export default class SignUpInputList extends Component {
                 checkPwIcon.classList.add('pw_off');
             } 
         }
-
     }
     
-    render() {        
+    render() {
         const accountInput = document.createElement('fieldset');
         accountInput.setAttribute('class', 'account_input_fieldset');
 
