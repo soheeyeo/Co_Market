@@ -98,3 +98,37 @@ export async function checkCrn() {
         console.log('err');
     }
 }
+
+export async function signUpBuyer() {
+    try {
+        const usernameData = document.getElementById('account_id').value;
+        const passwordData = document.getElementById('account_pw').value;
+        const password2Data = document.getElementById('account_pw_check').value;
+        const phoneNumData = document.getElementById('user_num').value;
+        const nameData = document.getElementById('user_name').value;
+        const phoneNumStatus = document.querySelector('#user_num + .status_msg');
+        const response = await fetch(API_URL+'accounts/signup/', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: usernameData,
+                password: passwordData,
+                password2: password2Data,
+                phone_number: phoneNumData,
+                name: nameData,
+            }),
+        });
+        const data = await response.json();
+        console.log(data)
+        if(data.Success) {
+            alert('🎉 회원가입이 완료되었습니다. 로그인 화면으로 이동합니다.')
+            window.location.href('/login');
+        } else if(data.phone_number[0] == '해당 사용자 전화번호는 이미 존재합니다.') {
+            phoneNumStatus.textContent = '해당 사용자 전화번호는 이미 존재합니다.'
+        }
+    } catch(err) {
+        console.log('err');
+    }
+}
