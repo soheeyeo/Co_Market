@@ -48,7 +48,7 @@ export default class UserInputList extends Component {
         userNumInput.required = 'required';
         userNumInput.maxLength = '11'
 
-        const numCheckMsg = document.createElement('storong');
+        const numCheckMsg = document.createElement('strong');
         numCheckMsg.setAttribute('class', 'status_msg');
 
         userNumInput.addEventListener('input', (e) => {

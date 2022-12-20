@@ -28,7 +28,7 @@ export default class SignUpForm extends Component {
                     signUpBtn.classList.remove('on');
                 }   
             } else {
-                if(statusMsg.textContent == '사용 가능한 아이디입니다.' && checkBtn.classList.contains('pw_on') && nameInput.value != '' && phoneNumStatus.textContent == '' && crnStatus.textContent == '사용 가능한 사업자 등록번호입니다.' && storeNameInput.value != '') {
+                if(statusMsg.textContent == '사용 가능한 아이디입니다.' && checkBtn.classList.contains('pw_on') && nameInput.value != '' && phoneNum.value != '' &&phoneNumStatus.textContent == '' && crnStatus.textContent == '사용 가능한 사업자 등록번호입니다.' && storeNameInput.value != '' && agreement.checked) {
                     signUpBtn.disabled = false;
                     signUpBtn.classList.add('on');
                 } else {

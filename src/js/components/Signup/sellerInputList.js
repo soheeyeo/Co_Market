@@ -26,7 +26,7 @@ export default class SellerInputList extends Component {
         sellerNumInput.required = 'required';
         sellerNumInput.maxLength = '10';
 
-        const crnStatusMsg = document.createElement('storong');
+        const crnStatusMsg = document.createElement('strong');
         crnStatusMsg.setAttribute('class', 'status_msg');
 
         const checkCrnBtn = new CheckCrnBtn();
@@ -47,7 +47,10 @@ export default class SellerInputList extends Component {
         sellerNameInput.name = 'store_name';
         sellerNameInput.required = 'required';
 
-        sellerInputName.append(sellerNameLabel, sellerNameInput);
+        const storeNameStatusMsg = document.createElement('strong');
+        storeNameStatusMsg.setAttribute('class', 'status_msg');
+
+        sellerInputName.append(sellerNameLabel, sellerNameInput, storeNameStatusMsg);
 
         sellerInputLi.append(sellerInputNum, sellerInputName);
 

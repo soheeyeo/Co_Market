@@ -56,7 +56,7 @@ export default class SignUpInputList extends Component {
         const accountInput = document.createElement('fieldset');
         accountInput.setAttribute('class', 'account_input_fieldset');
 
-        const statusMsg = document.createElement('storong');
+        const statusMsg = document.createElement('strong');
         statusMsg.setAttribute('class', 'status_msg');
 
         const accountInputLi = document.createElement('ul');
@@ -97,7 +97,7 @@ export default class SignUpInputList extends Component {
         accountPwInput.maxLength = '16';
         accountPwInput.required = 'required';
 
-        const pwStatusMsg = document.createElement('storong');
+        const pwStatusMsg = document.createElement('strong');
         pwStatusMsg.setAttribute('class', 'status_msg');
 
         accountPwInput.addEventListener('input', (e) => {
@@ -124,7 +124,7 @@ export default class SignUpInputList extends Component {
         accountPwCheckInput.name = 'password_check';
         accountPwCheckInput.required = 'required';
 
-        const pwCheckMsg = document.createElement('storong');
+        const pwCheckMsg = document.createElement('strong');
         pwCheckMsg.setAttribute('class', 'status_msg');
 
         const doubleCheckPwIcon = document.createElement('div');
