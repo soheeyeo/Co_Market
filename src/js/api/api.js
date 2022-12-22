@@ -125,7 +125,7 @@ export async function signUpBuyer() {
         if(data.Success) {
             alert('🎉 회원가입이 완료되었습니다. 로그인 화면으로 이동합니다.')
             window.location.href('/login');
-        } else if(data.phone_number[0] == '해당 사용자 전화번호는 이미 존재합니다.') {
+        } else if(data.phone_number == '해당 사용자 전화번호는 이미 존재합니다.') {
             phoneNumStatus.textContent = '해당 사용자 전화번호는 이미 존재합니다.'
         }
     } catch(err) {
@@ -163,12 +163,21 @@ export async function signUpSeller() {
         if(data.Success) {
             alert('🎉 회원가입이 완료되었습니다. 로그인 화면으로 이동합니다.')
             window.location.href('/login');
-        } if(data.phone_number[0] == '해당 사용자 전화번호는 이미 존재합니다.') {
-            phoneNumStatus.textContent = data.phone_number[0];
-        } if(data.store_name[0] == '해당 스토어이름은 이미 존재합니다.') {
-            storeNameStatus.textContent = data.store_name;
+        } else {
+            if(data.phone_number == '해당 사용자 전화번호는 이미 존재합니다.' && data.store_name == '해당 스토어이름은 이미 존재합니다.') {
+                phoneNumStatus.textContent = data.phone_number;
+                storeNameStatus.textContent = data.store_name;
+            } else {
+                if(data.phone_number == '해당 사용자 전화번호는 이미 존재합니다.') {
+                    phoneNumStatus.textContent = data.phone_number;
+                } else if(data.store_name == '해당 스토어이름은 이미 존재합니다.') {
+                    storeNameStatus.textContent = data.store_name;
+                }
+            }
         }
+
     } catch(err) {
         console.log('err');
     }
 }
+
