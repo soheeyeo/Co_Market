@@ -1,6 +1,18 @@
 import Component from "../abstractComponent.js";
 
 export default class LoginInputList extends Component {
+    disabledBtn() {
+        const idInput = document.querySelector('#id');
+        const pwInput = document.querySelector('#pw');
+        const loginBtn = document.querySelector('.login_btn');
+        if(idInput.value != '' && pwInput.value != '') {
+            loginBtn.disabled = false;
+            loginBtn.classList.add('on');
+        } else {
+            loginBtn.disabled = true;
+            loginBtn.classList.remove('on');
+        }
+    }
     
     render() {
         const inputLi = document.createElement('ul');
@@ -21,6 +33,10 @@ export default class LoginInputList extends Component {
         idInput.name = 'id';
         idInput.required = 'required';
 
+        idInput.addEventListener('input', () => {
+            this.disabledBtn();
+        })
+
         inputId.append(idLabel, idInput);
         
         const inputPw = document.createElement('li');
@@ -36,6 +52,10 @@ export default class LoginInputList extends Component {
         pwInput.placeholder = '비밀번호';
         pwInput.name = 'password';
         pwInput.required = 'required';
+
+        pwInput.addEventListener('input', () => {
+            this.disabledBtn();
+        })
 
         inputPw.append(pwLabel, pwInput);
         
