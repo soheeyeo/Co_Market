@@ -1,6 +1,7 @@
 import Component from "../abstractComponent.js";
 
 export default class LoginInputList extends Component {
+    //버튼 활성화 기능
     disabledBtn() {
         const idInput = document.querySelector('#id');
         const pwInput = document.querySelector('#pw');
@@ -53,11 +54,14 @@ export default class LoginInputList extends Component {
         pwInput.name = 'password';
         pwInput.required = 'required';
 
+        const loginStatusMsg = document.createElement('strong');
+        loginStatusMsg.setAttribute('class', 'status_msg');
+
         pwInput.addEventListener('input', () => {
             this.disabledBtn();
         })
 
-        inputPw.append(pwLabel, pwInput);
+        inputPw.append(pwLabel, pwInput, loginStatusMsg);
         
         inputLi.append(inputId, inputPw);
 
