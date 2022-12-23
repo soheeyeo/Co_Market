@@ -175,9 +175,39 @@ export async function signUpSeller() {
                 }
             }
         }
-
     } catch(err) {
         console.log('err');
     }
 }
 
+export async function login() {
+    try {
+        const usernameData = document.getElementById('id').value;
+        const passwordData = document.getElementById('pw').value;
+        const signUpType = document.querySelector('.login_buyer');
+        const typeData = signUpType.classList.contains('active') ? 'BUYER' : 'SELLER';
+        const loginStatus = document.querySelector('#pw + .status_msg');
+        const response = await fetch(API_URL+'/accounts/login/', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: usernameData,
+                password: passwordData,
+                login_type: typeData,
+            }),
+        });
+        const data = await response.json();
+        console.log(data);
+        if(data.Success) {
+            localStorage.setItem('username', data.username);
+            localStorage.setItem('token', data.token);
+            window.location.href('/');
+        } else {
+            loginStatus.textContent = data.FAIL_Message;
+        }
+    } catch(err) {
+        console.log('err');
+    }
+}
