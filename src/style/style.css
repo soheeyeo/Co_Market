@@ -506,7 +506,7 @@ main {
     cursor: pointer;
 }
 
-.agreement .txt {
+.agreement_txt {
     font-weight: 800;
     border-bottom: 1px solid var(--sub-txt-color);
 }

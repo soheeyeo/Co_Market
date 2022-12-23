@@ -14,12 +14,6 @@ export default class Agreement extends Component {
             const storeNameInput = document.querySelector('#store_name');
             const agreement = document.querySelector('#check_agree');
             const input = document.querySelectorAll('.sign_up_form input');
-    
-            for(let i = 0; i < input.length; i++) {
-                input[i].addEventListener ('input', () => {
-                    
-                })
-            }
             if(signUpBuyer.classList.contains('active')) {
                 if(statusMsg.textContent == '사용 가능한 아이디입니다.' && checkBtn.classList.contains('pw_on') && nameInput.value != '' && phoneNum.value != '' && phoneNumStatus.textContent == '' && agreement.checked) {
                     signUpBtn.disabled = false;
@@ -49,8 +43,9 @@ export default class Agreement extends Component {
         const checkAgree = document.createElement('label');
         checkAgree.setAttribute('class', 'agreement');
         checkAgree.htmlFor = 'check_agree';
+
         checkAgree.innerHTML = `
-            <a href="" class="agreement txt">이용약관</a> 및 <a href="" class="agreement txt">개인정보처리방침</a>에 대한 내용을 확인하였고 동의합니다.
+            <strong class="agreement_txt">이용약관</strong> 및 <strong class="agreement_txt">개인정보처리방침</strong>에 대한 내용을 확인하였고 동의합니다.
         `
 
         checkbox.addEventListener('change', () => {
