@@ -26,7 +26,7 @@ export async function getProductDetail() {
             },
         });
         const data = await response.json();
-        this.setState({product:data});
+        this.setState({product:data, isLoded:true});
     } catch(err) {
             console.log('err');
     }
@@ -187,7 +187,7 @@ export async function login() {
         const signUpType = document.querySelector('.login_buyer');
         const typeData = signUpType.classList.contains('active') ? 'BUYER' : 'SELLER';
         const loginStatus = document.querySelector('#pw + .status_msg');
-        const response = await fetch(API_URL+'/accounts/login/', {
+        const response = await fetch(API_URL+'accounts/login/', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
