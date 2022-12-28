@@ -1,10 +1,22 @@
 import Component from "../abstractComponent.js";
 
 export default class Modal extends Component {
+    constructor(props) {
+        super(props);
+        this.modal = document.createElement('div');
+    }
+
+    deleteModal() {
+        this.modal.style.display = 'none';
+    }
+
+    modalNavigateTo() {
+        window.location.href = this.props.link;
+        this.modal.style.display = 'none';
+    }
 
     render() {
-        const modal = document.createElement('div');
-        modal.setAttribute('class', 'modal');
+        this.modal.setAttribute('class', 'modal');
 
         const modalContainer = document.createElement('div');
         modalContainer.setAttribute('class', 'madal_container');
@@ -20,19 +32,33 @@ export default class Modal extends Component {
         btn1.setAttribute('class', 'modalCancelBtn');
         btn1.innerText = this.props.modalCancelBtn;
 
+        btn1.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.deleteModal();
+        })
+
         const btn2 = document.createElement('button');
         btn2.setAttribute('class', 'modalOkBtn');
         btn2.innerText = this.props.modalOkBtn;
+        btn2.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.modalNavigateTo();
+        })
 
         btnContainer.append(btn1, btn2);
 
         const deleteBtn = document.createElement('button');
         deleteBtn.setAttribute('class', 'modalDeleteBtn');
 
+        deleteBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.deleteModal();
+        })
+
         modalContainer.append(modalTxt, btnContainer, deleteBtn);
 
-        modal.appendChild(modalContainer);
+        this.modal.appendChild(modalContainer);
 
-        return modal;
+        return this.modal;
     }
 }
