@@ -199,11 +199,12 @@ export async function login() {
             }),
         });
         const data = await response.json();
+        console.log(response);
         console.log(data);
-        if(data.Success) {
-            localStorage.setItem('username', data.username);
+        if(response.status == '200') {
+            localStorage.setItem('username', data.id);
             localStorage.setItem('token', data.token);
-            window.location.href('/');
+            history.back();
         } else {
             loginStatus.textContent = data.FAIL_Message;
         }
