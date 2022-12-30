@@ -249,3 +249,24 @@ export async function getCartItems() {
         console.log('err');
     }
 }
+
+export async function putCartItems(productId, qty, check) {
+    try {
+        const response = await fetch(API_URL+'cart/', {
+            method: "POST",
+            headers: {
+                Authorization : `JWT ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                product_id: productId,
+                quantity: qty,
+                check: check,
+            }),
+        });
+        const data = await response.json();
+        return data;
+    } catch(err) {
+        console.log('err');
+    }
+}
