@@ -1,5 +1,6 @@
 import Component from "../abstractComponent.js";
 import Modal from "../Modal/modal.js";
+import { logout } from "../../api/api.js";
 
 export default class HeaderIcons extends Component {
     constructor(props) {
@@ -35,13 +36,26 @@ export default class HeaderIcons extends Component {
             }
         })
 
-        const login = document.createElement('a');
-        login.setAttribute('href', '/login');
+        const login = document.createElement('button');
+        login.setAttribute('class', 'login_icon_btn');
         const login_icon = document.createElement('div');
         login_icon.setAttribute('class', 'login_icon');
         const loginIconTxt = document.createElement('span');
         loginIconTxt.setAttribute('class', 'login_icon_txt');
-        loginIconTxt.innerText = '로그인';
+
+        if(!localStorage.getItem('token')) {
+            loginIconTxt.innerText = '로그인';
+            login.addEventListener('click', () => {
+                window.location.href = '/login';
+            })
+        } else {
+            login_icon.style.marginLeft = '6px';
+            loginIconTxt.innerText = '로그아웃';
+            login.addEventListener('click', () => {
+                logout();
+                this.setState({iconChange:true});
+            });
+        }
 
         login.append(login_icon, loginIconTxt);
 
