@@ -53,6 +53,7 @@ export default class LoginInputList extends Component {
         pwInput.placeholder = '비밀번호';
         pwInput.name = 'password';
         pwInput.required = 'required';
+        pwInput.autocomplete = 'off';
 
         const loginStatusMsg = document.createElement('strong');
         loginStatusMsg.setAttribute('class', 'status_msg');
