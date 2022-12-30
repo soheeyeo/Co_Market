@@ -199,14 +199,34 @@ export async function login() {
             }),
         });
         const data = await response.json();
-        console.log(response);
-        console.log(data);
-        if(response.status == '200') {
+        if(response.status == '200' && data) {
+            console.log('login');
             localStorage.setItem('username', data.id);
             localStorage.setItem('token', data.token);
-            history.back();
+            location.href = document.referrer;
         } else {
             loginStatus.textContent = data.FAIL_Message;
+        }
+    } catch(err) {
+        console.log('err');
+    }
+}
+
+export async function logout() {
+    try {
+        const response = await fetch(API_URL+'accounts/logout/', {
+            method: "POST",
+            headers: {
+                Authorization : `JWT ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json",
+            },
+        });
+        console.log(response);
+        if(response.status == '200') {
+            localStorage.clear();
+            location.reload();
+        } else {
+            console.log('err');
         }
     } catch(err) {
         console.log('err');
