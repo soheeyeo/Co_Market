@@ -221,13 +221,30 @@ export async function logout() {
                 "Content-Type": "application/json",
             },
         });
-        console.log(response);
         if(response.status == '200') {
             localStorage.clear();
             location.reload();
         } else {
             console.log('err');
         }
+    } catch(err) {
+        console.log('err');
+    }
+}
+
+export async function getCartItems() {
+    try {
+        const response = await fetch(API_URL+'cart/', {
+            method: "GET",
+            headers: {
+                Authorization : `JWT ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json",
+            },
+        });
+        const data = await response.json();
+        console.log(data);
+        console.log(response);
+        return data;
     } catch(err) {
         console.log('err');
     }
