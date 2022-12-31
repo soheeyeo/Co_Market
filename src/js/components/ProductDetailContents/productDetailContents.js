@@ -5,8 +5,9 @@ import ProductDetailCard from "../ProductCard/productDetailCard.js";
 export default class ProductDetailContents extends Component {
     constructor(props) {
         super(props);
+        this.productId = window.location.pathname.split('/')[2]
         this.getProductDetail = getProductDetail;
-        this.getProductDetail();
+        this.getProductDetail(this.productId);
         this.state = {
             product:{
                 price: {}

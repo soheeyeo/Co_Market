@@ -15,10 +15,8 @@ export default async function getProductData() {
     }
 }
 
-export async function getProductDetail() {
+export async function getProductDetail(productId) {
     try {
-        const productId = window.location.pathname.split('/')[2];
-
         const response = await fetch(API_URL+`products/${productId}/`, {
             method: "GET",
             headers: {
@@ -26,7 +24,7 @@ export async function getProductDetail() {
             },
         });
         const data = await response.json();
-        this.setState({product:data, isLoded:true});
+        this.setState({product:data, isLoaded:true});
     } catch(err) {
             console.log('err');
     }
@@ -242,8 +240,7 @@ export async function getCartItems() {
             },
         });
         const data = await response.json();
-        console.log(data);
-        console.log(response);
+        this.setState({cart:data, results:data.results, isLoaded:true});
         return data;
     } catch(err) {
         console.log('err');
