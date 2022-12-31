@@ -31,8 +31,6 @@ export default class CartBtn extends Component {
     }
 
     addCartItem() {
-        console.log(this.qty);
-        console.log(this.productId);
         const root = document.getElementById('root');
         this.putCartItems(this.productId, this.qty, this.state.check);
         if(this.state.check === true) {

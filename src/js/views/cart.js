@@ -9,9 +9,17 @@ export default class Cart extends Component{
 
         const header = new Header();
 
+        const cartContainer = document.createElement('section');
+        cartContainer.setAttribute('class', 'cart_container');
+        const cartTit = document.createElement('h1');
+        cartTit.setAttribute('class', 'cart_tit');
+        cartTit.innerText = '장바구니';
+
         const cartList = new CartList();
 
-        frag.append(header.render(), cartList.render());
+        cartContainer.append(cartTit, cartList.initialize());
+
+        frag.append(header.render(), cartContainer);
 
         return frag;
     }
