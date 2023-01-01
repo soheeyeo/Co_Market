@@ -32,8 +32,6 @@ export default class CartList extends Component {
     
             const checkLabel = document.createElement('label');
             checkLabel.htmlFor = 'check_all';
-            checkLabel.innerText = '상품 전체 선택하기';
-            checkLabel.setAttribute('class', 'ir');
             checkTh.append(checkAll, checkLabel);
     
             tr.appendChild(checkTh);

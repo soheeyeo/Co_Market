@@ -141,7 +141,7 @@ button {
     gap: 26px;
 }
 
-.cart_icon_btn {
+.cart_icon_btn, .login_icon_btn {
     cursor: pointer;
 }
 
@@ -878,5 +878,150 @@ main {
     height: 22px;
     background-image: url(../assets/icon-delete.svg);
     background-size: 22px 22px;
+    cursor: pointer;
+}
+
+.cart_container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cart_tit {
+    margin-bottom: 52px;
+}
+
+.cart_list_tit {
+    padding: 18px 30px 18px 10px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 18px;
+    color: var(--emphasis-txt-color);
+}
+
+.cart_list_tit tr {
+    display: grid;
+    grid-template-columns: 1fr 9fr 5fr 4fr;
+}
+
+.cart_list_tit th:nth-child(2) {
+    padding-left: 40px;
+    text-align: left;
+}
+
+.cart_list_tit th:nth-child(3) {
+    padding-right: 15px;
+}
+
+.cart_list_tit input[type="checkbox"] {
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+}
+
+.cart_list_tit input[type="checkbox"] + label::before {
+    display: inline-block;
+    content: '';
+    width: 20px;
+    height: 20px;
+    vertical-align: bottom;
+    background: url(../assets/check-box-empty.svg) no-repeat center;
+    background-size: 20px 20px;
+}
+
+.cart_list_tit input[type="checkbox"]:checked + label::before {
+    background: url(../assets/check-box-Fill.svg) no-repeat center;
+}
+
+.cart_item_container {
+    display: grid;
+    grid-template-columns: 1fr 10fr 4fr 4fr;
+    padding: 26px 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cart_item_container input[type="checkbox"]{
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+}
+
+.cart_item_container input[type="checkbox"] + label::before {
+    display: block;
+    margin-top: 50px;
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: url(../assets/check-box-empty.svg) no-repeat center;
+    background-size: 20px 20px;
+}
+
+.cart_item_container input[type="checkbox"]:checked + label::before {
+    background: url(../assets/check-box-Fill.svg) no-repeat center;
+} 
+
+td:nth-child(2) {
+    display: flex;
+}
+
+.cart_item_img img{
+    width: 160px;
+    height: 160px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 38px;
+}
+
+.cart_item_info_container  {
+    text-align: left;
+}
+
+.cart_item_store {
+    font-size: 14px;
+    line-height: 18px;
+    color: #767676;
+}
+
+.cart_item_name {
+    display: block;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--accent-color);
+}
+
+.cart_item_price_container {
+    line-height: 20px;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.cart_shipping_container {
+    margin-top: 54px;
+    font-size: 14px;
+    color: var(--sub-txt-color);
+}
+
+.cart_count {
+    margin: 55px 0;
+}
+
+.cart_total_price_container {
+    margin: 36px 0 26px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.small_buy_btn {
+    padding: 10px 35px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #FFF;
+    background-color: var(--main-color);
+    border-radius: 5px;
     cursor: pointer;
 }

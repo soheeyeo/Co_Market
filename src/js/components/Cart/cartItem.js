@@ -28,9 +28,7 @@ export default class CartItem extends Component {
     
             const label = document.createElement('label');
             label.htmlFor = 'cart_check';
-            label.innerText = '구매할 상품 선택하기';
-            label.setAttribute('class', 'ir');
-    
+
             td1.append(checkbox, label);
     
             const td2 = document.createElement('td');
