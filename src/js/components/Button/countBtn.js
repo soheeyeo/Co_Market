@@ -5,6 +5,9 @@ export default class CountBtn extends Component {
     render() {
         const countBtn = document.createElement('div');
         countBtn.setAttribute('class', 'count_btn');
+        if(window.location.pathname === '/cart') {
+            countBtn.classList.add('cart_count');
+        }
 
         const mBtn = document.createElement('input');
         mBtn.setAttribute('class', 'm_btn');
