@@ -40,10 +40,10 @@ export default class ProductTotal extends Component {
 
         } else if(window.location.pathname === '/cart') {
             const totalPriceContainer = document.createElement('div');
-            totalPriceContainer.setAttribute('class', 'total_price_container');
+            totalPriceContainer.setAttribute('class', 'cart_total_price_container');
     
             const totalPrice = document.createElement('strong');
-            totalPrice.setAttribute('class', 'total_price');
+            totalPrice.setAttribute('class', 'cart_total_price');
             totalPrice.innerHTML = this.props.price.toLocaleString('ko-KR');
     
             const priceType = document.createElement('span');

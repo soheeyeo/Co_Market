@@ -89,11 +89,11 @@ export default class ProductDetailCard extends Component {
             const cartItemName = new ProductName({name:this.props.item.product_name});
             const cartItemPrice = new ProductPrice({price:this.props.item.price});
             const shippingContainer = document.createElement('div');
-            shippingContainer.setAttribute('class', 'shipping_container');
+            shippingContainer.setAttribute('class', 'cart_shipping_container');
 
 
             const shipping = document.createElement('span');
-            shipping.setAttribute('class', 'shipping');
+            shipping.setAttribute('class', 'cart_shipping');
             shipping.innerText = `택배 배송 / ${this.props.item.shippingFee>0?this.props.item.shippingFee+'원':'무료배송'}`;
 
             shippingContainer.append(shipping);
