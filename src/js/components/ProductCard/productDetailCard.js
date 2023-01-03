@@ -30,7 +30,7 @@ export default class ProductDetailCard extends Component {
     }
 
     render() {
-        if(window.location.pathname.includes('/product/')) {
+        if(window.location.pathname.includes('/product')) {
             const productDetailContainer = document.createElement('div');
             productDetailContainer.setAttribute('class', 'product_detail_card');
     
@@ -58,7 +58,7 @@ export default class ProductDetailCard extends Component {
 
             shippingContainer.append(shipping);
     
-            const countBtn = new CountBtn({qty:this.state.qty, decreaseQty:this.decreaseQty.bind(this), increaseQty:this.increaseQty.bind(this), stock:this.props.item.stock, price:this.props.item.price});
+            const countBtn = new CountBtn({qty:this.state.qty, decreaseQty:this.decreaseQty.bind(this), increaseQty:this.increaseQty.bind(this)});
     
             const productTotal = new ProductTotal({qty:this.state.qty, price:this.props.item.price});
     
@@ -68,7 +68,6 @@ export default class ProductDetailCard extends Component {
             const buyBtn = new BuyBtn;
     
             const cartBtn = new CartBtn({productId:this.props.item.product_id, qty:this.state.qty});
-            console.log(this.props.item.product_id);
     
             btnContainer.append(buyBtn.render(), cartBtn.initialize());
     

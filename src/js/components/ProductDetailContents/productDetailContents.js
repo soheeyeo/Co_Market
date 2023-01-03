@@ -12,7 +12,7 @@ export default class ProductDetailContents extends Component {
             product:{
                 price: {}
             },
-            isLoded:false,
+            isLoaded:false,
         }
     }
 
@@ -23,9 +23,9 @@ export default class ProductDetailContents extends Component {
         const heading = document.createElement('h1');
         heading.setAttribute('class', 'ir');
         heading.innerText = '상품 상세 정보 페이지';
-        if(this.state.isLoded) {
+        if(this.state.isLoaded) {
             const productDetailCard = new ProductDetailCard({item:this.state.product});
-            detailContainer.append(productDetailCard.initialize());
+            detailContainer.append(heading, productDetailCard.initialize());
         }
 
         return detailContainer;
