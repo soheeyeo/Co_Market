@@ -11,6 +11,7 @@ export default class CartItem extends Component {
         this.productId = this.props.item.product_id;
         this.getProductDetail = getProductDetail;
         this.getProductDetail(this.productId);
+        this.qty = this.props.item.quantity;
         this.state = {
             product:{},
             isLoaded: false,
@@ -37,15 +38,14 @@ export default class CartItem extends Component {
     
             const cartItemDetail = new ProductDetailCard({item:this.state.product});
     
-            td2.append(cartItemDetail.render());
+            td2.append(cartItemDetail.initialize());
+            const cartCountBtn = new CountBtn({qty:this.qty, stock:this.state.product.stock});
+            td3.appendChild(cartCountBtn.initialize());
     
-            const cartCountBtn = new CountBtn({qty:this.props.item.quantity});
-            td3.appendChild(cartCountBtn.render());
-    
-            const cartTotalPriice = new ProductTotal({price:this.state.product.price, qty:this.props.item.quantity});
+            const cartTotalPrice = new ProductTotal({price:this.state.product.price, qty:this.qty});
     
             const buyBtn = new BuyBtn();
-            td4.append(cartTotalPriice.render(), buyBtn.render());
+            td4.append(cartTotalPrice.render(), buyBtn.render());
             cartItemContainer.append(td1, td2, td3, td4);
         }
 
