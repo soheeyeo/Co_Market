@@ -722,6 +722,24 @@ main {
     text-align: center;
 }
 
+.count_value {
+    width: 50px;
+    font-size: 18px;
+    color: var(--txt-color);
+    background-color: #FFF;
+    border-width: 0 1px 0;
+    border-style: solid;
+    border-color: var(--border-color);
+    text-align: center;
+}
+
+.count_value::-webkit-outer-spin-button,
+.count_value::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
 .total_container {
     display: flex;
     justify-content: space-between;
