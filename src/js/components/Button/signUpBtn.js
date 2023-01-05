@@ -20,7 +20,7 @@ export default class SignUpBtn extends Component {
         signUpBtn.addEventListener('click', async(e) => {
             e.preventDefault();
             const signUpBuyer = document.querySelector('.sign_up_buyer');
-            if(signUpBuyer.classList.contains('.active')) {
+            if(signUpBuyer.classList.contains('active')) {
                 this.signUpBuyer();
             } else {
                 this.signUpSeller();

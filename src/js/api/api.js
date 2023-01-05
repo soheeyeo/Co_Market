@@ -119,10 +119,9 @@ export async function signUpBuyer() {
             }),
         });
         const data = await response.json();
-        console.log(data)
-        if(data.Success) {
+        if(response.status == '201') {
             alert('🎉 회원가입이 완료되었습니다. 로그인 화면으로 이동합니다.')
-            window.location.href('/login');
+            window.location.href = '/login';
         } else if(data.phone_number == '해당 사용자 전화번호는 이미 존재합니다.') {
             phoneNumStatus.textContent = '해당 사용자 전화번호는 이미 존재합니다.'
         }
@@ -158,9 +157,9 @@ export async function signUpSeller() {
             }),
         });
         const data = await response.json();
-        if(data.Success) {
+        if(response.status == '201') {
             alert('🎉 회원가입이 완료되었습니다. 로그인 화면으로 이동합니다.')
-            window.location.href('/login');
+            window.location.href = '/login';
         } else {
             if(data.phone_number == '해당 사용자 전화번호는 이미 존재합니다.' && data.store_name == '해당 스토어이름은 이미 존재합니다.') {
                 phoneNumStatus.textContent = data.phone_number;
