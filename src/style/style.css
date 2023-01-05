@@ -952,6 +952,28 @@ main {
     background: url(../assets/check-box-Fill.svg) no-repeat center;
 }
 
+.cart_empty_strong {
+    display: block;
+    margin: 180px 0 18px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--txt-color);
+}
+
+.cart_empty_span {
+    font-size: 14px;
+    color: var(--sub-txt-color);
+}
+
+.shopping_link {
+    display: inline;
+    margin-left: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
 .cart_item_container {
     display: grid;
     grid-template-columns: 1fr 10fr 4fr 4fr;
