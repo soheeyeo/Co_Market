@@ -96,6 +96,7 @@ export default class SignUpInputList extends Component {
         accountPwInput.name = 'password';
         accountPwInput.maxLength = '16';
         accountPwInput.required = 'required';
+        accountPwInput.autocomplete = 'off';
 
         const pwStatusMsg = document.createElement('strong');
         pwStatusMsg.setAttribute('class', 'status_msg');
@@ -123,7 +124,8 @@ export default class SignUpInputList extends Component {
         accountPwCheckInput.type = 'password';
         accountPwCheckInput.name = 'password_check';
         accountPwCheckInput.required = 'required';
-
+        accountPwCheckInput.autocomplete = 'off';
+        
         const pwCheckMsg = document.createElement('strong');
         pwCheckMsg.setAttribute('class', 'status_msg');
 
