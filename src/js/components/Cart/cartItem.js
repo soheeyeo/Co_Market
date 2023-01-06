@@ -1,8 +1,6 @@
 import Component from "../abstractComponent.js";
 import ProductDetailCard from "../ProductCard/productDetailCard.js";
-import CountBtn from "../Button/countBtn.js";
-import ProductTotal from "../Product/productTotal.js";
-import BuyBtn from "../Button/buyBtn.js";
+import CartQtyPrice from "./cartQtyPrice.js";
 import { getProductDetail } from "../../api/api.js";
 
 export default class CartItem extends Component {
@@ -11,7 +9,6 @@ export default class CartItem extends Component {
         this.productId = this.props.item.product_id;
         this.getProductDetail = getProductDetail;
         this.getProductDetail(this.productId);
-        this.qty = this.props.item.quantity;
         this.state = {
             product:{},
             isLoaded: false,
@@ -33,20 +30,14 @@ export default class CartItem extends Component {
             td1.append(checkbox, label);
     
             const td2 = document.createElement('td');
-            const td3 = document.createElement('td');
-            const td4 = document.createElement('td');
     
             const cartItemDetail = new ProductDetailCard({item:this.state.product});
     
-            td2.append(cartItemDetail.initialize());
-            const cartCountBtn = new CountBtn({qty:this.qty, stock:this.state.product.stock});
-            td3.appendChild(cartCountBtn.initialize());
-    
-            const cartTotalPrice = new ProductTotal({price:this.state.product.price, qty:this.qty});
-    
-            const buyBtn = new BuyBtn();
-            td4.append(cartTotalPrice.render(), buyBtn.render());
-            cartItemContainer.append(td1, td2, td3, td4);
+            td2.append(cartItemDetail.render());
+
+            const cartQtyPrice = new CartQtyPrice({qty:this.props.item.quantity, stock:this.state.product.stock, price:this.state.product.price});
+
+            cartItemContainer.append(td1, td2, cartQtyPrice.initialize());
         }
 
         return cartItemContainer;
