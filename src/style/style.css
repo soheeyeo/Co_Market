@@ -981,27 +981,17 @@ main {
     border-bottom: 1px solid var(--border-color);
 }
 
-.cart_item_container input[type="checkbox"]{
-    clip: rect(0 0 0 0);
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-}
-
-.cart_item_container input[type="checkbox"] + label::before {
-    display: block;
-    margin-top: 50px;
-    content: '';
+.cart_check {
+    margin: 70px 40px 70px 0;
     width: 20px;
     height: 20px;
     background: url(../assets/check-box-empty.svg) no-repeat center;
     background-size: 20px 20px;
 }
 
-.cart_item_container input[type="checkbox"]:checked + label::before {
+.checked {
     background: url(../assets/check-box-Fill.svg) no-repeat center;
-} 
+}
 
 td:nth-child(2) {
     display: flex;

@@ -20,9 +20,8 @@ export default class CartItem extends Component {
         cartItemContainer.setAttribute('class', 'cart_item_container');
         if(this.state.isLoaded) {
             const td1 = document.createElement('td');
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.id = 'cart_check';
+            const checkbox = document.createElement('button');
+            checkbox.setAttribute('class', 'cart_check');
     
             const label = document.createElement('label');
             label.htmlFor = 'cart_check';
