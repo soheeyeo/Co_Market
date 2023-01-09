@@ -13,6 +13,18 @@ export default class CartList extends Component {
             isLoaded: false
         }
     }
+
+    checkAll() {
+        const checkboxes = document.querySelectorAll('.cart_check');
+        const selectAll = document.getElementById('check_all');
+        for(let i = 0; i < checkboxes.length; i++) {
+            if(selectAll.checked) {
+                checkboxes[i].classList.add('checked');
+            } else {
+                checkboxes[i].classList.remove('checked');
+            }
+        }
+    }
     
     render() {
             const cartList = document.createElement('table');
@@ -29,6 +41,7 @@ export default class CartList extends Component {
             checkAll.id = 'check_all';
             checkAll.name = 'select_all'
             checkTh.appendChild(checkAll);
+            checkAll.addEventListener('click', () => this.checkAll());
     
             const checkLabel = document.createElement('label');
             checkLabel.htmlFor = 'check_all';
