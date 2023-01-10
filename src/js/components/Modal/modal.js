@@ -45,6 +45,11 @@ export default class Modal extends Component {
             this.modalNavigateTo();
         })
 
+        if(window.location.pathname === '/cart') {
+            btn1.classList.add('small');
+            btn2.classList.add('small');
+        }
+
         btnContainer.append(btn1, btn2);
 
         const deleteBtn = document.createElement('button');

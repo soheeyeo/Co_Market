@@ -2,6 +2,7 @@ import Component from "../abstractComponent.js";
 import ProductDetailCard from "../ProductCard/productDetailCard.js";
 import CartQtyPrice from "./cartQtyPrice.js";
 import { getProductDetail } from "../../api/api.js";
+import Modal from "../Modal/modal.js";
 
 export default class CartItem extends Component {
     constructor(props) {
@@ -9,6 +10,9 @@ export default class CartItem extends Component {
         this.productId = this.props.item.product_id;
         this.getProductDetail = getProductDetail;
         this.getProductDetail(this.productId);
+        this.modalContent = '상품을 삭제하시겠습니까?';
+        this.modalCancelBtn = '취소';
+        this.modalOkBtn = '확인';
         this.state = {
             product:{},
             isLoaded: false,
@@ -51,7 +55,17 @@ export default class CartItem extends Component {
 
             const cartQtyPrice = new CartQtyPrice({qty:this.props.item.quantity, stock:this.state.product.stock, price:this.state.product.price});
 
-            cartItemContainer.append(td1, td2, cartQtyPrice.initialize());
+            const deleteBtn = document.createElement('button');
+            deleteBtn.setAttribute('class', 'cart_delete_btn');
+
+            deleteBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const root = document.getElementById('root')
+                const deleteModal = new Modal({modalContent:this.modalContent, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/cart'});
+                root.appendChild(deleteModal.render());
+            })
+
+            cartItemContainer.append(td1, td2, cartQtyPrice.initialize(), deleteBtn);
         }
 
         return cartItemContainer;

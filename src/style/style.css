@@ -888,6 +888,10 @@ main {
     cursor: pointer;
 }
 
+.small {
+    padding: 10px 35px;
+}
+
 .modalDeleteBtn {
     position: absolute;
     top: 18px;
@@ -975,6 +979,7 @@ main {
 }
 
 .cart_item_container {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 10fr 4fr 4fr;
     padding: 26px 30px;
@@ -1053,5 +1058,16 @@ td:nth-child(2) {
     color: #FFF;
     background-color: var(--main-color);
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart_delete_btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 22px;
+    height: 22px;
+    background-image: url(../assets/icon-delete.svg);
+    background-size: 22px 22px;
     cursor: pointer;
 }
