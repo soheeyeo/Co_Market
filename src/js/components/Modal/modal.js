@@ -1,9 +1,12 @@
 import Component from "../abstractComponent.js";
+import { cartItemDelete } from "../../api/api.js";
 
 export default class Modal extends Component {
     constructor(props) {
         super(props);
         this.modal = document.createElement('div');
+        this.cartItemDelete = cartItemDelete;
+        this.cartItemId = this.props.cartItemId;
     }
 
     deleteModal() {
@@ -48,6 +51,10 @@ export default class Modal extends Component {
         if(window.location.pathname === '/cart') {
             btn1.classList.add('small');
             btn2.classList.add('small');
+            btn2.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.cartItemDelete(this.cartItemId);
+            })
         }
 
         btnContainer.append(btn1, btn2);

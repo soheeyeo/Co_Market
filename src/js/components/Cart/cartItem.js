@@ -61,7 +61,7 @@ export default class CartItem extends Component {
             deleteBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const root = document.getElementById('root')
-                const deleteModal = new Modal({modalContent:this.modalContent, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/cart'});
+                const deleteModal = new Modal({modalContent:this.modalContent, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/cart', cartItemId: this.props.item.cart_item_id});
                 root.appendChild(deleteModal.render());
             })
 
