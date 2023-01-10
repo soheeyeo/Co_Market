@@ -269,3 +269,19 @@ export async function putCartItems(productId, qty, check) {
         console.log('err');
     }
 }
+
+export async function cartItemDelete(productId) {
+    try {
+        const response = await fetch(API_URL+`cart/${productId}/`, {
+            method: "DELETE",
+            headers: {
+                Authorization : `JWT ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json",
+            },
+        });
+        const data = await response.json();
+        return data;
+    } catch(err) {
+        console.log('err');
+    }
+}
