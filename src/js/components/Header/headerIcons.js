@@ -32,7 +32,7 @@ export default class HeaderIcons extends Component {
             } else {
                 const root = document.getElementById('root')
                 const reqModal = new Modal({modalContent:this.modalContent, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/login'});
-                root.appendChild(reqModal.render());
+                root.appendChild(reqModal.initialize());
             }
         })
 

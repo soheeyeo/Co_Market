@@ -26,7 +26,7 @@ export default class Header extends Component {
         const search = new Search();
         const headerIcons = new HeaderIcons();
 
-        headerContainer.append(logoContainer, search.render(), headerIcons.render());
+        headerContainer.append(logoContainer, search.render(), headerIcons.initialize());
 
         return mainHeader;
     }
