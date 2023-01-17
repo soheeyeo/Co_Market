@@ -279,8 +279,11 @@ export async function cartItemDelete(productId) {
                 "Content-Type": "application/json",
             },
         });
-        const data = await response.json();
-        return data;
+        if(response.ok) {
+            location.reload();
+        } else {
+            console.log('err');
+        }
     } catch(err) {
         console.log('err');
     }

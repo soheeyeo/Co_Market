@@ -18,6 +18,10 @@ export default class Modal extends Component {
         this.modal.style.display = 'none';
     }
 
+    deleteCartItem() {
+        this.cartItemDelete(this.cartItemId);
+    }
+
     render() {
         this.modal.setAttribute('class', 'modal');
 
@@ -43,17 +47,19 @@ export default class Modal extends Component {
         const btn2 = document.createElement('button');
         btn2.setAttribute('class', 'modalOkBtn');
         btn2.innerText = this.props.modalOkBtn;
-        btn2.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.modalNavigateTo();
-        })
 
         if(window.location.pathname === '/cart') {
             btn1.classList.add('small');
             btn2.classList.add('small');
             btn2.addEventListener('click', (e) => {
                 e.preventDefault();
-                this.cartItemDelete(this.cartItemId);
+                this.deleteCartItem();
+                this.deleteModal();
+            })
+        } else {
+            btn2.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.modalNavigateTo();
             })
         }
 
