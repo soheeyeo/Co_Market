@@ -24,7 +24,11 @@ export async function getProductDetail(productId) {
             },
         });
         const data = await response.json();
-        this.setState({product:data, isLoaded:true});
+        if(window.location.pathname.includes('/product')) {
+            this.setState({product:data, isLoaded:true});
+        } else if(window.location.pathname === '/cart') {
+            return data;
+        }
     } catch(err) {
             console.log('err');
     }
@@ -220,7 +224,7 @@ export async function logout() {
         });
         if(response.status == '200') {
             localStorage.clear();
-            location.reload();
+            window.location.href = '/';
         } else {
             console.log('err');
         }
@@ -239,11 +243,11 @@ export async function getCartItems() {
             },
         });
         const data = await response.json();
-        if(window.location.pathname === '/cart') {
-            this.setState({cart:data, results:data.results, isLoaded:true});
-        } else if(window.location.pathname.includes('/product')) {
+        // if(window.location.pathname === '/cart') {
+        //     this.setState({cart:data, results:data.results, isLoaded:true});
+        // } else if(window.location.pathname.includes('/product')) {
             return data;
-        }
+        // }
     } catch(err) {
         console.log('err');
     }
@@ -265,6 +269,33 @@ export async function putCartItems(productId, qty, check) {
         });
         const data = await response.json();
         return data;
+    } catch(err) {
+        console.log('err');
+    }
+}
+
+export async function ModifyCartItems(productId, qty, cart_item_id, isActive) {
+    try {
+        const response = await fetch(API_URL+`cart/${cart_item_id}/`, {
+            method: "PUT",
+            headers: {
+                Authorization : `JWT ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                product_id: productId,
+                quantity: qty,
+                is_active: isActive,
+            }),
+        });
+        const data = await response.json();
+        console.log(data);
+        console.log(response);
+        if(response.ok) {
+            location.reload();
+        } else {
+            console.log('err');
+        }
     } catch(err) {
         console.log('err');
     }
