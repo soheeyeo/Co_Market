@@ -93,7 +93,7 @@ export default class ProductDetailCard extends Component {
 
             const shipping = document.createElement('span');
             shipping.setAttribute('class', 'cart_shipping');
-            shipping.innerText = `택배 배송 / ${this.props.item.shippingFee>0?this.props.item.shippingFee+'원':'무료배송'}`;
+            shipping.innerText = `택배 배송 / ${this.props.item.shipping_fee>0?this.props.item.shipping_fee+'원':'무료배송'}`;
 
             shippingContainer.append(shipping);
 

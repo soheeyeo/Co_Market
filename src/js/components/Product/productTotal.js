@@ -45,7 +45,6 @@ export default class ProductTotal extends Component {
             const totalPrice = document.createElement('strong');
             totalPrice.setAttribute('class', 'cart_total_price');
             totalPrice.innerHTML = (this.props.price * this.props.qty).toLocaleString('ko-KR');
-    
             const priceType = document.createElement('span');
             priceType.innerText = '원';
     
