@@ -1,22 +1,17 @@
 import Component from "../abstractComponent.js";
 import ProductDetailCard from "../ProductCard/productDetailCard.js";
 import CartQtyPrice from "./cartQtyPrice.js";
-import { getProductDetail } from "../../api/api.js";
 import Modal from "../Modal/modal.js";
+import CartTotal from "./cartTotal.js";
 
 export default class CartItem extends Component {
     constructor(props) {
         super(props);
+        this.cartItem = this.props.item;
         this.productId = this.props.item.product_id;
-        this.getProductDetail = getProductDetail;
-        this.getProductDetail(this.productId);
         this.modalContent = '상품을 삭제하시겠습니까?';
         this.modalCancelBtn = '취소';
         this.modalOkBtn = '확인';
-        this.state = {
-            product:{},
-            isLoaded: false,
-        }
     }
 
     checkSelectAll() {
@@ -29,16 +24,23 @@ export default class CartItem extends Component {
             selectAll.checked = false;
         }
     }
+
     
     render() {
-        const cartItemContainer = document.createElement('tr');
-        cartItemContainer.setAttribute('class', 'cart_item_container');
-        if(this.state.isLoaded) {
+        const frag = document.createDocumentFragment();
+
+        this.props.item.forEach(async(item) => {
+            const cartItemContainer = document.createElement('tr');
+            cartItemContainer.setAttribute('class', 'cart_item_container');
+
             const td1 = document.createElement('td');
             const checkbox = document.createElement('button');
             checkbox.setAttribute('class', 'cart_check');
+            checkbox.classList.add('checked');
 
-            checkbox.addEventListener('click', () => checkbox.classList.toggle('checked'));
+            checkbox.addEventListener('click', () => {
+                checkbox.classList.toggle('checked');
+            });
 
             checkbox.addEventListener('click', () => this.checkSelectAll());
     
@@ -49,11 +51,11 @@ export default class CartItem extends Component {
     
             const td2 = document.createElement('td');
     
-            const cartItemDetail = new ProductDetailCard({item:this.state.product});
+            const cartItemDetail = new ProductDetailCard({item:item});
     
-            td2.append(cartItemDetail.render());
+            td2.append(cartItemDetail.initialize());
 
-            const cartQtyPrice = new CartQtyPrice({qty:this.props.item.quantity, stock:this.state.product.stock, price:this.state.product.price});
+            const cartQtyPrice = new CartQtyPrice({item:item});
 
             const deleteBtn = document.createElement('button');
             deleteBtn.setAttribute('class', 'cart_delete_btn');
@@ -61,13 +63,20 @@ export default class CartItem extends Component {
             deleteBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const root = document.getElementById('root')
-                const deleteModal = new Modal({modalContent:this.modalContent, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/cart', cartItemId: this.props.item.cart_item_id});
+                const deleteModal = new Modal({modalContent:this.modalContent, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/cart', cartItemId: item.cart_item_id});
                 root.appendChild(deleteModal.render());
-            })
-
+                })
+    
             cartItemContainer.append(td1, td2, cartQtyPrice.initialize(), deleteBtn);
-        }
+            frag.append(cartItemContainer);
+        })
 
-        return cartItemContainer;
+        const tfoot = document.createElement('tfoot');
+        const cartTotal = new CartTotal({item:this.cartItem});
+        tfoot.append(cartTotal.render());
+
+        frag.appendChild(tfoot);
+
+        return frag;
     }
 }
