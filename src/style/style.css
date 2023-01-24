@@ -1171,3 +1171,14 @@ td:nth-child(3) {
     background-size: 22px 22px;
     cursor: pointer;
 }
+
+.big_buy_btn {
+    padding: 19px 66px;
+    margin-top: 50px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFF;
+    background-color: var(--main-color);
+    border-radius: 5px;
+    cursor: pointer;
+}

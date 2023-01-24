@@ -15,3 +15,14 @@ export default class BuyBtn extends Component {
         return buyBtn;
     }
 }
+
+export class OrderBtn extends Component {
+
+    render() {
+        const buyBtn = document.createElement('button');
+        buyBtn.setAttribute('class', 'big_buy_btn');
+        buyBtn.innerText = '주문하기';
+
+        return buyBtn;
+    }
+}
