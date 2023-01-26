@@ -12,13 +12,6 @@ export default class CartQtyPrice extends Component {
         this.isActive = this.props.item.is_active;
         this.ModifyCartItems = ModifyCartItems;
         this.stock = this.props.item.stock;
-        this.state = {
-            isOpen: false
-        }
-    }
-
-    openSelectBox() {
-        this.setState({isOpen: !this.state.isOpen});
     }
 
     render() {
@@ -41,12 +34,14 @@ export default class CartQtyPrice extends Component {
 
         countBtn.append(count, openIcon);
 
-        countBtn.addEventListener('click', () => {
-            countSelectBox.classList.toggle('open');
-        })
+        countBtn.addEventListener('click', this.props.openSelectBox);
         
         const countSelectBox = document.createElement('ul');
         countSelectBox.setAttribute('class', 'count_select_box');
+
+        if(this.props.isOpen) {
+            countSelectBox.classList.add('open');
+        }
 
         const stock = this.stock;
 
@@ -81,7 +76,7 @@ export default class CartQtyPrice extends Component {
         td3.append(countBtn, countSelectBox);
 
         const cartTotalPrice = new ProductTotal({qty:count.value, price:this.props.item.price});
-        const buyBtn = new BuyBtn();
+        const buyBtn = new BuyBtn({item:this.props.item});
         td4.append(cartTotalPrice.render(), buyBtn.render());
 
         frag.append(td3, td4);
