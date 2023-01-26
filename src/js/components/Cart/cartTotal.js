@@ -2,7 +2,7 @@ import Component from "../abstractComponent.js";
 
 export default class CartTotal extends Component {
     constructor(props) {
-        super(props); 
+        super(props);
         this.cartItems = this.props.item;
         this.shipping = 0;
         this.total = 0;
@@ -17,24 +17,22 @@ export default class CartTotal extends Component {
 
     render() {
         this.cartTotalPrice();
-        console.log(this.cartItems)
-        console.log(this.total)
+
         const tr = document.createElement('tr');
         tr.setAttribute('class', 'cart_total_container');
 
         const td1 = document.createElement('td');
 
         const cartTotalTit1 =document.createElement('span');
-        // cartTotalTit1.setAttribute('class', 'cart_total_tit');
         cartTotalTit1.innerText = '총 상품금액'; 
 
         const totalPrice1 = document.createElement('div');
         totalPrice1.setAttribute('class', 'cart_price_container');
         const cartTotalPrice1 = document.createElement('strong');
         cartTotalPrice1.setAttribute('class', 'cart_total_strong');
+        cartTotalPrice1.id = 'total';
         cartTotalPrice1.innerText = this.total.toLocaleString('ko-KR');
         const span1 = document.createElement('span');
-        // span1.setAttribute('class', 'cart_total_span');
         span1.innerText = '원';
 
         totalPrice1.append(cartTotalPrice1, span1);
@@ -49,16 +47,15 @@ export default class CartTotal extends Component {
         const td2 = document.createElement('td');
 
         const cartTotalTit2 =document.createElement('span');
-        // cartTotalTit2.setAttribute('class', 'cart_total_tit');
         cartTotalTit2.innerText = '배송비'; 
 
         const totalPrice2 = document.createElement('div');
         totalPrice2.setAttribute('class', 'cart_price_container');
         const cartTotalPrice2 = document.createElement('strong');
         cartTotalPrice2.setAttribute('class', 'cart_total_strong');
+        cartTotalPrice2.id = 'shipping';
         cartTotalPrice2.innerText = this.shipping.toLocaleString('ko-KR');
         const span2 = document.createElement('span');
-        // span2.setAttribute('class', 'cart_total_span');
         span2.innerText = '원';
 
         totalPrice2.append(cartTotalPrice2, span2);
