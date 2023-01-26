@@ -283,12 +283,12 @@ main {
     font-weight: 700;
 }
 
-.login_container, .sign_up_container, .cart_container {
+.login_container, .sign_up_container, .cart_container, .order_container {
     padding: 165px 0;
     text-align: center;
 }
 
-.login_tit, .sign_up_tit, .cart_tit {
+.login_tit, .sign_up_tit, .cart_tit, .order_tit {
     font-size: 48px;
     font-weight: 700;
     color: var(--main-color);
@@ -886,7 +886,7 @@ main {
     cursor: pointer;
 }
 
-.cart_container {
+.cart_container, .order_container {
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -917,7 +917,7 @@ main {
     padding-right: 15px;
 }
 
-.cart_list_tit input[type="checkbox"] {
+.cart_list_tit input[type="checkbox"], .cart_check {
     clip: rect(0 0 0 0);
     width: 1px;
     height: 1px;
@@ -925,7 +925,7 @@ main {
     overflow: hidden;
 }
 
-.cart_list_tit input[type="checkbox"] + label::before {
+.cart_list_tit input[type="checkbox"] + label::before, .cart_check + label::before {
     display: inline-block;
     content: '';
     width: 20px;
@@ -935,7 +935,7 @@ main {
     background-size: 20px 20px;
 }
 
-.cart_list_tit input[type="checkbox"]:checked + label::before {
+.cart_list_tit input[type="checkbox"]:checked + label::before, .cart_check:checked + label::before {
     background: url(../assets/check-box-Fill.svg) no-repeat center;
 }
 
@@ -969,16 +969,8 @@ main {
     border-bottom: 1px solid var(--border-color);
 }
 
-.cart_check {
-    margin: 70px 40px 70px 0;
-    width: 20px;
-    height: 20px;
-    background: url(../assets/check-box-empty.svg) no-repeat center;
-    background-size: 20px 20px;
-}
-
-.checked {
-    background: url(../assets/check-box-Fill.svg) no-repeat center;
+.check_container {
+    padding: 70px 40px 70px 0;
 }
 
 td:nth-child(2) {
@@ -1181,4 +1173,20 @@ td:nth-child(3) {
     background-color: var(--main-color);
     border-radius: 5px;
     cursor: pointer;
+}
+
+.order_list {
+    margin: 52px 0 98px;
+}
+
+.order_list_tit {
+    padding: 18px 30px 18px 10px;
+    font-size: 18px;
+    background-color: rgba(152, 185, 205, 0.5);
+    border-radius: 10px;
+}
+
+.order_list_tit tr {
+    display: grid;
+    grid-template-columns: 9fr 5fr 4fr;
 }

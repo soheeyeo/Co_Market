@@ -1,7 +1,9 @@
 import Component from "../abstractComponent.js";
-import CartItem from "./cartItem.js";
+import CartListItem from "./cartListItem.js";
 import { getCartItems } from "../../api/api.js";
 import { getProductDetail } from "../../api/api.js";
+import CartTotal from "./cartTotal.js";
+import { OrderBtn } from "../Button/buyBtn.js";
 
 export default class CartList extends Component {
     constructor(props) {
@@ -29,9 +31,9 @@ export default class CartList extends Component {
         const selectAll = document.getElementById('check_all');
         for(let i = 0; i < checkboxes.length; i++) {
             if(selectAll.checked) {
-                checkboxes[i].classList.add('checked');
+                checkboxes[i].checked = true;
             } else {
-                checkboxes[i].classList.remove('checked');
+                checkboxes[i].checked = false;
             }
         }
     }
@@ -71,6 +73,8 @@ export default class CartList extends Component {
             cartListTit.appendChild(tr);
     
             const tbody = document.createElement('tbody');
+
+            const tfoot = document.createElement('tfoot');
     
             const cartEmptyTxt1 = document.createElement('strong');
             cartEmptyTxt1.setAttribute('class', 'cart_empty_strong');
@@ -82,17 +86,20 @@ export default class CartList extends Component {
             shoppingLink.setAttribute('href', '/');
             shoppingLink.setAttribute('class', 'shopping_link');
             shoppingLink.innerText = '쇼핑 계속하기';
-
             if(this.state.isLoaded) {
                 if(this.state.product.count === 0) {
                     tbody.append(cartEmptyTxt1, cartEmptyTxt2, shoppingLink)
                 } else {
-                        const cartItem = new CartItem({item:this.state.product});
-                        tbody.append(cartItem.initialize());
+                    const cartListItem = new CartListItem({item:this.state.product});
+                    tbody.append(cartListItem.initialize());
+
+                    const cartTotal = new CartTotal({item:this.state.product});
+                    const buyBtn = new OrderBtn();
+                    tfoot.append(cartTotal.render(), buyBtn.render());
                 }
             }
 
-            cartList.append(cartListTit, tbody);
+            cartList.append(cartListTit, tbody, tfoot);
 
         return cartList;
     }
