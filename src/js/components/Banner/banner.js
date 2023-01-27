@@ -19,26 +19,17 @@ export default class EventBanner extends Component {
 
         const leftBtn = document.createElement('button');
         leftBtn.setAttribute('class', 'slide_left');
-
-        function translateSlide(direction) {
-            const selectedBtn = (direction === 1) ? leftBtn : rightBtn;
-            console.log(direction * 100);
-            bannerImg.style.transitionDuration = '800ms';
-            bannerImg.style.transform = `translateX(${direction * 100}%)`;
-            bannerImg.ontransitionend = () => 
-            changeOrder(selectedBtn);
-        }
-
-        function changeOrder(selectedBtn) {
-            bannerImg.removeAttribute('style');
-            (selectedBtn === leftBtn) ? 
-            bannerImg.insertBefore(bannerImg.lastElementChild, bannerImg.firstElementChild)
-            : bannerImg.appendChild(bannerImg.firstChild);
-        }
+        let current = 0;
 
         leftBtn.addEventListener('click', (e) => {
             e.preventDefault;
-            translateSlide(1);
+            if(current === 0) {
+                current = 2;
+            } else {
+                current--;
+            }
+            bannerImg.style.transition = "transform 0.8s ease-in-out";
+            bannerImg.style.transform = `translateX(-${current * 100}%)`;
         })
 
         const rightBtn = document.createElement('button');
@@ -46,7 +37,13 @@ export default class EventBanner extends Component {
 
         rightBtn.addEventListener('click', (e) => {
             e.preventDefault;
-            translateSlide(-1);
+            if(current === 2) {
+                current = 0;
+            } else {
+                current++;
+            }
+            bannerImg.style.transition = "transform 0.8s ease-in-out";
+            bannerImg.style.transform = `translateX(-${current * 100}%)`;
         })
 
         bannerContainer.append(bannerImg, leftBtn, rightBtn);
