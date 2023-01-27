@@ -9,7 +9,7 @@ export default class App {
     setup() {
         const {el} = this.props;
         const router = new Router({
-            '/': Main,
+            '/main': Main,
             '/login': Login,
             '/signup': SignUp,
             '/product/:id': ProductDetail,
