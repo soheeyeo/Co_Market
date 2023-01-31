@@ -243,11 +243,7 @@ export async function getCartItems() {
             },
         });
         const data = await response.json();
-        // if(window.location.pathname === '/cart') {
-        //     this.setState({cart:data, results:data.results, isLoaded:true});
-        // } else if(window.location.pathname.includes('/product')) {
             return data;
-        // }
     } catch(err) {
         console.log('err');
     }
