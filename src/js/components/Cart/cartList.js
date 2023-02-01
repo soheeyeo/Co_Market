@@ -26,14 +26,44 @@ export default class CartList extends Component {
         this.setState({product:await Promise.all(cart), isLoaded: true})
     }
 
+    handleTotalPrice() {
+        let shipping = 0;
+        let total = 0;
+        this.state.product.forEach((item) => {
+            total += item.price * item.qty;
+            shipping += item.shipping_fee;
+        });
+        document.getElementById('total').innerText = total.toLocaleString('ko-KR');
+        document.getElementById('shipping').innerText = shipping.toLocaleString('ko-KR');
+        document.querySelector('.cart_total_payment_strong').innerText = (total + shipping).toLocaleString('ko-KR');
+    }
+
+    handleEmptyTotalPrice() {
+        document.getElementById('total').innerText = 0;
+        document.getElementById('shipping').innerText = 0;
+        document.querySelector('.cart_total_payment_strong').innerText = 0;
+    }
+
+    saveCart() {
+        sessionStorage.setItem('cart', JSON.stringify(this.state.product));
+    }
+
+    deleteCart() {
+        sessionStorage.removeItem('cart');
+    }
+
     checkAll() {
         const checkboxes = document.querySelectorAll('.cart_check');
         const selectAll = document.getElementById('check_all');
         for(let i = 0; i < checkboxes.length; i++) {
             if(selectAll.checked) {
                 checkboxes[i].checked = true;
+                this.saveCart();
+                this.handleTotalPrice();
             } else {
                 checkboxes[i].checked = false;
+                this.deleteCart();
+                this.handleEmptyTotalPrice();
             }
         }
     }
