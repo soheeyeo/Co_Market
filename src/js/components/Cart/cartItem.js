@@ -53,6 +53,29 @@ export default class CartItem extends Component {
         document.querySelector('.cart_total_payment_strong').innerText = payment.toLocaleString('ko-KR');
     }
 
+    saveItem() {
+        let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+        let isCart = false;
+        cart.forEach((el) => {
+            if(el.product_id === this.props.item.product_id) isCart = true;
+        });
+        if(isCart) return;
+        cart.push(this.props.item);
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    deleteItem() {
+        let cart = JSON.parse(sessionStorage.getItem('cart'));
+        let newCart = cart.filter((el) => el.product_id !== this.props.item.product_id);
+        sessionStorage.setItem('cart', JSON.stringify(newCart));
+        for(let i = 0; i < cart.length; i++) {
+            if(cart[i].product_id === this.props.item.product_id) {
+                cart.splice(i, 1);
+                i--;
+            }
+        }
+    }
+
     render() {
         const cartItemContainer = document.createElement('tr');
         cartItemContainer.setAttribute('class', 'cart_item_container');
@@ -73,7 +96,12 @@ export default class CartItem extends Component {
             this.props.checkSelectAll();
             this.handleTotal(this.props.item);
             this.handleShipping(this.props.item);
-            this.handlePaymentPrice(this.props.item)
+            this.handlePaymentPrice(this.props.item);
+            if(checkbox.checked) {
+                this.deleteItem();
+            } else {
+                this.saveItem();
+            }
         });
 
         td1.append(checkbox, label);
