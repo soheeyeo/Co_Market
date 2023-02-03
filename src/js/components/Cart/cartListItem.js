@@ -22,9 +22,14 @@ export default class CartListItem extends Component {
             selectAll.checked = false;
         }
     }
+
+    saveItem() {
+        sessionStorage.setItem('cart', JSON.stringify(this.props.item));
+    }
     
     render() {
         const frag = document.createDocumentFragment();
+        this.saveItem();
         this.props.item.map(async(item) => {
             const cartItem = new CartItem({item:item, check:this.props.item, checkSelectAll:this.checkSelectAll.bind(this)})
             frag.append(cartItem.initialize());
