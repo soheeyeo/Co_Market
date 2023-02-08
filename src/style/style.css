@@ -813,6 +813,7 @@ main {
     font-weight: 500;
     color: var(--sub-txt-color);
     border-bottom: 6px solid var(--sub-border-color);
+    cursor: pointer;
 }
 
 .tab_on {
@@ -974,11 +975,11 @@ main {
     padding: 70px 40px 70px 0;
 }
 
-td:nth-child(2) {
+.cart_item_container td:nth-child(2) {
     display: flex;
 }
 
-td:nth-child(3) {
+.cart_item_container td:nth-child(3) {
     position: relative;
 }
 
@@ -1176,12 +1177,21 @@ td:nth-child(3) {
     cursor: pointer;
 }
 
+.order_container {
+    text-align: left;
+}
+
+.order_tit {
+    text-align: center;
+}
+
 .order_list {
     margin: 52px 0 98px;
 }
 
 .order_list_tit {
     padding: 18px 30px 18px 10px;
+    margin-bottom: 16px;
     font-size: 18px;
     background-color: rgba(152, 185, 205, 0.5);
     border-radius: 10px;
@@ -1189,5 +1199,182 @@ td:nth-child(3) {
 
 .order_list_tit tr {
     display: grid;
+    grid-template-columns: 7.5fr 5fr 3fr;
+    text-align: center;
+}
+
+.order_item_container {
+    display: grid;
     grid-template-columns: 9fr 5fr 4fr;
+    align-items: center;
+    text-align: center;
+    padding: 17px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.order_item_container td:first-child {
+    display: flex;
+}
+
+.order_item_img img {
+    width: 104px;
+    height: 104px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin: 0 36px 0 8px;
+}
+
+.order_info_container {
+    margin-top: 12px;
+    text-align: left;
+}
+
+.order_item_store, .order_item_qty {
+    font-size: 14px;
+    color: var(--sub-txt-color);
+}
+
+.order_item_name {
+    margin: 6px 0 10px;
+    display: block;
+    font-size: 18px;
+    color: var(--txt-color);
+}
+
+.order_item_shipping {
+    font-size: 18px;
+    color: var(--sub-txt-color);
+}
+
+.order_item_price {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--txt-color);
+}
+
+.order_item_total_price {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.order_total_price_txt {
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--txt-color);
+}
+
+.order_total_price {
+    margin-right: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #EB5757;
+}
+
+.order_form_tit {
+    padding-bottom: 18px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.border {
+    border-bottom: 2px solid var(--border-color);
+}
+
+.user_info_form {
+    margin: 40px 0;
+}
+
+.shipping_info_form {
+    margin-bottom: 70px;
+}
+
+.user_info_tit, .shipping_info_tit {
+    padding-bottom: 8px;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.order_input_container {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.name_label {
+    margin-right: 140px;
+}
+
+.order_info_label, .shipping_info_label {
+    margin-right: 125px;
+}
+
+.address_label {
+    margin-right: 106px;
+}
+
+.message_label {
+    margin-right: 92px;
+}
+
+.user_info_form input, .shipping_info_form input {
+    padding: 10px 0;
+    width: 30%;
+    border: 1px solid var(--border-color);
+}
+
+.total_payment_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.payment_fieldset {
+    padding: 18px 30px 18px 12px;
+    border-top: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.payment_fieldset input {
+    margin-right: 10px;
+}
+
+.payment_fieldset label {
+    margin-right: 20px;
+}
+
+.order_total_tit {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.order_total_info_container {
+    margin-top: 18px;
+    border: 2px solid var(--main-color);
+    border-radius: 10px;
+}
+
+.payment_price_container {
+    padding: 32px 30px 20px;
+}
+
+.order_price_container {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+}
+
+.payment_price {
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pay_agree_container {
+    padding: 30px 30px 32px 30px;
+    background-color: #F2F2F2;
+    border-radius: 0 0 11px 11px;
+}
+
+.pay_agree_input_container {
+    margin-bottom: 30px;
 }
