@@ -1,6 +1,16 @@
 import Component from "../abstractComponent.js";
 
 export default class ProductTab extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentTab: 0
+        }
+    }
+
+    handleTab(index) {
+        this.setState({currentTab:index});
+    }
 
     render() {
         const productTabContainer = document.createElement('section');
@@ -17,23 +27,13 @@ export default class ProductTab extends Component {
             button.setAttribute('class', 'detail_tab_btn');
             button.innerText = tabBtn[i];
             li.append(button);
-            if(button.innerText === '상세정보') {
+            if(this.state.currentTab === i) {
                 button.classList.add('tab_on');
             }
+            button.addEventListener('click', () => {
+                this.handleTab(i);
+            })
             detailBtnLi.appendChild(li);
-        }
-
-        window.onload = function() {
-            const tabOn = document.querySelectorAll('.detail_tab_btn');
-    
-            for(let j = 0; j < tabOn.length; j++) {
-                tabOn[j].addEventListener('click', () => {
-                    for(let k = 0; k < tabOn.length; k++) {
-                        tabOn[k].classList.remove('tab_on');
-                    }
-                    tabOn[j].classList.add('tab_on');
-                });
-            }
         }
 
         productTabContainer.appendChild(detailBtnLi);

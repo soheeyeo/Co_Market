@@ -16,7 +16,7 @@ export default class ProductDetail extends Component {
 
         const productTab = new ProductTab;
 
-        main.append(productDetailContents.initialize(), productTab.render());
+        main.append(productDetailContents.initialize(), productTab.initialize());
 
         frag.append(header.render(), main);
 
