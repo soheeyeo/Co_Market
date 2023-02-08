@@ -11,6 +11,8 @@ export default class ProductImage extends Component{
             productImgWrapper.setAttribute('class', 'product_detail_img');
         } else if(window.location.pathname === '/cart') {
             productImgWrapper.setAttribute('class', 'cart_item_img');
+        } else if(window.location.pathname === '/order') {
+            productImgWrapper.setAttribute('class', 'order_item_img');
         }
 
         const productImg = document.createElement('img');

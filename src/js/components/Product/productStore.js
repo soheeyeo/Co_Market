@@ -11,6 +11,8 @@ export default class ProductStore extends Component {
             productStore.setAttribute('class', 'product_detail_store');
         } else if(window.location.pathname === '/cart') {
             productStore.setAttribute('class', 'cart_item_store');
+        } else if(window.location.pathname === '/order') {
+            productStore.setAttribute('class', 'order_item_store');
         }
 
         productStore.innerText = this.props.store;
