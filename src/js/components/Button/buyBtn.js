@@ -4,6 +4,7 @@ export default class BuyBtn extends Component {
     constructor(props) {
         super(props);
         this.item = this.props.item;
+        this.item.qty = this.props.qty;
     }
     
     detailSaveItem() {
@@ -42,13 +43,19 @@ export class OrderBtn extends Component {
 
     render() {
         const buyBtn = document.createElement('button');
-        buyBtn.setAttribute('class', 'big_buy_btn');
-        buyBtn.innerText = '주문하기';
-
-        buyBtn.addEventListener('click', () => {
-            sessionStorage.setItem('prev', 'cart_total');
-            location.href = '/order';
-        })
+        buyBtn.type = 'submit';
+        if(window.location.pathname === '/cart') {
+            buyBtn.setAttribute('class', 'big_buy_btn');
+            buyBtn.innerText = '주문하기';
+            buyBtn.addEventListener('click', () => {
+                sessionStorage.setItem('prev', 'cart_total');
+                location.href = '/order';
+            });
+        } else if(window.location.pathname === '/order') {
+            buyBtn.setAttribute('class', 'big_order_btn');
+            buyBtn.innerText = '결제하기';
+            buyBtn.disabled = true;
+        }
 
         return buyBtn;
     }
