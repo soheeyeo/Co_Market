@@ -1,4 +1,5 @@
 import Component from "../abstractComponent.js";
+import SearchZipBtn from "../Button/searchZipBtn.js";
 
 export default class OrderForm extends Component {
 
@@ -40,6 +41,9 @@ export default class OrderForm extends Component {
         phoneInput.name = 'tel';
         phoneInput.maxLength = '11';
         inputContainer2.append(userLabel2, phoneInput);
+        phoneInput.addEventListener('input', () => {
+            phoneInput.value = phoneInput.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+        })
 
         const inputContainer3 = document.createElement('div');
         inputContainer3.setAttribute('class', 'order_input_container');
@@ -84,19 +88,46 @@ export default class OrderForm extends Component {
         recipientPhoneInput.id = 'recipient_tel';
         recipientPhoneInput.name = 'recipient_tel';
         recipientPhoneInput.maxLength = '11';
+        recipientPhoneInput.addEventListener('input', () => {
+            recipientPhoneInput.value = recipientPhoneInput.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+        })
         inputContainer5.append(shippingLabel2, recipientPhoneInput);
 
         const inputContainer6 = document.createElement('div');
         inputContainer6.setAttribute('class', 'order_input_container');
+        inputContainer6.classList.add('address');
         const shippingLabel3 = document.createElement('label');
         shippingLabel3.setAttribute('class', 'address_label');
         shippingLabel3.innerText = '배송 주소';
         shippingLabel3.htmlFor = 'recipient_address';
-        const addressInput = document.createElement('input');
-        addressInput.type = 'text';
-        addressInput.id = 'recipient_address';
-        addressInput.name = 'address';
-        inputContainer6.append(shippingLabel3, addressInput);
+
+        const addressContainer = document.createElement('div');
+        addressContainer.setAttribute('class', 'address_container');
+
+        const zipCodeInput = document.createElement('input');
+        zipCodeInput.setAttribute('class', 'address_input_zip_code');
+        zipCodeInput.type = 'number';
+        zipCodeInput.id = 'recipient_address_zip_code';
+        zipCodeInput.name = 'zip_code';
+        zipCodeInput.addEventListener('input', () => {
+            if(zipCodeInput.value > 5) {
+                zipCodeInput.value = zipCodeInput.value.slice(0, 5);
+            }
+        })
+
+        const searchZipCodeBtn = new SearchZipBtn();
+        const addressInput1 = document.createElement('input');
+        addressInput1.setAttribute('class', 'address_input');
+        addressInput1.type = 'text';
+        addressInput1.id = 'recipient_address';
+        addressInput1.name = 'address';
+        const addressInput2 = document.createElement('input');
+        addressInput2.setAttribute('class', 'address_input');
+        addressInput2.type = 'text';
+        addressInput2.id = 'recipient_address_detail';
+        addressInput2.name = 'address_detail';
+        addressContainer.append(zipCodeInput, searchZipCodeBtn.render(), addressInput1, addressInput2);
+        inputContainer6.append(shippingLabel3, addressContainer);
 
         const inputContainer7 = document.createElement('div');
         inputContainer7.setAttribute('class', 'order_input_container');
