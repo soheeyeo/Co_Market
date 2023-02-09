@@ -76,7 +76,7 @@ export default class CartQtyPrice extends Component {
         td3.append(countBtn, countSelectBox);
 
         const cartTotalPrice = new ProductTotal({qty:count.value, price:this.props.item.price});
-        const buyBtn = new BuyBtn({item:this.props.item});
+        const buyBtn = new BuyBtn({item:this.props.item, qty:this.qty});
         td4.append(cartTotalPrice.render(), buyBtn.render());
 
         frag.append(td3, td4);

@@ -65,7 +65,7 @@ export default class ProductDetailCard extends Component {
             const btnContainer = document.createElement('div');
             btnContainer.setAttribute('class', 'btn_container');
     
-            const buyBtn = new BuyBtn({item:this.props.item});
+            const buyBtn = new BuyBtn({item:this.props.item, qty:this.state.qty});
     
             const cartBtn = new CartBtn({productId:this.props.item.product_id, qty:this.state.qty});
     
