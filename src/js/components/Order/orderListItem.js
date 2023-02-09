@@ -6,7 +6,7 @@ import ProductName from "../Product/productName.js";
 export default class OrderListItem extends Component {
     constructor(props) {
         super(props);
-        this.item = this.props.item
+        this.item = this.props.item;
     }
 
     render() {
@@ -34,7 +34,7 @@ export default class OrderListItem extends Component {
         
         const orderShipping = document.createElement('span');
         orderShipping.setAttribute('class', 'order_item_shipping');
-        orderShipping.innerText = `${this.item.shipping_fee>0?(this.item.shipping_fee).toLocaleString('ko-KR')+'원':'무료배송'}`
+        orderShipping.innerText = `${this.item.shipping_fee>0?(this.item.shipping_fee).toLocaleString('ko-KR')+' 원':'무료배송'}`
 
         td2.appendChild(orderShipping);
 
@@ -42,7 +42,7 @@ export default class OrderListItem extends Component {
 
         const orderPrice = document.createElement('strong');
         orderPrice.setAttribute('class', 'order_item_price');
-        orderPrice.innerText = `${(this.item.price * this.item.qty).toLocaleString('ko-KR')+'원'}`
+        orderPrice.innerText = `${(this.item.price * this.item.qty).toLocaleString('ko-KR')+' 원'}`
 
         td3.appendChild(orderPrice);
 

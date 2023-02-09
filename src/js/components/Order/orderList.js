@@ -9,7 +9,7 @@ export default class OrderList extends Component {
     }
 
     orderTotal() {
-        if(this.item.count > 1) {
+        if(this.item.length > 1) {
             this.item.forEach((item) => {
                 this.total += item.price * item.qty;
             });
@@ -37,9 +37,9 @@ export default class OrderList extends Component {
         }
 
         orderListTit.appendChild(tr);
-        console.log(this.item.count)
         const tbody = document.createElement('tbody');
-        if(this.item.count > 1) {
+
+        if(this.item.length > 1) {
             this.item.map((item) => {
                 const orderListItem = new OrderListItem({item:item});
                 tbody.append(orderListItem.render());
@@ -57,7 +57,7 @@ export default class OrderList extends Component {
 
         const orderTotalPrice = document.createElement('strong');
         orderTotalPrice.setAttribute('class', 'order_total_price');
-        orderTotalPrice.innerText = `${(this.total).toLocaleString('ko-KR')+'원'}`;
+        orderTotalPrice.innerText = `${(this.total).toLocaleString('ko-KR')+' 원'}`;
 
         tfoot.append(orderTotalPriceTxt, orderTotalPrice);
 
