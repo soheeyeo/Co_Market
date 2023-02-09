@@ -57,6 +57,13 @@ input:focus {
     outline: none;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
 .ir {
     position: absolute;
     clip: rect(0 0 0 0);
@@ -1042,13 +1049,6 @@ main {
     cursor: pointer;
 }
 
-.count_value::-webkit-outer-spin-button,
-.count_value::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
 .down_icon {
     margin: 2px 0 0 20px ;
     width: 22px;
@@ -1302,6 +1302,45 @@ main {
     border-bottom: 1px solid var(--border-color);
 }
 
+.address {
+    display: flex;
+}
+
+.address_container {
+    width: 60%;
+}
+
+#recipient_address_zip_code {
+    width: 30%;
+}
+
+.search_zip_btn {
+    padding: 10px 30px;
+    margin-left: 10px;
+    font-weight: 500;
+    color: #FFF;
+    background-color: var(--main-color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.address_input {
+    width: 100%;
+}
+
+#recipient_address {
+    display: block;
+    margin: 8px 0;
+}
+
+#recipient_address, #recipient_address_detail {
+    width: 100%;
+}
+
+#message {
+    width: 60%;
+}
+
 .name_label {
     margin-right: 140px;
 }
@@ -1318,7 +1357,7 @@ main {
     margin-right: 92px;
 }
 
-.user_info_form input, .shipping_info_form input {
+.order_input_container input {
     padding: 10px 0;
     width: 30%;
     border: 1px solid var(--border-color);
@@ -1364,6 +1403,19 @@ main {
     padding: 12px 0;
 }
 
+.order_total_price_strong {
+    margin-right: 4px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--txt-color);
+}
+
+.payment_total_price {
+    font-size: 24px;
+    font-weight: 700;
+    color: #EB5757;
+}
+
 .payment_price {
     padding-bottom: 18px;
     border-bottom: 1px solid var(--border-color);
@@ -1373,8 +1425,43 @@ main {
     padding: 30px 30px 32px 30px;
     background-color: #F2F2F2;
     border-radius: 0 0 11px 11px;
+    text-align: center;
 }
 
 .pay_agree_input_container {
     margin-bottom: 30px;
+}
+
+.pay_agree_input_container input[type="checkbox"] {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+}
+
+.pay_agree_input_container input[type="checkbox"] + label::before {
+    display: inline-block;
+    content: '';
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    vertical-align: bottom;
+    background-image: url(../assets/check-box-empty.svg);
+    background-size: 16px 16px;
+    background-color: #FFF;
+}
+
+.pay_agree_input_container input[type="checkbox"]:checked + label::before {
+    background-image: url(../assets/check-box-Fill.svg);
+}
+
+.big_order_btn {
+    padding: 19px 66px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFF;
+    background-color: var(--border-color);
+    border-radius: 5px;
 }
