@@ -4,9 +4,6 @@ import CartItem from "./cartItem.js";
 export default class CartListItem extends Component {
     constructor(props) {
         super(props);
-        this.modalContent = '상품을 삭제하시겠습니까?';
-        this.modalCancelBtn = '취소';
-        this.modalOkBtn = '확인';
         this.state = {
             check:this.props.item,
         }

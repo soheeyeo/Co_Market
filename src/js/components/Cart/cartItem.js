@@ -6,6 +6,9 @@ import CartQtyPrice from "./cartQtyPrice.js";
 export default class CartItem extends Component {
     constructor(props) {
         super(props);
+        this.modalContent = '상품을 삭제하시겠습니까?';
+        this.modalCancelBtn = '취소';
+        this.modalOkBtn = '확인';
         this.state = {
             isCheck: true,
             isOpen: false,
