@@ -16,7 +16,8 @@ export default class OrderMethod extends Component {
         const radio1 = document.createElement('input');
         radio1.type = 'radio';
         radio1.id = 'credit';
-        radio1.name = 'credit';
+        radio1.name = 'order_method';
+        radio1.checked = 'checked';
         const label1 = document.createElement('label');
         label1.htmlFor = 'credit';
         label1.innerText = '신용/체크카드';
@@ -24,7 +25,7 @@ export default class OrderMethod extends Component {
         const radio2 = document.createElement('input');
         radio2.type = 'radio';
         radio2.id = 'deposit';
-        radio2.name = 'deposit';
+        radio2.name = 'order_method';
         const label2 = document.createElement('label');
         label2.htmlFor = 'deposit';
         label2.innerText = '무통장 입금';
@@ -32,7 +33,7 @@ export default class OrderMethod extends Component {
         const radio3 = document.createElement('input');
         radio3.type = 'radio';
         radio3.id = 'pay_phone';
-        radio3.name = 'pay_phone';
+        radio3.name = 'order_method';
         const label3 = document.createElement('label');
         label3.htmlFor = 'pay_phone';
         label3.innerText = '휴대폰 결제';
@@ -40,7 +41,7 @@ export default class OrderMethod extends Component {
         const radio4 = document.createElement('input');
         radio4.type = 'radio';
         radio4.id = 'naver_pay';
-        radio4.name = 'naver_pay';
+        radio4.name = 'order_method';
         const label4 = document.createElement('label');
         label4.htmlFor = 'naver_pay';
         label4.innerText = '네이버페이';
@@ -48,7 +49,7 @@ export default class OrderMethod extends Component {
         const radio5 = document.createElement('input');
         radio5.type = 'radio';
         radio5.id = 'kakao_pay';
-        radio5.name = 'kakao_pay';
+        radio5.name = 'order_method';
         const label5 = document.createElement('label');
         label5.htmlFor = 'kakao_pay';
         label5.innerText = '카카오페이';
