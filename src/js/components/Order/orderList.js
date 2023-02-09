@@ -9,9 +9,13 @@ export default class OrderList extends Component {
     }
 
     orderTotal() {
-        this.item.forEach((item) => {
-            this.total += item.price * item.qty;
-        });
+        if(this.item.count > 1) {
+            this.item.forEach((item) => {
+                this.total += item.price * item.qty;
+            });
+        } else {
+            this.total += this.item.price * this.item.qty;
+        }
     }
 
     render() {
@@ -33,12 +37,17 @@ export default class OrderList extends Component {
         }
 
         orderListTit.appendChild(tr);
-
+        console.log(this.item.count)
         const tbody = document.createElement('tbody');
-        this.item.map((item) => {
-            const orderListItem = new OrderListItem({item:item})
+        if(this.item.count > 1) {
+            this.item.map((item) => {
+                const orderListItem = new OrderListItem({item:item});
+                tbody.append(orderListItem.render());
+            })
+        } else {
+            const orderListItem = new OrderListItem({item:this.item});
             tbody.append(orderListItem.render());
-        })
+        }
 
         const tfoot = document.createElement('tfoot');
         tfoot.setAttribute('class', 'order_item_total_price');
@@ -54,6 +63,6 @@ export default class OrderList extends Component {
 
         orderList.append(orderListTit, tbody, tfoot);
 
-    return orderList;
+        return orderList;
     }
 }
