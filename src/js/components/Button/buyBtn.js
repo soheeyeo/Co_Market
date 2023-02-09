@@ -23,14 +23,14 @@ export default class BuyBtn extends Component {
             buyBtn.innerText = '구매하기';
             buyBtn.addEventListener('click', () => {
                 this.detailSaveItem();
-                // location.href = '/order';
+                location.href = '/order';
             })
         } else if(window.location.pathname === '/cart') {
             buyBtn.setAttribute('class', 'small_buy_btn');
             buyBtn.innerText = '주문하기';
             buyBtn.addEventListener('click', () => {
                 this.cartSaveItem();
-                // location.href = '/order';
+                location.href = '/order';
             })
         }
 
@@ -47,7 +47,7 @@ export class OrderBtn extends Component {
 
         buyBtn.addEventListener('click', () => {
             sessionStorage.setItem('prev', 'cart_total');
-            // location.href = '/order';
+            location.href = '/order';
         })
 
         return buyBtn;
