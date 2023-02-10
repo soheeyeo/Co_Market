@@ -14,12 +14,10 @@ export default class BuyBtn extends Component {
     
     detailSaveItem() {
         sessionStorage.setItem('cart', JSON.stringify(this.item));
-        sessionStorage.setItem('prev', 'product_detail');
     }
 
     cartSaveItem() {
         sessionStorage.setItem('cart', JSON.stringify(this.item));
-        sessionStorage.setItem('prev', 'cart_item');
     }
 
     render() {
@@ -59,7 +57,6 @@ export class OrderBtn extends Component {
             buyBtn.setAttribute('class', 'big_buy_btn');
             buyBtn.innerText = '주문하기';
             buyBtn.addEventListener('click', () => {
-                sessionStorage.setItem('prev', 'cart_total');
                 window.location.href = '/order';
             });
         } else if(window.location.pathname === '/order') {
