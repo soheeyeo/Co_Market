@@ -1,10 +1,15 @@
 import Component from "../abstractComponent.js";
+import Modal from "../Modal/modal.js";
 
 export default class BuyBtn extends Component {
     constructor(props) {
         super(props);
         this.item = this.props.item;
         this.item.qty = this.props.qty;
+        this.modalContent = `로그인이 필요한 서비스입니다.
+        로그인 하시겠습니까?`;
+        this.modalCancelBtn = '아니오';
+        this.modalOkBtn = '예';
     }
     
     detailSaveItem() {
@@ -23,15 +28,21 @@ export default class BuyBtn extends Component {
             buyBtn.setAttribute('class', 'buy_btn');
             buyBtn.innerText = '구매하기';
             buyBtn.addEventListener('click', () => {
-                this.detailSaveItem();
-                location.href = '/order';
+                if(localStorage.getItem('token')) {
+                    this.detailSaveItem();
+                    window.location.href = '/order';
+                } else {
+                    const root = document.getElementById('root')
+                    const reqModal = new Modal({modalContent:this.modalContent, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/login'});
+                    root.appendChild(reqModal.initialize());
+                }
             })
         } else if(window.location.pathname === '/cart') {
             buyBtn.setAttribute('class', 'small_buy_btn');
             buyBtn.innerText = '주문하기';
             buyBtn.addEventListener('click', () => {
                 this.cartSaveItem();
-                location.href = '/order';
+                window.location.href = '/order';
             })
         }
 
@@ -49,7 +60,7 @@ export class OrderBtn extends Component {
             buyBtn.innerText = '주문하기';
             buyBtn.addEventListener('click', () => {
                 sessionStorage.setItem('prev', 'cart_total');
-                location.href = '/order';
+                window.location.href = '/order';
             });
         } else if(window.location.pathname === '/order') {
             buyBtn.setAttribute('class', 'big_order_btn');

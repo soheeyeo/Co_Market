@@ -13,6 +13,8 @@ export default class CartBtn extends Component {
         장바구니로 이동하시겠습니까?`;
         this.modalContent2 = `이미 장바구니에 있는 상품입니다.
         장바구니로 이동하시겠습니까?`;
+        this.modalContent3 = `로그인이 필요한 서비스입니다.
+        로그인 하시겠습니까?`;
         this.modalCancelBtn = '아니오';
         this.modalOkBtn = '예';
         this.state = {
@@ -50,7 +52,13 @@ export default class CartBtn extends Component {
         cartBtn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            this.addCartItem();
+            if(localStorage.getItem('token')) {
+                this.addCartItem();
+            } else {
+                const root = document.getElementById('root')
+                const reqModal = new Modal({modalContent:this.modalContent3, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/login'});
+                root.appendChild(reqModal.initialize());
+            }
         })
 
         return cartBtn;
