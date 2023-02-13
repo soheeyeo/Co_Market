@@ -13,7 +13,6 @@ export default class Agreement extends Component {
         const crnStatus = document.querySelector('.seller_input_btn_container + .status_msg');
         const storeNameInput = document.querySelector('#store_name');
         const agreement = document.querySelector('#check_agree');
-        const input = document.querySelectorAll('.sign_up_form input');
         if(signUpBuyer.classList.contains('active')) {
             if(statusMsg.textContent == '사용 가능한 아이디입니다.' && checkBtn.classList.contains('pw_on') && nameInput.value != '' && phoneNum.value != '' && phoneNumStatus.textContent == '' && agreement.checked) {
                 signUpBtn.disabled = false;
