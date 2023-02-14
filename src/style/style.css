@@ -1358,7 +1358,7 @@ main {
 }
 
 .order_input_container input {
-    padding: 10px 0;
+    padding: 10px;
     width: 30%;
     border: 1px solid var(--border-color);
 }
@@ -1464,4 +1464,32 @@ main {
     color: #FFF;
     background-color: var(--border-color);
     border-radius: 5px;
+}
+
+.order_input_container:last-child {
+    position: relative;
+}
+
+.address_message_select {
+    display: none;
+    position: absolute;
+    left: 14%;
+    top: 50px;
+    background-color: #FFF;
+    width: 60%;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.select_open {
+    display: block;
+}
+
+.address_message_select li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.address_message_select li:hover {
+    background-color: rgba(196, 196, 196, 0.6);
 }
