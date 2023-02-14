@@ -24,14 +24,18 @@ export default class OrderTotal extends Component {
     handleBtn() {
         const orderBtn = document.querySelector('.big_order_btn');
         const checkAgree = document.querySelector('#check_payment');
-        if(checkAgree.checked) {
-            orderBtn.disabled = false;
-            orderBtn.style.backgroundColor = '#98B9CD';
-            orderBtn.classList.add('on');
-        } else {
-            orderBtn.disabled = true;
-            orderBtn.style.backgroundColor = '#C4C4C4';
-            orderBtn.classList.remove('on');
+        const input = document.querySelectorAll('.user_info_form input, .shipping_info_form input');
+
+        for(let i = 0; i < input.length; i++) {
+            if(input[i].value != '' && checkAgree.checked) {
+                orderBtn.disabled = false;
+                orderBtn.style.backgroundColor = '#98B9CD';
+                orderBtn.classList.add('on');
+            } else {
+                orderBtn.disabled = true;
+                orderBtn.style.backgroundColor = '#C4C4C4';
+                orderBtn.classList.remove('on');
+            }
         }
     }
 
