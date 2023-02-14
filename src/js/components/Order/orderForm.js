@@ -3,6 +3,11 @@ import SearchZipBtn from "../Button/searchZipBtn.js";
 
 export default class OrderForm extends Component {
 
+    handleSelect() {
+        const selectLi = document.querySelector('.address_message_select');
+        selectLi.classList.toggle('select_open');
+    }
+
     render() {
         const orderFromContainer = document.createElement('div');
 
@@ -21,11 +26,11 @@ export default class OrderForm extends Component {
         inputContainer1.setAttribute('class', 'order_input_container');
         const userLabel1 = document.createElement('label');
         userLabel1.setAttribute('class', 'name_label');
-        userLabel1.htmlFor = 'user_name';
+        userLabel1.htmlFor = 'order_user_name';
         userLabel1.innerText = '이름';
         const nameInput = document.createElement('input');
         nameInput.type = 'text';
-        nameInput.id = 'user_name';
+        nameInput.id = 'order_user_name';
         nameInput.name = 'name';
         inputContainer1.append(userLabel1, nameInput);
 
@@ -34,10 +39,10 @@ export default class OrderForm extends Component {
         const userLabel2 = document.createElement('label');
         userLabel2.setAttribute('class', 'order_info_label');
         userLabel2.innerText = '휴대폰';
-        userLabel2.htmlFor = 'user_tel';
+        userLabel2.htmlFor = 'order_user_tel';
         const phoneInput = document.createElement('input');
         phoneInput.type = 'tel';
-        phoneInput.id = 'user_tel';
+        phoneInput.id = 'order_user_tel';
         phoneInput.name = 'tel';
         phoneInput.maxLength = '11';
         inputContainer2.append(userLabel2, phoneInput);
@@ -50,10 +55,10 @@ export default class OrderForm extends Component {
         const userLabel3 = document.createElement('label');
         userLabel3.setAttribute('class', 'order_info_label');
         userLabel3.innerText = '이메일';
-        userLabel3.htmlFor = 'user_email';
+        userLabel3.htmlFor = 'order_user_email';
         const emailInput = document.createElement('input');
         emailInput.type = 'email';
-        emailInput.id = 'user_email';
+        emailInput.id = 'order_user_email';
         emailInput.name = 'email';
         inputContainer3.append(userLabel3, emailInput);
 
@@ -139,7 +144,36 @@ export default class OrderForm extends Component {
         messageInput.type = 'text';
         messageInput.id = 'message';
         messageInput.name = 'message';
-        inputContainer7.append(shippingLabel4, messageInput);
+        messageInput.placeholder = '직접 입력하기';
+        messageInput.spellcheck = false;
+        messageInput.addEventListener('click', () => {
+            this.handleSelect();
+        })
+        messageInput.addEventListener('input', () => {
+            selectBox.classList.remove('select_open');
+        })
+
+        const selectBox = document.createElement('div');
+        selectBox.setAttribute('class', 'address_message_select');
+        const selectLi = document.createElement('ul');
+        const selectItem1 = document.createElement('li');
+        selectItem1.innerText = '부재 시 경비실에 맡겨주세요.';
+        const selectItem2 = document.createElement('li');
+        selectItem2.innerText = '부재 시 문 앞에 놓아주세요.';
+        const selectItem3 = document.createElement('li');
+        selectItem3.innerText = '배송 전에 연락해주세요.';
+
+        const selectLiItems = [selectItem1, selectItem2, selectItem3];
+        for(let i = 0; i < selectLiItems.length; i++) {
+            selectLiItems[i].addEventListener('click', () => {
+                messageInput.value = selectLiItems[i].textContent;
+                selectBox.classList.remove('select_open');
+            })
+        }
+
+        selectLi.append(selectItem1, selectItem2, selectItem3);
+        selectBox.appendChild(selectLi);
+        inputContainer7.append(shippingLabel4, messageInput, selectBox);
 
         fieldset2.append(legend2, inputContainer4, inputContainer5, inputContainer6, inputContainer7);
 
