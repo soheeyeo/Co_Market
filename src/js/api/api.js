@@ -1,15 +1,15 @@
 const API_URL = 'https://openmarket.weniv.co.kr/';
 
-export default async function getProductData() {
+export default async function getProductData(page) {
     try {
-        const response = await fetch(API_URL+'products/', {
+        const response = await fetch(API_URL+`products/?page=${page}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
             },
         });
         const data = await response.json();
-        this.setState({product:data.results});
+        this.setState({product:data.results, pageNum:Math.ceil(data.count / 15), currentPage:1, isLoaded:true});
     } catch(err) {
             console.log('err');
     }
@@ -204,7 +204,7 @@ export async function login() {
             console.log('login');
             localStorage.setItem('username', data.id);
             localStorage.setItem('token', data.token);
-            location.href = document.referrer;
+            window.location.href = document.referrer;
         } else {
             loginStatus.textContent = data.FAIL_Message;
         }
@@ -288,7 +288,7 @@ export async function ModifyCartItems(productId, qty, cart_item_id, isActive) {
         console.log(data);
         console.log(response);
         if(response.ok) {
-            location.reload();
+            window.location.reload();
         } else {
             console.log('err');
         }
@@ -307,7 +307,7 @@ export async function cartItemDelete(productId) {
             },
         });
         if(response.ok) {
-            location.reload();
+            window.location.reload();
         } else {
             console.log('err');
         }
