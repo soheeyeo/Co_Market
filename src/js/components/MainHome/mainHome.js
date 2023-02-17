@@ -9,9 +9,13 @@ export default class MainHome extends Component {
         this.getProductData(1);
         this.state = {
             product:[],
-            currentPage:1,
             isLoaded:false
         };
+    }
+
+    setPage(i) {
+        this.setState({...this.state, currentPage:i+1});
+        this.getProductData(this.state.currentPage);
     }
 
     render() {
@@ -28,6 +32,14 @@ export default class MainHome extends Component {
                 const paginationLi = document.createElement('li');
                 const paginationBtn = document.createElement('button');
                 paginationBtn.innerText = `${i+1}`;
+                paginationBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.setPage(i);
+                })
+                if(this.state.currentPage == i+1) {
+                    paginationBtn.classList.add('btn_on');
+                };
                 paginationLi.append(paginationBtn);
                 paginationUl.append(paginationLi);
             }
