@@ -1,15 +1,10 @@
 import Component from "../abstractComponent.js";
-import getProductData from "../../api/api.js";
 import { ProductCard } from "../ProductCard/index.js";
 
 export default class ProductList extends Component{
     constructor(props) {
         super(props);
-        this.getProductData = getProductData;
-        this.getProductData();
-        this.state = {
-            product:[]
-        }
+        this.product = this.props.product;
     }
 
     render() {
@@ -22,8 +17,7 @@ export default class ProductList extends Component{
     
         const productList = document.createElement('ul');
         productList.setAttribute('class', 'product_list');
-    
-        this.state.product.forEach(async (item) => {
+        this.product.forEach(async (item) => {
             const productItem = document.createElement('li');
             const productCard = new ProductCard({item:item});
             productItem.appendChild(productCard.render());
