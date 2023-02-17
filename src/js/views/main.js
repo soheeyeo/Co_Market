@@ -1,26 +1,24 @@
 import Component from "../components/abstractComponent.js";
-import ProductList from '../components/ProductList/productList.js';
 import Header from "../components/Header/header.js";
 import EventBanner from "../components/Banner/banner.js";
+import MainHome from "../components/MainHome/mainHome.js";
 import Footer from "../components/Footer/footer.js";
 
 export default class Main extends Component{
 
-        render() {
-            const frag = document.createDocumentFragment();
+    render() {
+        const frag = document.createDocumentFragment();
 
-            const mainHeader = new Header();
+        const mainHeader = new Header();
 
-            const eventBanner = new EventBanner();
+        const eventBanner = new EventBanner();
 
-            const mainElement = document.createElement('main');
-            const productList = new ProductList();
-            mainElement.appendChild(productList.initialize());
+        const mainElement = new MainHome();
 
-            const footer = new Footer();
+        const footer = new Footer();
 
-            frag.append(mainHeader.render(), eventBanner.render(), mainElement, footer.render());
+        frag.append(mainHeader.render(), eventBanner.render(), mainElement.initialize(), footer.render());
 
-            return frag;
-        }
+        return frag;
+    }
 }
