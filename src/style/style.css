@@ -238,6 +238,55 @@ main {
     margin: 0 auto;
 }
 
+.pagination_nav {
+    margin-top: 70px;
+}
+
+.pagination_ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.pagination_prev_btn {
+    background-image: url(../assets/arrow-left.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.left_disabled {
+    background-image: url(../assets/arrow-left-disabled.svg);
+    cursor: default;
+}
+
+.pagination_next_btn {
+    background-image: url(../assets/arrow-right.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.right_disabled {
+    background-image: url(../assets/arrow-right-disabled.svg);
+    cursor: default;
+}
+
+.pagination_ul li button {
+    padding: 5px 10px;
+    font-size: 18px;
+    /* color: var(--txt-color); */
+    cursor: pointer;
+}
+
+.pagination_ul li button:hover, .btn_on {
+    color: var(--main-color);
+}
+
 .product_container {
     padding-top: 74px;
 }
