@@ -201,10 +201,13 @@ export async function login() {
         });
         const data = await response.json();
         if(response.status == '200' && data) {
-            console.log('login');
             localStorage.setItem('username', data.id);
             localStorage.setItem('token', data.token);
-            window.location.href = document.referrer;
+            if(document.referrer.split('/')[3] === 'signup') {
+                window.location.href =  '/';
+            } else {
+                window.location.href = document.referrer;
+            }
         } else {
             loginStatus.textContent = data.FAIL_Message;
         }
