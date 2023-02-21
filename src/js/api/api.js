@@ -53,13 +53,20 @@ export async function checkId() {
 
         if(usernameData === '' ) {
             statusMsg.textContent = '아이디를 입력해주세요.'
+            statusMsg.classList.add('err');
+            statusMsg.classList.remove('pass');
         } else if(!regExp.test(usernameData)) {
             statusMsg.textContent = '20자 이내의 영어 소문자, 대문자, 숫자만 가능합니다.'
+            statusMsg.classList.add('err');
+            statusMsg.classList.remove('pass');
         } else if(IdValidation.FAIL_Message === '이미 사용 중인 아이디입니다.') {
             statusMsg.textContent = '이미 사용중입니다.'
+            statusMsg.classList.add('err');
+            statusMsg.classList.remove('pass');
         } else if(IdValidation.Success)  {
             statusMsg.textContent = '사용 가능한 아이디입니다.'
-            statusMsg.style.color = '#98B9CD';
+            statusMsg.classList.remove('err');
+            statusMsg.classList.add('pass');
         }
     } catch(err) {
         console.log('err');
@@ -84,17 +91,21 @@ export async function checkCrn() {
         const statusMsg = document.querySelector('.seller_input_btn_container + .status_msg');
 
         if(crnData === '' ) {
-            statusMsg.textContent = '사업자 등록번호를 입력해주세요.'
-            statusMsg.style.color = '#EB5757';
+            statusMsg.textContent = '사업자 등록번호를 입력해주세요.';
+            statusMsg.classList.add('err');
+            statusMsg.classList.remove('pass');
         } else if(!regExp.test(crnData)) {
-            statusMsg.textContent = '잘못된 사업자 등록번호 형식입니다.'
-            statusMsg.style.color = '#EB5757';
+            statusMsg.textContent = '잘못된 사업자 등록번호 형식입니다.';
+            statusMsg.classList.add('err');
+            statusMsg.classList.remove('pass');
         } else if(CrnValidation.FAIL_Message === '이미 사용 중인 아이디입니다.') {
-            statusMsg.textContent = '이미 등록된 사업자 등록번호입니다.'
-            statusMsg.style.color = '#EB5757';
+            statusMsg.textContent = '이미 등록된 사업자 등록번호입니다.';
+            statusMsg.classList.add('err');
+            statusMsg.classList.remove('pass');
         } else if(CrnValidation.Success)  {
-            statusMsg.textContent = '사용 가능한 사업자 등록번호입니다.'
-            statusMsg.style.color = '#98B9CD';
+            statusMsg.textContent = '사용 가능한 사업자 등록번호입니다.';
+            statusMsg.classList.remove('err');
+            statusMsg.classList.add('pass');
         }
     } catch(err) {
         console.log('err');

@@ -57,6 +57,7 @@ export default class LoginInputList extends Component {
 
         const loginStatusMsg = document.createElement('strong');
         loginStatusMsg.setAttribute('class', 'status_msg');
+        loginStatusMsg.classList.add('err');
 
         pwInput.addEventListener('input', () => {
             this.disabledBtn();

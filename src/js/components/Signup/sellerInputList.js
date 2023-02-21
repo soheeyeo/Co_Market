@@ -28,6 +28,7 @@ export default class SellerInputList extends Component {
 
         const crnStatusMsg = document.createElement('strong');
         crnStatusMsg.setAttribute('class', 'status_msg');
+        crnStatusMsg.classList.add('err');
 
         const checkCrnBtn = new CheckCrnBtn();
 
@@ -49,6 +50,7 @@ export default class SellerInputList extends Component {
 
         const storeNameStatusMsg = document.createElement('strong');
         storeNameStatusMsg.setAttribute('class', 'status_msg');
+        storeNameStatusMsg.classList.add('err');
 
         sellerInputName.append(sellerNameLabel, sellerNameInput, storeNameStatusMsg);
 

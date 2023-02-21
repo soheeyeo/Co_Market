@@ -50,6 +50,7 @@ export default class UserInputList extends Component {
 
         const numCheckMsg = document.createElement('strong');
         numCheckMsg.setAttribute('class', 'status_msg');
+        numCheckMsg.classList.add('err');
 
         userNumInput.addEventListener('input', (e) => {
             e.preventDefault();

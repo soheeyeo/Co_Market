@@ -430,7 +430,14 @@ main {
 .status_msg {
     margin-top: 10px;
     font-size: 12px;
+}
+
+.err {
     color: #EB5757;
+}
+
+.pass {
+    color: var(--main-color);
 }
 
 #account_id {

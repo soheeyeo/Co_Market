@@ -58,6 +58,7 @@ export default class SignUpInputList extends Component {
 
         const statusMsg = document.createElement('strong');
         statusMsg.setAttribute('class', 'status_msg');
+        statusMsg.classList.add('err');
 
         const accountInputLi = document.createElement('ul');
         accountInputLi.setAttribute('class', 'input_li');
@@ -100,6 +101,7 @@ export default class SignUpInputList extends Component {
 
         const pwStatusMsg = document.createElement('strong');
         pwStatusMsg.setAttribute('class', 'status_msg');
+        pwStatusMsg.classList.add('err');
 
         accountPwInput.addEventListener('input', (e) => {
             e.preventDefault();
@@ -128,6 +130,7 @@ export default class SignUpInputList extends Component {
         
         const pwCheckMsg = document.createElement('strong');
         pwCheckMsg.setAttribute('class', 'status_msg');
+        pwCheckMsg.classList.add('err');
 
         const doubleCheckPwIcon = document.createElement('div');
         doubleCheckPwIcon.setAttribute('class', 'double_check_icon');
