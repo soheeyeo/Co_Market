@@ -5,14 +5,19 @@ export default class OrderList extends Component {
     constructor(props) {
         super(props);
         this.item = JSON.parse(sessionStorage.getItem('cart'));
+        this.orderKind = sessionStorage.getItem('order_kind');
         this.total = 0;
     }
 
     orderTotal() {
-        if(this.item.length > 1) {
-            this.item.forEach((item) => {
-                this.total += item.price * item.qty;
-            });
+        if(this.orderKind === 'cart_order') {
+            if(this.item.length > 1) {
+                this.item.forEach((item) => {
+                    this.total += item.price * item.qty;
+                });
+            } else {
+            this.total += this.item[0].price * this.item[0].qty;
+            }
         } else {
             this.total += this.item.price * this.item.qty;
         }
@@ -39,11 +44,11 @@ export default class OrderList extends Component {
         orderListTit.appendChild(tr);
         const tbody = document.createElement('tbody');
 
-        if(this.item.length > 1) {
+        if(this.orderKind === 'cart_order') {
             this.item.map((item) => {
                 const orderListItem = new OrderListItem({item:item});
                 tbody.append(orderListItem.render());
-            })
+            });
         } else {
             const orderListItem = new OrderListItem({item:this.item});
             tbody.append(orderListItem.render());

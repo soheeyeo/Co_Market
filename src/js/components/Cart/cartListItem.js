@@ -4,9 +4,6 @@ import CartItem from "./cartItem.js";
 export default class CartListItem extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            check:this.props.item,
-        }
     }
 
     checkSelectAll() {
@@ -22,13 +19,14 @@ export default class CartListItem extends Component {
 
     saveItem() {
         sessionStorage.setItem('cart', JSON.stringify(this.props.item));
+        sessionStorage.setItem('order_kind', 'cart_order');
     }
     
     render() {
         const frag = document.createDocumentFragment();
         this.saveItem();
         this.props.item.map(async(item) => {
-            const cartItem = new CartItem({item:item, check:this.props.item, checkSelectAll:this.checkSelectAll.bind(this)})
+            const cartItem = new CartItem({item:item, checkSelectAll:this.checkSelectAll.bind(this)})
             frag.append(cartItem.initialize());
         })
 

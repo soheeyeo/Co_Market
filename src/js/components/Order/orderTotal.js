@@ -5,16 +5,22 @@ export default class OrderTotal extends Component {
     constructor(props) {
         super(props);
         this.item = JSON.parse(sessionStorage.getItem('cart'));
+        this.orderKind = sessionStorage.getItem('order_kind');
         this.total = 0;
         this.shipping = 0;
     }
 
     orderTotalPrice() {
-        if(this.item.length > 1) {
-            this.item.forEach((item) => {
-                this.total += item.price * item.qty;
-                this.shipping += item.shipping_fee;
-            });
+        if(this.orderKind === 'cart_order') {
+            if(this.item.length > 1) {
+                this.item.forEach((item) => {
+                    this.total += item.price * item.qty;
+                    this.shipping += item.shipping_fee;
+                });
+            } else {
+                this.total += this.item[0].price * this.item[0].qty;
+                this.shipping += this.item[0].shipping_fee;
+            }
         } else {
             this.total += this.item.price * this.item.qty;
             this.shipping += this.item.shipping_fee;
