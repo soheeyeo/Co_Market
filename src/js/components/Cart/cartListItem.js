@@ -26,7 +26,7 @@ export default class CartListItem extends Component {
         const frag = document.createDocumentFragment();
         this.saveItem();
         this.props.item.map(async(item) => {
-            const cartItem = new CartItem({item:item, checkSelectAll:this.checkSelectAll.bind(this)})
+            const cartItem = new CartItem({item:item, isSelectAll:this.props.isSelectAll, checkSelectAll:this.checkSelectAll.bind(this)})
             frag.append(cartItem.initialize());
         })
 

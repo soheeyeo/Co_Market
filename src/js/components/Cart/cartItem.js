@@ -10,7 +10,7 @@ export default class CartItem extends Component {
         this.modalCancelBtn = '취소';
         this.modalOkBtn = '확인';
         this.state = {
-            isCheck: true,
+            isCheck: this.props.isSelectAll,
             isOpen: false,
         }
     }
@@ -78,6 +78,10 @@ export default class CartItem extends Component {
                 i--;
             }
         }
+        if(cart.length === 0) {
+            sessionStorage.removeItem('cart');
+            sessionStorage.removeItem('order_kind');
+        }
     }
 
     render() {
@@ -124,7 +128,7 @@ export default class CartItem extends Component {
         deleteBtn.addEventListener('click', (e) => {
             e.preventDefault();
             const root = document.getElementById('root')
-            const deleteModal = new Modal({modalContent:this.modalContent, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/cart', cartItemId: this.props.item.cart_item_id});
+            const deleteModal = new Modal({modalContent:this.modalContent, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, cartItemId: this.props.item.cart_item_id});
             root.appendChild(deleteModal.render());
             })
 
