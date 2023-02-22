@@ -257,7 +257,7 @@ export async function getCartItems() {
             },
         });
         const data = await response.json();
-            return data;
+        return data;
     } catch(err) {
         console.log('err');
     }
@@ -325,6 +325,25 @@ export async function cartItemDelete(productId) {
         } else {
             console.log('err');
         }
+    } catch(err) {
+        console.log('err');
+    }
+}
+
+export async function order(reqData) {
+    try {
+        const response = await fetch(API_URL+'order/', {
+            method: "POST",
+            headers: {
+                Authorization : `JWT ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(
+                reqData
+            ),
+        });
+        const data = await response.json();
+        return data;
     } catch(err) {
         console.log('err');
     }
