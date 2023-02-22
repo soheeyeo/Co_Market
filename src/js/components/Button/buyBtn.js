@@ -33,7 +33,7 @@ export default class BuyBtn extends Component {
                     this.detailSaveItem();
                     window.location.href = '/order';
                 } else {
-                    const root = document.getElementById('root')
+                    const root = document.getElementById('root');
                     const reqModal = new Modal({modalContent:this.modalContent, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/login'});
                     root.appendChild(reqModal.initialize());
                 }
@@ -70,7 +70,9 @@ export class OrderBtn extends Component {
             this.product_id = this.item.product_id;
             this.qty = this.item.qty;
             this.totalPrice = this.item.price * this.item.qty + this.item.shipping_fee;
-        }
+        };
+        this.modalContent = '상품을 선택해주세요.';
+        this.modalOkBtn = '확인';
     }
 
     async reqOrder() {
@@ -89,11 +91,6 @@ export class OrderBtn extends Component {
         console.log(res);
     }
 
-    cartSaveItem() {
-        sessionStorage.setItem('cart', JSON.stringify(this.item));
-        sessionStorage.setItem('order_kind', 'cart_order');
-    }
-
     render() {
         const buyBtn = document.createElement('button');
         buyBtn.type = 'submit';
@@ -101,7 +98,15 @@ export class OrderBtn extends Component {
             buyBtn.setAttribute('class', 'big_buy_btn');
             buyBtn.innerText = '주문하기';
             buyBtn.addEventListener('click', () => {
-                window.location.href = '/order';
+                const cart = JSON.parse(sessionStorage.getItem('cart'));
+                console.log(cart)
+                if(cart === null) {
+                    const root = document.getElementById('root');
+                    const reqModal = new Modal({modalContent:this.modalContent, modalOkBtn:this.modalOkBtn});
+                    root.appendChild(reqModal.initialize());
+                } else {
+                    window.location.href = '/order';
+                }
             });
         } else if(window.location.pathname === '/order') {
             buyBtn.setAttribute('class', 'big_order_btn');
