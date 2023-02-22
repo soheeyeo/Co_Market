@@ -63,7 +63,11 @@ export default class Modal extends Component {
             })
         }
 
-        btnContainer.append(btn1, btn2);
+        if(!this.props.modalCancelBtn) {
+            btnContainer.append(btn2);
+        } else {
+            btnContainer.append(btn1, btn2);
+        }
 
         const deleteBtn = document.createElement('button');
         deleteBtn.setAttribute('class', 'modalDeleteBtn');
