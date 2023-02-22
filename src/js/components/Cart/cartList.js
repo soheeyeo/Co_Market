@@ -10,6 +10,7 @@ export default class CartList extends Component {
         super(props);
         this.state = {
             product:this.getCart(),
+            isSelectAll: true,
             isLoaded: false,
         }
     }
@@ -23,7 +24,7 @@ export default class CartList extends Component {
             data.is_active = cart.is_active;
             return data;
         });
-        this.setState({product:await Promise.all(cart), isLoaded: true})
+        this.setState({...this.state, product:await Promise.all(cart), isLoaded: true})
     }
 
     handleTotalPrice() {
@@ -84,10 +85,13 @@ export default class CartList extends Component {
             checkAll.type = 'checkbox';
             checkAll.id = 'check_all';
             checkAll.name = 'select_all';
-            checkAll.checked = 'true';
             checkTh.appendChild(checkAll);
-            checkAll.addEventListener('click', () => this.checkAll());
-    
+            checkAll.checked = this.state.isSelectAll;
+            checkAll.addEventListener('click', () => {
+                this.setState({...this.state, isSelectAll:!this.state.isSelectAll});
+                this.checkAll();
+            });
+
             const checkLabel = document.createElement('label');
             checkLabel.htmlFor = 'check_all';
             checkTh.append(checkAll, checkLabel);
@@ -101,7 +105,7 @@ export default class CartList extends Component {
                 th.innerText = `${thContents[i]}`;
                 tr.append(th);
             }
-    
+
             cartListTit.appendChild(tr);
     
             const tbody = document.createElement('tbody');
@@ -119,19 +123,19 @@ export default class CartList extends Component {
             shoppingLink.setAttribute('class', 'shopping_link');
             shoppingLink.innerText = '쇼핑 계속하기';
             if(this.state.isLoaded) {
-                if(this.state.product.count === 0) {
-                    tbody.append(cartEmptyTxt1, cartEmptyTxt2, shoppingLink)
+                if(this.state.product.length === 0) {
+                    tbody.append(cartEmptyTxt1, cartEmptyTxt2, shoppingLink);
+                    cartList.append(tbody, tfoot);
                 } else {
-                    const cartListItem = new CartListItem({item:this.state.product});
+                    const cartListItem = new CartListItem({item:this.state.product, isSelectAll:this.state.isSelectAll});
                     tbody.append(cartListItem.initialize());
 
                     const cartTotal = new CartTotal({item:this.state.product});
                     const buyBtn = new OrderBtn();
                     tfoot.append(cartTotal.render(), buyBtn.render());
+                    cartList.append(cartListTit, tbody, tfoot);
                 }
             }
-
-            cartList.append(cartListTit, tbody, tfoot);
 
         return cartList;
     }
