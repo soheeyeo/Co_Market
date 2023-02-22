@@ -32,6 +32,7 @@ export default class OrderForm extends Component {
         nameInput.type = 'text';
         nameInput.id = 'order_user_name';
         nameInput.name = 'name';
+        nameInput.spellcheck = false;
         inputContainer1.append(userLabel1, nameInput);
 
         const inputContainer2 = document.createElement('div');
@@ -45,6 +46,7 @@ export default class OrderForm extends Component {
         phoneInput.id = 'order_user_tel';
         phoneInput.name = 'tel';
         phoneInput.maxLength = '11';
+        phoneInput.spellcheck = false;
         inputContainer2.append(userLabel2, phoneInput);
         phoneInput.addEventListener('input', () => {
             phoneInput.value = phoneInput.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
@@ -60,6 +62,7 @@ export default class OrderForm extends Component {
         emailInput.type = 'email';
         emailInput.id = 'order_user_email';
         emailInput.name = 'email';
+        emailInput.spellcheck = false;
         inputContainer3.append(userLabel3, emailInput);
 
         fieldset1.append(legend1, inputContainer1, inputContainer2, inputContainer3);
@@ -80,6 +83,7 @@ export default class OrderForm extends Component {
         recipientInput.type = 'text';
         recipientInput.id = 'recipient_name';
         recipientInput.name = 'recipient_name';
+        recipientInput.spellcheck = false;
         inputContainer4.append(shippingLabel1, recipientInput);
 
         const inputContainer5 = document.createElement('div');
@@ -93,6 +97,7 @@ export default class OrderForm extends Component {
         recipientPhoneInput.id = 'recipient_tel';
         recipientPhoneInput.name = 'recipient_tel';
         recipientPhoneInput.maxLength = '11';
+        recipientPhoneInput.spellcheck = false;
         recipientPhoneInput.addEventListener('input', () => {
             recipientPhoneInput.value = recipientPhoneInput.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
         })
@@ -126,11 +131,13 @@ export default class OrderForm extends Component {
         addressInput1.type = 'text';
         addressInput1.id = 'recipient_address';
         addressInput1.name = 'address';
+        addressInput1.spellcheck = false;
         const addressInput2 = document.createElement('input');
         addressInput2.setAttribute('class', 'address_input');
         addressInput2.type = 'text';
         addressInput2.id = 'recipient_address_detail';
         addressInput2.name = 'address_detail';
+        addressInput2.spellcheck = false;
         addressContainer.append(zipCodeInput, searchZipCodeBtn.render(), addressInput1, addressInput2);
         inputContainer6.append(shippingLabel3, addressContainer);
 
