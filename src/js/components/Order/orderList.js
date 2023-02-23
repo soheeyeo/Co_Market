@@ -5,6 +5,7 @@ export default class OrderList extends Component {
     constructor(props) {
         super(props);
         this.item = JSON.parse(sessionStorage.getItem('cart'));
+        this.oneItem = JSON.parse(sessionStorage.getItem('cart_one'));
         this.orderKind = sessionStorage.getItem('order_kind');
         this.total = 0;
     }
@@ -19,7 +20,7 @@ export default class OrderList extends Component {
             this.total += this.item[0].price * this.item[0].qty;
             }
         } else {
-            this.total += this.item.price * this.item.qty;
+            this.total += this.oneItem.price * this.oneItem.qty;
         }
     }
 
@@ -50,7 +51,7 @@ export default class OrderList extends Component {
                 tbody.append(orderListItem.render());
             });
         } else {
-            const orderListItem = new OrderListItem({item:this.item});
+            const orderListItem = new OrderListItem({item:this.oneItem});
             tbody.append(orderListItem.render());
         }
 
