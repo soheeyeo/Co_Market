@@ -53,7 +53,16 @@ export default class Modal extends Component {
             btn2.classList.add('small');
             btn2.addEventListener('click', (e) => {
                 e.preventDefault();
-                this.deleteCartItem();
+                if(!this.props.modalCancelBtn) {
+                    this.deleteModal();
+                } else {
+                    this.deleteCartItem();
+                    this.deleteModal();
+                }
+            });
+        } else if(window.location.pathname === '/order') {
+            btn2.addEventListener('click', (e) => {
+                e.preventDefault();
                 this.deleteModal();
             })
         } else {
