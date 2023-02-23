@@ -342,8 +342,12 @@ export async function order(reqData) {
                 reqData
             ),
         });
-        const data = await response.json();
-        return data;
+        if(response.ok) {
+            alert('주문이 성공적으로 완료되었습니다.')
+            window.location.href = '/';
+            sessionStorage.clear();
+        }
+        return response;
     } catch(err) {
         console.log('err');
     }
