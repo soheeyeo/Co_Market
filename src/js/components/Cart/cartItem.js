@@ -65,7 +65,6 @@ export default class CartItem extends Component {
         if(isCart) return;
         cart.push(this.props.item);
         sessionStorage.setItem('cart', JSON.stringify(cart));
-        sessionStorage.setItem('order_kind', 'cart_order');
     }
 
     deleteItem() {
@@ -80,7 +79,6 @@ export default class CartItem extends Component {
         }
         if(cart.length === 0) {
             sessionStorage.removeItem('cart');
-            sessionStorage.removeItem('order_kind');
         }
     }
 

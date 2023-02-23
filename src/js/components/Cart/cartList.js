@@ -47,12 +47,10 @@ export default class CartList extends Component {
 
     saveCart() {
         sessionStorage.setItem('cart', JSON.stringify(this.state.product));
-        sessionStorage.setItem('order_kind', 'cart_order');
     }
 
     deleteCart() {
         sessionStorage.removeItem('cart');
-        sessionStorage.removeItem('order_kind');
     }
 
     checkAll() {

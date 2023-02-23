@@ -19,7 +19,6 @@ export default class CartListItem extends Component {
 
     saveItem() {
         sessionStorage.setItem('cart', JSON.stringify(this.props.item));
-        sessionStorage.setItem('order_kind', 'cart_order');
     }
     
     render() {
