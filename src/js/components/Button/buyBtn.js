@@ -14,12 +14,12 @@ export default class BuyBtn extends Component {
     }
     
     detailSaveItem() {
-        sessionStorage.setItem('cart', JSON.stringify(this.item));
+        sessionStorage.setItem('cart_one', JSON.stringify(this.item));
         sessionStorage.setItem('order_kind', 'direct_order');
     }
 
     cartSaveItem() {
-        sessionStorage.setItem('cart', JSON.stringify(this.item));
+        sessionStorage.setItem('cart_one', JSON.stringify(this.item));
         sessionStorage.setItem('order_kind', 'cart_one_order');
     }
 
@@ -55,9 +55,17 @@ export class OrderBtn extends Component {
     constructor(props) {
         super(props);
         this.item = JSON.parse(sessionStorage.getItem('cart'));
+        this.oneItem = JSON.parse(sessionStorage.getItem('cart_one'));
         this.orderKind = sessionStorage.getItem('order_kind');
+        this.allItems = JSON.parse(sessionStorage.getItem('cart_all'));
         this.total = 0;
         this.shipping = 0;
+        this.modalContent1 = '정보를 모두 입력해주세요.';
+        this.modalContent2 = '상품을 선택해주세요.';
+        this.modalOkBtn = '확인';
+    }
+
+    async reqOrder() {
         if(sessionStorage.getItem('order_kind') === 'cart_order') {
             this.product_id = '';
             this.qty = '';
@@ -67,15 +75,11 @@ export class OrderBtn extends Component {
             });
             this.totalPrice = this.total + this.shipping;
         } else {
-            this.product_id = this.item.product_id;
-            this.qty = this.item.qty;
-            this.totalPrice = this.item.price * this.item.qty + this.item.shipping_fee;
+            this.product_id = this.oneItem.product_id;
+            this.qty = this.oneItem.qty;
+            this.totalPrice = this.oneItem.price * this.oneItem.qty + this.oneItem.shipping_fee;
         };
-        this.modalContent = '상품을 선택해주세요.';
-        this.modalOkBtn = '확인';
-    }
-
-    async reqOrder() {
+        
         const reqData = {
             product_id: this.product_id,
             quantity: this.qty,
@@ -88,7 +92,20 @@ export class OrderBtn extends Component {
             total_price: this.totalPrice,
         };
         const res = await order(reqData);
-        console.log(res);
+        const data = await res.json();
+    }
+
+    handleInput() {
+        const input = document.querySelectorAll('.user_info_form input, .shipping_info_form input');
+        for(let i = 0; i < input.length; i++) {
+            if(input[i].value === '') {
+                const root = document.getElementById('root');
+                const reqModal = new Modal({modalContent:this.modalContent1, modalOkBtn:this.modalOkBtn});
+                root.appendChild(reqModal.initialize());
+            } else if(input[i].value !== '') {
+                this.reqOrder();
+            }
+        }
     }
 
     render() {
@@ -98,11 +115,11 @@ export class OrderBtn extends Component {
             buyBtn.setAttribute('class', 'big_buy_btn');
             buyBtn.innerText = '주문하기';
             buyBtn.addEventListener('click', () => {
+                sessionStorage.setItem('order_kind', 'cart_order');
                 const cart = JSON.parse(sessionStorage.getItem('cart'));
-                console.log(cart)
                 if(cart === null) {
                     const root = document.getElementById('root');
-                    const reqModal = new Modal({modalContent:this.modalContent, modalOkBtn:this.modalOkBtn});
+                    const reqModal = new Modal({modalContent:this.modalContent2, modalOkBtn:this.modalOkBtn});
                     root.appendChild(reqModal.initialize());
                 } else {
                     window.location.href = '/order';
@@ -115,6 +132,7 @@ export class OrderBtn extends Component {
             buyBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
+                this.handleInput();
                 this.reqOrder();
             })
         }
