@@ -33,6 +33,7 @@ export default class LoginInputList extends Component {
         idInput.placeholder = '아이디';
         idInput.name = 'id';
         idInput.required = 'required';
+        idInput.spellcheck = false;
 
         idInput.addEventListener('input', () => {
             this.disabledBtn();
@@ -54,6 +55,7 @@ export default class LoginInputList extends Component {
         pwInput.name = 'password';
         pwInput.required = 'required';
         pwInput.autocomplete = 'off';
+        pwInput.spellcheck = false;
 
         const loginStatusMsg = document.createElement('strong');
         loginStatusMsg.setAttribute('class', 'status_msg');

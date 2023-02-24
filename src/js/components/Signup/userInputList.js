@@ -31,6 +31,7 @@ export default class UserInputList extends Component {
         userNameInput.type = 'text';
         userNameInput.name = 'name';
         userNameInput.required = 'required';
+        userNameInput.spellcheck = false;
 
         userInputName.append(userNameLabel, userNameInput);
         
@@ -47,6 +48,7 @@ export default class UserInputList extends Component {
         userNumInput.name = 'num';
         userNumInput.required = 'required';
         userNumInput.maxLength = '11'
+        userNumInput.spellcheck = false;
 
         const numCheckMsg = document.createElement('strong');
         numCheckMsg.setAttribute('class', 'status_msg');
