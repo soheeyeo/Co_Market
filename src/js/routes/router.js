@@ -34,6 +34,8 @@ export default class Router {
                 this.navigateTo(e.target.closest('a').href);
             } 
         });
+
+        window.routing = (path) => this.navigateTo(path);
         
         // 뒤로가기를 할 때 다시 라우팅이 되도록
         window.onpopstate = () => this.routing(window.location.pathname);

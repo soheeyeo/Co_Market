@@ -28,7 +28,7 @@ export default class HeaderIcons extends Component {
         cart.addEventListener('click', (e) => {
             e.preventDefault();
             if(localStorage.getItem('token')) {
-                window.location.href = '/cart';
+                window.routing('/cart');
             } else {
                 const root = document.getElementById('root')
                 const reqModal = new Modal({modalContent:this.modalContent, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/login'});
@@ -46,7 +46,7 @@ export default class HeaderIcons extends Component {
         if(!localStorage.getItem('token')) {
             loginIconTxt.innerText = '로그인';
             login.addEventListener('click', () => {
-                window.location.href = '/login';
+                window.routing('/login');
             })
         } else {
             login_icon.style.marginLeft = '6px';

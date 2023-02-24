@@ -14,7 +14,7 @@ export default class Modal extends Component {
     }
 
     modalNavigateTo() {
-        window.location.href = this.props.link;
+        window.routing(this.props.link);
         this.modal.style.display = 'none';
     }
 

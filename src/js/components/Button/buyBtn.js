@@ -31,7 +31,7 @@ export default class BuyBtn extends Component {
             buyBtn.addEventListener('click', () => {
                 if(localStorage.getItem('token')) {
                     this.detailSaveItem();
-                    window.location.href = '/order';
+                    window.routing('/order');
                 } else {
                     const root = document.getElementById('root');
                     const reqModal = new Modal({modalContent:this.modalContent, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/login'});
@@ -43,7 +43,7 @@ export default class BuyBtn extends Component {
             buyBtn.innerText = '주문하기';
             buyBtn.addEventListener('click', () => {
                 this.cartSaveItem();
-                window.location.href = '/order';
+                window.routing('/order');
             })
         }
 
@@ -122,7 +122,7 @@ export class OrderBtn extends Component {
                     const reqModal = new Modal({modalContent:this.modalContent2, modalOkBtn:this.modalOkBtn});
                     root.appendChild(reqModal.initialize());
                 } else {
-                    window.location.href = '/order';
+                    window.routing('/order');
                 }
             });
         } else if(window.location.pathname === '/order') {

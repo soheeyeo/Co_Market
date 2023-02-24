@@ -135,8 +135,8 @@ export async function signUpBuyer() {
         });
         const data = await response.json();
         if(response.status == '201') {
-            alert('🎉 회원가입이 완료되었습니다. 로그인 화면으로 이동합니다.')
-            window.location.href = '/login';
+            alert('🎉 회원가입이 완료되었습니다. 로그인 화면으로 이동합니다.');
+            window.routing('/login');
         } else if(data.phone_number == '해당 사용자 전화번호는 이미 존재합니다.') {
             phoneNumStatus.textContent = '해당 사용자 전화번호는 이미 존재합니다.'
         }
@@ -174,7 +174,7 @@ export async function signUpSeller() {
         const data = await response.json();
         if(response.status == '201') {
             alert('🎉 회원가입이 완료되었습니다. 로그인 화면으로 이동합니다.')
-            window.location.href = '/login';
+            window.routing('/login');
         } else {
             if(data.phone_number == '해당 사용자 전화번호는 이미 존재합니다.' && data.store_name == '해당 스토어이름은 이미 존재합니다.') {
                 phoneNumStatus.textContent = data.phone_number;
@@ -215,9 +215,9 @@ export async function login() {
             localStorage.setItem('username', data.id);
             localStorage.setItem('token', data.token);
             if(document.referrer.split('/')[3] === 'signup') {
-                window.location.href =  '/';
+                window.routing('/');
             } else {
-                window.location.href = document.referrer;
+                window.history.back();
             }
         } else {
             loginStatus.textContent = data.FAIL_Message;
@@ -238,7 +238,7 @@ export async function logout() {
         });
         if(response.status == '200') {
             localStorage.clear();
-            window.location.href = '/';
+            window.routing('/');
         } else {
             console.log('err');
         }
@@ -302,7 +302,7 @@ export async function ModifyCartItems(productId, qty, cart_item_id, isActive) {
         console.log(data);
         console.log(response);
         if(response.ok) {
-            window.location.reload();
+            window.routing('/cart');
         } else {
             console.log('err');
         }
@@ -321,7 +321,7 @@ export async function cartItemDelete(productId) {
             },
         });
         if(response.ok) {
-            window.location.reload();
+            window.routing('/cart');
         } else {
             console.log('err');
         }
@@ -344,7 +344,7 @@ export async function order(reqData) {
         });
         if(response.ok) {
             alert('주문이 성공적으로 완료되었습니다.')
-            window.location.href = '/';
+            window.routing('/');
             sessionStorage.clear();
         }
         return response;
