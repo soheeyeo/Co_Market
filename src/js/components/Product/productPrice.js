@@ -21,12 +21,18 @@ export default class ProductPrice extends Component{
             productPrice.setAttribute('class', 'product_detail_price');
         } else if(window.location.pathname === '/cart') {
             productPrice.setAttribute('class', 'cart_item_price');
-        } 
-
-        productPrice.innerText = this.props.price.toLocaleString('ko-KR');
+        }
 
         const priceType = document.createElement('span');
-        priceType.innerText = '원';
+
+        if(this.props.stock === 0) {
+            productPrice.innerText = 'Sold Out';
+            productPrice.classList.add('sold_out');
+            priceType.innerText = ' ';
+        } else {
+            productPrice.innerText = this.props.price.toLocaleString('ko-KR');
+            priceType.innerText = '원';
+        }
 
         productPriceContainer.append(productPrice, priceType);
         

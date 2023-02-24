@@ -15,6 +15,10 @@ export default class ProductStore extends Component {
             productStore.setAttribute('class', 'order_item_store');
         }
 
+        if(this.props.stock === 0) {
+            productStore.classList.add('sold_out_name');
+        }
+
         productStore.innerText = this.props.store;
 
         return productStore;
