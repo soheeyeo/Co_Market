@@ -28,7 +28,9 @@ export default class BuyBtn extends Component {
         if (window.location.pathname.includes('/product/')) {
             buyBtn.setAttribute('class', 'buy_btn');
             buyBtn.innerText = '구매하기';
-            buyBtn.addEventListener('click', () => {
+            buyBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 if(localStorage.getItem('token')) {
                     this.detailSaveItem();
                     window.routing('/order');
@@ -41,7 +43,9 @@ export default class BuyBtn extends Component {
         } else if(window.location.pathname === '/cart') {
             buyBtn.setAttribute('class', 'small_buy_btn');
             buyBtn.innerText = '주문하기';
-            buyBtn.addEventListener('click', () => {
+            buyBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 this.cartSaveItem();
                 window.routing('/order');
             })
@@ -60,6 +64,8 @@ export class OrderBtn extends Component {
         this.allItems = JSON.parse(sessionStorage.getItem('cart_all'));
         this.total = 0;
         this.shipping = 0;
+        this.modalContent = `주문이 완료되었습니다.
+        메인 페이지로 이동합니다.`;
         this.modalContent1 = '정보를 모두 입력해주세요.';
         this.modalContent2 = '상품을 선택해주세요.';
         this.modalOkBtn = '확인';
@@ -92,19 +98,32 @@ export class OrderBtn extends Component {
             total_price: this.totalPrice,
         };
         const res = await order(reqData);
-        const data = await res.json();
+        if(res.ok) {
+            const root = document.getElementById('root');
+            const reqModal = new Modal({modalContent:this.modalContent, modalOkBtn:this.modalOkBtn, link:'/'});
+            root.appendChild(reqModal.initialize());
+            sessionStorage.clear();
+        }
     }
 
     handleInput() {
-        const input = document.querySelectorAll('.user_info_form input, .shipping_info_form input');
-        for(let i = 0; i < input.length; i++) {
-            if(input[i].value === '') {
-                const root = document.getElementById('root');
-                const reqModal = new Modal({modalContent:this.modalContent1, modalOkBtn:this.modalOkBtn});
-                root.appendChild(reqModal.initialize());
-            } else if(input[i].value !== '') {
-                this.reqOrder();
-            }
+        const nameInput = document.getElementById('order_user_name');
+        const telInput = document.getElementById('order_user_tel');
+        const emailInput = document.getElementById('order_user_email');
+        const nameInput2 = document.getElementById('recipient_name');
+        const telInput2 = document.getElementById('recipient_tel');
+        const zipInput = document.getElementById('recipient_address_zip_code');
+        const addressInput = document.getElementById('recipient_address');
+        const addressDetailInput = document.getElementById('recipient_address_detail');
+        const addressMsgInput = document.getElementById('message');
+        const orderAgree = document.querySelector('#check_payment');
+
+        if(nameInput.value !== '' && telInput.value !== '' && emailInput.value !== '' && nameInput2.value !== '' && telInput2.value !== '' && zipInput.value !== '' && addressInput.value !== '' && addressDetailInput.value !== '' && addressMsgInput.value !== '' && orderAgree.checked) {
+            this.reqOrder();
+        } else {
+            const root = document.getElementById('root');
+            const reqModal = new Modal({modalContent:this.modalContent1, modalOkBtn:this.modalOkBtn});
+            root.appendChild(reqModal.initialize());
         }
     }
 
@@ -114,7 +133,9 @@ export class OrderBtn extends Component {
         if(window.location.pathname === '/cart') {
             buyBtn.setAttribute('class', 'big_buy_btn');
             buyBtn.innerText = '주문하기';
-            buyBtn.addEventListener('click', () => {
+            buyBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 sessionStorage.setItem('order_kind', 'cart_order');
                 const cart = JSON.parse(sessionStorage.getItem('cart'));
                 if(cart === null) {
@@ -133,7 +154,6 @@ export class OrderBtn extends Component {
                 e.preventDefault();
                 e.stopPropagation();
                 this.handleInput();
-                this.reqOrder();
             })
         }
 

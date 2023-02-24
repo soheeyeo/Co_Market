@@ -62,8 +62,13 @@ export default class Modal extends Component {
             });
         } else if(window.location.pathname === '/order') {
             btn2.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.deleteModal();
+                if(!this.props.link) {
+                    e.preventDefault();
+                    this.deleteModal();
+                } else {
+                    e.preventDefault();
+                    this.modalNavigateTo();
+                }
             })
         } else {
             btn2.addEventListener('click', (e) => {
@@ -82,8 +87,18 @@ export default class Modal extends Component {
         deleteBtn.setAttribute('class', 'modalDeleteBtn');
 
         deleteBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.deleteModal();
+            if(window.location.pathname === '/order') {
+                if(this.props.link) {
+                    e.preventDefault();
+                    this.modalNavigateTo();
+                } else {
+                    e.preventDefault();
+                    this.deleteModal();
+                }
+            } else {
+                e.preventDefault();
+                this.deleteModal();
+            }
         })
 
         modalContainer.append(modalTxt, btnContainer, deleteBtn);
