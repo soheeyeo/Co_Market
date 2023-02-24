@@ -135,6 +135,7 @@ export async function signUpBuyer() {
         });
         const data = await response.json();
         if(response.status == '201') {
+            sessionStorage.setItem('prev', 'sign_up');
             alert('🎉 회원가입이 완료되었습니다. 로그인 화면으로 이동합니다.');
             window.routing('/login');
         } else if(data.phone_number == '해당 사용자 전화번호는 이미 존재합니다.') {
@@ -173,7 +174,8 @@ export async function signUpSeller() {
         });
         const data = await response.json();
         if(response.status == '201') {
-            alert('🎉 회원가입이 완료되었습니다. 로그인 화면으로 이동합니다.')
+            sessionStorage.setItem('prev', 'sign_up');
+            alert('🎉 회원가입이 완료되었습니다. 로그인 화면으로 이동합니다.');
             window.routing('/login');
         } else {
             if(data.phone_number == '해당 사용자 전화번호는 이미 존재합니다.' && data.store_name == '해당 스토어이름은 이미 존재합니다.') {
@@ -214,8 +216,9 @@ export async function login() {
         if(response.status == '200' && data) {
             localStorage.setItem('username', data.id);
             localStorage.setItem('token', data.token);
-            if(document.referrer.split('/')[3] === 'signup') {
+            if(sessionStorage.getItem('prev')) {
                 window.routing('/');
+                sessionStorage.removeItem('prev');
             } else {
                 window.history.back();
             }
@@ -343,7 +346,7 @@ export async function order(reqData) {
             ),
         });
         if(response.ok) {
-            alert('주문이 성공적으로 완료되었습니다.')
+            alert('주문이 성공적으로 완료되었습니다.');
             window.routing('/');
             sessionStorage.clear();
         }
