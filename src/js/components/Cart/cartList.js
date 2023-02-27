@@ -16,7 +16,7 @@ export default class CartList extends Component {
     }
 
     async getCart() {
-        const cartData = await getCartItems()
+        const cartData = await getCartItems();
         const cart = cartData.results.map(async(cart) => {
             const data = await getProductDetail(cart.product_id);
             data.qty = cart.quantity;
