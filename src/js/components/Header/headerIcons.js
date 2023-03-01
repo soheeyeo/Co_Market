@@ -53,7 +53,6 @@ export default class HeaderIcons extends Component {
             loginIconTxt.innerText = '로그아웃';
             login.addEventListener('click', () => {
                 logout();
-                this.setState({iconChange:true});
             });
         }
 
