@@ -9,7 +9,7 @@ export default async function getProductData(page) {
             },
         });
         const data = await response.json();
-        this.setState({product:data.results, pageNum:Math.ceil(data.count / 15), currentPage:page, isLoaded:true});
+        return data;
     } catch(err) {
             console.log('err');
     }
