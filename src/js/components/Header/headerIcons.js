@@ -26,25 +26,30 @@ export default class HeaderIcons extends Component {
         if(this.user.user_type === 'SELLER') {
             cartIcon.setAttribute('class', 'center_icon');
             cartIconTxt.setAttribute('class', 'center_icon_txt');
-            cartIconTxt.innerText = '판매자 센터';    
+            cartIconTxt.innerText = '판매자 센터';
+            cart.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.routing('/center');
+            })
         } else {
             cartIcon.setAttribute('class', 'cart_icon');
             cartIconTxt.setAttribute('class', 'cart_icon_txt');
             cartIconTxt.innerText = '장바구니';
+            
+            cart.addEventListener('click', (e) => {
+                e.preventDefault();
+                if(localStorage.getItem('token')) {
+                    window.routing('/cart');
+                } else {
+                    const root = document.getElementById('root')
+                    const reqModal = new Modal({modalContent:this.modalContent, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/login'});
+                    root.appendChild(reqModal.initialize());
+                }
+            })
         }
 
         cart.append(cartIcon, cartIconTxt);
 
-        cart.addEventListener('click', (e) => {
-            e.preventDefault();
-            if(localStorage.getItem('token')) {
-                window.routing('/cart');
-            } else {
-                const root = document.getElementById('root')
-                const reqModal = new Modal({modalContent:this.modalContent, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/login'});
-                root.appendChild(reqModal.initialize());
-            }
-        })
 
         const login = document.createElement('button');
         login.setAttribute('class', 'login_icon_btn');
