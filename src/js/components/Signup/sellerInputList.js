@@ -25,6 +25,7 @@ export default class SellerInputList extends Component {
         sellerNumInput.name = 'crn';
         sellerNumInput.required = 'required';
         sellerNumInput.maxLength = '10';
+        sellerNumInput.spellcheck = false;
 
         const crnStatusMsg = document.createElement('strong');
         crnStatusMsg.setAttribute('class', 'status_msg');
@@ -47,6 +48,7 @@ export default class SellerInputList extends Component {
         sellerNameInput.type = 'text';
         sellerNameInput.name = 'store_name';
         sellerNameInput.required = 'required';
+        sellerNameInput.spellcheck = false;
 
         const storeNameStatusMsg = document.createElement('strong');
         storeNameStatusMsg.setAttribute('class', 'status_msg');
