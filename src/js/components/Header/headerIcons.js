@@ -9,19 +9,29 @@ export default class HeaderIcons extends Component {
         로그인 하시겠습니까?`;
         this.modalCancelBtn = '아니오';
         this.modalOkBtn = '예';
+        this.user = JSON.parse(localStorage.getItem('user'));
     }
 
     render() {
+        console.log(this.user)
         const iconsContainer = document.createElement('div');
         iconsContainer.setAttribute('class', 'icons_container');
 
         const cart = document.createElement('button');
         cart.setAttribute('class', 'cart_icon_btn');
         const cartIcon = document.createElement('div');
-        cartIcon.setAttribute('class', 'cart_icon');
         const cartIconTxt = document.createElement('span');
-        cartIconTxt.setAttribute('class', 'cart_icon_txt');
-        cartIconTxt.innerText = '장바구니';
+
+
+        if(this.user.user_type === 'SELLER') {
+            cartIcon.setAttribute('class', 'center_icon');
+            cartIconTxt.setAttribute('class', 'center_icon_txt');
+            cartIconTxt.innerText = '판매자 센터';    
+        } else {
+            cartIcon.setAttribute('class', 'cart_icon');
+            cartIconTxt.setAttribute('class', 'cart_icon_txt');
+            cartIconTxt.innerText = '장바구니';
+        }
 
         cart.append(cartIcon, cartIconTxt);
 

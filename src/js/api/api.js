@@ -214,7 +214,7 @@ export async function login() {
         });
         const data = await response.json();
         if(response.status == '200' && data) {
-            localStorage.setItem('username', data.id);
+            localStorage.setItem('user', JSON.stringify(data));
             localStorage.setItem('token', data.token);
             if(sessionStorage.getItem('prev')) {
                 window.routing('/');
