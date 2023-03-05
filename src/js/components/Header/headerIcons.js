@@ -22,15 +22,15 @@ export default class HeaderIcons extends Component {
         const cartIconTxt = document.createElement('span');
 
 
-        // if(this.user.user_type === 'SELLER') {
-        //     cartIcon.setAttribute('class', 'center_icon');
-        //     cartIconTxt.setAttribute('class', 'center_icon_txt');
-        //     cartIconTxt.innerText = '판매자 센터';
-        //     cart.addEventListener('click', (e) => {
-        //         e.preventDefault();
-        //         window.routing('/center');
-        //     })
-        // } else {
+        if(this.user && this.user.user_type === 'SELLER') {
+            cartIcon.setAttribute('class', 'center_icon');
+            cartIconTxt.setAttribute('class', 'center_icon_txt');
+            cartIconTxt.innerText = '판매자 센터';
+            cart.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.routing('/center');
+            })
+        } else {
             cartIcon.setAttribute('class', 'cart_icon');
             cartIconTxt.setAttribute('class', 'cart_icon_txt');
             cartIconTxt.innerText = '장바구니';
@@ -45,7 +45,7 @@ export default class HeaderIcons extends Component {
                     root.appendChild(reqModal.initialize());
                 }
             })
-        // }
+        }
 
         cart.append(cartIcon, cartIconTxt);
 
