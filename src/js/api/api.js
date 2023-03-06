@@ -350,3 +350,20 @@ export async function order(reqData) {
         console.log('err');
     }
 }
+
+export async function getSellerItems() {
+    try {
+        const response = await fetch(API_URL+'seller/', {
+            method: "GET",
+            headers: {
+                Authorization : `JWT ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json",
+            },
+        });
+        const data = await response.json();
+        console.log(data);
+        this.setState({sellerItems:data.results});
+    } catch(err) {
+        console.log('err');
+    }
+}
