@@ -2,6 +2,27 @@ import Component from "../abstractComponent.js";
 import SearchZipBtn from "../Button/searchZipBtn.js";
 
 export default class OrderForm extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = '';
+
+                if (data.userSelectedType === 'R') {
+                    addr = data.roadAddress;
+                } else {
+                    addr = data.jibunAddress;
+                }
+
+                document.getElementById('recipient_address_zip_code').value = data.zonecode;
+                document.getElementById("recipient_address").value = addr;
+                document.getElementById("recipient_address_detail").focus();
+            }
+        }).open();
+    }
 
     handleSelect() {
         const selectLi = document.querySelector('.address_message_select');
@@ -119,13 +140,13 @@ export default class OrderForm extends Component {
         zipCodeInput.type = 'number';
         zipCodeInput.id = 'recipient_address_zip_code';
         zipCodeInput.name = 'zip_code';
-        zipCodeInput.addEventListener('input', () => {
-            if(zipCodeInput.value > 5) {
-                zipCodeInput.value = zipCodeInput.value.slice(0, 5);
-            }
+        zipCodeInput.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.sample6_execDaumPostcode();
         })
 
-        const searchZipCodeBtn = new SearchZipBtn();
+        const searchZipCodeBtn = new SearchZipBtn({searchZipCode: this.sample6_execDaumPostcode.bind(this)});
         const addressInput1 = document.createElement('input');
         addressInput1.setAttribute('class', 'address_input');
         addressInput1.type = 'text';
