@@ -1,9 +1,16 @@
 import Component from "../abstractComponent.js";
+import SellerItem from "./sellerItem.js";
+import { getSellerItems } from "../../api/api.js";
 
 export default class SellerItemList extends Component {
     constructor(props) {
         super(props);
-        this.items = this.props.sellerItems;
+        this.getSellerItems = getSellerItems;
+        this.getSellerItems();
+        this.state = {
+            sellerItems:[],
+            isLoaded: false
+        }
     }
 
     render() {
@@ -32,12 +39,19 @@ export default class SellerItemList extends Component {
         emptyMsg1.setAttribute('class', 'seller_empty_strong');
         emptyMsg1.innerText = '등록된 상품이 없습니다.';
 
-        if(this.items.length === 0) {
-            tbody.appendChild(emptyMsg1);
-            sellerItemList.appendChild(tbody);
-        } else {
-
+        if(this.state.isLoaded) {
+            if(this.state.sellerItems.length === 0) {
+                tbody.appendChild(emptyMsg1);
+            } else if(this.state.sellerItems.length > 0) {
+                sellerItemList.appendChild(sellerItemListTit);
+                this.state.sellerItems.forEach(item => {
+                    const sellerItem = new SellerItem({item: item});
+                    tbody.append(sellerItem.render());
+                });
+            }
         }
+
+        sellerItemList.appendChild(tbody);
 
         return sellerItemList;
     }
