@@ -301,9 +301,6 @@ export async function ModifyCartItems(productId, qty, cart_item_id, isActive) {
                 is_active: isActive,
             }),
         });
-        const data = await response.json();
-        console.log(data);
-        console.log(response);
         if(response.ok) {
             window.routing('/cart');
         } else {
@@ -361,9 +358,8 @@ export async function getSellerItems() {
             },
         });
         const data = await response.json();
-        console.log(data);
-        this.setState({sellerItems:data.results});
+        this.setState({sellerItems:data.results, isLoaded:true});
     } catch(err) {
-        console.log('err');
+        console.log(err);
     }
 }
