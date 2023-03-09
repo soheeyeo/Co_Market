@@ -12,6 +12,8 @@ export default class ProductName extends Component{
             productName.setAttribute('class', 'cart_item_name');
         } else if(window.location.pathname === '/order') {
             productName.setAttribute('class', 'order_item_name');
+        } else if(window.location.pathname === '/center') {
+            productName.setAttribute('class', 'seller_item_name');
         }
 
         if(this.props.stock === 0) {
