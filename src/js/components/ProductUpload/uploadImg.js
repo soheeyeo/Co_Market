@@ -21,6 +21,7 @@ export default class UploadImg extends Component {
 
         const imgUploadBtn = document.createElement('button');
         imgUploadBtn.setAttribute('class', 'img_upload_btn');
+        imgUploadBtn.type = 'button';
 
         imgUploadBox.append(imgUpload, imgUploadBtn);
 

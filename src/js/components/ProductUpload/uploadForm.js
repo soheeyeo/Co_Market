@@ -26,6 +26,7 @@ export default class UploadForm extends Component {
         const cancelBtn = document.createElement('button');
         cancelBtn.setAttribute('class', 'upload_cancel_btn');
         cancelBtn.innerText = '취소';
+        cancelBtn.type = 'button';
 
         const saveBtn = document.createElement('button');
         saveBtn.setAttribute('class', 'upload_save_btn');
