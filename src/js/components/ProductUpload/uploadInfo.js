@@ -43,7 +43,7 @@ export default class UploadInfo extends Component {
 
         const shippingFeeUploadLabel = document.createElement('label');
         shippingFeeUploadLabel.htmlFor = 'shipping_fee_upload';
-        shippingFeeUploadLabel.innerText = '기본 배송지';
+        shippingFeeUploadLabel.innerText = '기본 배송비';
 
         const shippingFeeTxtContainer = document.createElement('div');
         shippingFeeTxtContainer.setAttribute('class', 'shipping_fee_upload_txt_container');
