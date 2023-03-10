@@ -8,9 +8,10 @@ export default class UploadDetail extends Component {
 
         const detailUploadLabel = document.createElement('label');
         detailUploadLabel.htmlFor = 'detail_upload';
+        detailUploadLabel.innerText = '상품 상세 정보';
 
-        const detailUploadInput = document.createElement('input');
-        detailUploadInput.type = 'text';
+        const detailUploadInput = document.createElement('textarea');
+        detailUploadInput.rows = '20';
         detailUploadInput.id = 'detail_upload';
         detailUploadInput.spellcheck = false;
 
