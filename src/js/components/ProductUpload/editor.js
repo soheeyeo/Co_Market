@@ -6,6 +6,7 @@ export default class Editor extends Component {
 
     render() {
         const main = document.createElement('main');
+        main.setAttribute('class', 'editor_main');
         
         const uploadNotice = new UploadNotice();
 
