@@ -12,6 +12,12 @@ export default class UploadBtn extends Component {
 
         itemUploadBtn.append(uploadIcon, uploadTxt);
 
+        itemUploadBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            window.routing('/upload');
+        })
+
         return itemUploadBtn;
     }
 }
