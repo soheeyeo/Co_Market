@@ -1,5 +1,5 @@
 import Router from './js/routes/router.js';
-import { Main, Login, SignUp, ProductDetail, Cart, Order, SellerCenter } from './js/views/index.js';
+import { Main, Login, SignUp, ProductDetail, Cart, Order, SellerCenter, ProductUpload } from './js/views/index.js';
 
 export default class App {
     constructor(props) {
@@ -15,7 +15,8 @@ export default class App {
             '/product/:id': ProductDetail,
             '/cart': Cart,
             '/order':Order,
-            '/center':SellerCenter
+            '/center':SellerCenter,
+            '/upload':ProductUpload
         });
 
         router.init(el);
