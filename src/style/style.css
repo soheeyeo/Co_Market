@@ -1618,10 +1618,16 @@ main {
     margin-top: 10px;
     width: 270px;
     font-size: 14px;
-    line-height: 18px;
+    line-height: 20px;
     background-color: #FFEFE8;
     color: var(--txt-color);
     border-radius: 5px;
+    word-break: keep-all;
+}
+
+.upload_notice_contents li::before {
+    content: '-';
+    margin-right: 10px;
 }
 
 .upload_notice_contents li:nth-child(n+2) {
@@ -1643,6 +1649,8 @@ main {
     margin-top: 10px;
     background-color: #F2F2F2;
     border-radius: 5px;
+    background-size: cover;
+    background-position: center;
 }
 
 .img_upload_box input {
@@ -1673,23 +1681,30 @@ main {
     margin: 14px 0 20px;
 }
 
+.shipping_upload_container button{
+    font-weight: 500;
+    cursor: pointer;
+}
+
 .parcel_btn {
     padding: 17px 55px;
     margin-right: 10px;
-    font-weight: 500;
-    background-color: var(--main-color);
-    color: var(--bg-color);
+    color: var(--sub-txt-color);
+    border: 1px solid var(--border-color);
     border-radius: 5px;
-    cursor: pointer;
 }
 
 .delivery_btn {
     padding: 17px 40px;
-    font-weight: 500;
     color: var(--sub-txt-color);
     border: 1px solid var(--border-color);
     border-radius: 5px;
-    cursor: pointer;
+}
+
+.selected {
+    background-color: var(--main-color);
+    color: var(--bg-color);
+    border-style: none;
 }
 
 .product_detail_upload_container {
@@ -1704,6 +1719,7 @@ main {
     border: 1px solid var(--border-color);
     border-radius: 5px;
     color: var(--txt-color);
+    font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
 
 #detail_upload:focus {
