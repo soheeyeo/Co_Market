@@ -3,6 +3,13 @@ import ShippingMethod from "./shippingMethod.js";
 
 export default class UploadInfo extends Component {
 
+    handleNumber(e, input) {
+        let value = e.target.value;
+        value = Number(value.replaceAll(',', ''));
+        const formatValue = value.toLocaleString('ko-KR');
+        input.value = formatValue;
+    }
+
     render() {
         const infoContainer = document.createElement('div');
         infoContainer.setAttribute('class', 'upload_info_container');
@@ -25,9 +32,17 @@ export default class UploadInfo extends Component {
         priceTxtContainer.setAttribute('class', 'price_upload_txt_container');
 
         const priceUploadInput = document.createElement('input');
-        priceUploadInput.type = 'num';
+        priceUploadInput.type = 'text';
         priceUploadInput.id = 'price_upload';
         priceUploadInput.spellcheck = false;
+
+        priceUploadInput.addEventListener('input', () => {
+            priceUploadInput.value = priceUploadInput.value.replace(/[^0-9]/g,'');
+        });
+
+        priceUploadInput.addEventListener('keyup', (e) => {
+            this.handleNumber(e, priceUploadInput);
+        });
 
         const priceType = document.createElement('span');
         priceType.setAttribute('class', 'upload_txt');
@@ -49,9 +64,17 @@ export default class UploadInfo extends Component {
         shippingFeeTxtContainer.setAttribute('class', 'shipping_fee_upload_txt_container');
 
         const shippingFeeUploadInput = document.createElement('input');
-        shippingFeeUploadInput.type = 'num';
+        shippingFeeUploadInput.type = 'text';
         shippingFeeUploadInput.id = 'shipping_fee_upload';
         shippingFeeUploadInput.spellcheck = false;
+
+        shippingFeeUploadInput.addEventListener('input', () => {
+            shippingFeeUploadInput.value = shippingFeeUploadInput.value.replace(/[^0-9]/g,'');
+        });
+
+        shippingFeeUploadInput.addEventListener('keyup', (e) => {
+            this.handleNumber(e, shippingFeeUploadInput);
+        });
 
         const shippingFeeType = document.createElement('span');
         shippingFeeType.setAttribute('class', 'upload_txt');
@@ -67,9 +90,13 @@ export default class UploadInfo extends Component {
         stockTxtContainer.setAttribute('class', 'stock_upload_txt_container');
 
         const stockUploadInput = document.createElement('input');
-        stockUploadInput.type = 'num';
+        stockUploadInput.type = 'text';
         stockUploadInput.id = 'stock_upload';
         stockUploadInput.spellcheck = false;
+
+        stockUploadInput.addEventListener('input', () => {
+            stockUploadInput.value = stockUploadInput.value.replace(/[^0-9]/g,'');
+        });
 
         const stockType = document.createElement('span');
         stockType.setAttribute('class', 'upload_txt');
@@ -77,7 +104,7 @@ export default class UploadInfo extends Component {
 
         stockTxtContainer.append(stockUploadInput, stockType);
 
-        infoContainer.append(nameUploadLabel, nameUploadInput, priceUploadLabel, priceTxtContainer, shippingUploadLabel, shippingMethod.initialize(), shippingFeeUploadLabel, shippingFeeTxtContainer, stockUploadLabel, stockTxtContainer);
+        infoContainer.append(nameUploadLabel, nameUploadInput, priceUploadLabel, priceTxtContainer, shippingUploadLabel, shippingMethod.render(), shippingFeeUploadLabel, shippingFeeTxtContainer, stockUploadLabel, stockTxtContainer);
 
         return infoContainer;
     }
