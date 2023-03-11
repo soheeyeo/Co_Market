@@ -16,7 +16,7 @@ export default class UploadForm extends Component {
 
         const uploadInfo = new UploadInfo();
 
-        productInfoContainer.append(uploadImg.render(), uploadInfo.render());
+        productInfoContainer.append(uploadImg.initialize(), uploadInfo.render());
 
         const uploadDetail = new UploadDetail();
 
