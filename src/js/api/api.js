@@ -363,3 +363,21 @@ export async function getSellerItems() {
         console.log(err);
     }
 }
+
+export async function uploadProduct(formData) {
+    try {
+        const response = await fetch(API_URL+'products/', {
+            method: "POST",
+            headers: {
+                Authorization : `JWT ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(
+                formData
+            ),
+        });
+        return response;
+    } catch(err) {
+        console.log('err');
+    }
+}
