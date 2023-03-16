@@ -11,7 +11,9 @@ export default class ProductPrice extends Component{
             productPriceContainer.setAttribute('class', 'price_detail_container');
         } else if(window.location.pathname === '/cart') {
             productPriceContainer.setAttribute('class', 'cart_item_price_container');
-        } 
+        } else if(window.location.pathname === '/center') {
+            productPriceContainer.setAttribute('class', 'seller_item_price_container');
+        }
 
         const productPrice = document.createElement('strong');
 
@@ -21,6 +23,8 @@ export default class ProductPrice extends Component{
             productPrice.setAttribute('class', 'product_detail_price');
         } else if(window.location.pathname === '/cart') {
             productPrice.setAttribute('class', 'cart_item_price');
+        } else if(window.location.pathname === '/center') {
+            productPrice.setAttribute('class', 'seller_item_price');
         }
 
         const priceType = document.createElement('span');
