@@ -12,6 +12,7 @@ import CartBtn from "../Button/cartBtn.js";
 export default class ProductDetailCard extends Component {
     constructor(props) {
         super(props);
+        this.prev = sessionStorage.getItem('prev');
         this.state = {
             qty:1
         };
@@ -65,9 +66,9 @@ export default class ProductDetailCard extends Component {
             const btnContainer = document.createElement('div');
             btnContainer.setAttribute('class', 'btn_container');
     
-            const buyBtn = new BuyBtn({item:this.props.item, qty:this.state.qty});
+            const buyBtn = new BuyBtn({item:this.props.item, qty:this.state.qty, prev:this.prev ? this.prev : ''});
     
-            const cartBtn = new CartBtn({productId:this.props.item.product_id, qty:this.state.qty});
+            const cartBtn = new CartBtn({productId:this.props.item.product_id, qty:this.state.qty, prev:this.prev ? this.prev : ''});
     
             btnContainer.append(buyBtn.render(), cartBtn.initialize());
     

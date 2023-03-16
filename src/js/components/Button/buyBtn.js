@@ -28,18 +28,22 @@ export default class BuyBtn extends Component {
         if (window.location.pathname.includes('/product/')) {
             buyBtn.setAttribute('class', 'buy_btn');
             buyBtn.innerText = '구매하기';
-            buyBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                if(localStorage.getItem('token')) {
-                    this.detailSaveItem();
-                    window.routing('/order');
-                } else {
-                    const root = document.getElementById('root');
-                    const reqModal = new Modal({modalContent:this.modalContent, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/login'});
-                    root.appendChild(reqModal.initialize());
-                }
-            })
+            if(this.props.prev) {
+                buyBtn.classList.add('disabled');
+            } else {
+                buyBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if(localStorage.getItem('token')) {
+                        this.detailSaveItem();
+                        window.routing('/order');
+                    } else {
+                        const root = document.getElementById('root');
+                        const reqModal = new Modal({modalContent:this.modalContent, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/login'});
+                        root.appendChild(reqModal.initialize());
+                    }
+                })
+            }
         } else if(window.location.pathname === '/cart') {
             buyBtn.setAttribute('class', 'small_buy_btn');
             buyBtn.innerText = '주문하기';

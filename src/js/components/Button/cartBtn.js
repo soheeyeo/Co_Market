@@ -49,17 +49,21 @@ export default class CartBtn extends Component {
         cartBtn.setAttribute('class', 'cart_btn');
         cartBtn.innerText = '장바구니';
 
-        cartBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if(localStorage.getItem('token')) {
-                this.addCartItem();
-            } else {
-                const root = document.getElementById('root')
-                const reqModal = new Modal({modalContent:this.modalContent3, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/login'});
-                root.appendChild(reqModal.initialize());
-            }
-        })
+        if(this.props.prev) {
+            cartBtn.classList.add('disabled');
+        } else  {
+            cartBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if(localStorage.getItem('token')) {
+                    this.addCartItem();
+                } else {
+                    const root = document.getElementById('root')
+                    const reqModal = new Modal({modalContent:this.modalContent3, modalCancelBtn:this.modalCancelBtn, modalOkBtn:this.modalOkBtn, link:'/login'});
+                    root.appendChild(reqModal.initialize());
+                }
+            })
+        }
 
         return cartBtn;
     }
