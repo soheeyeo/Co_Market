@@ -370,13 +370,30 @@ export async function uploadProduct(formData) {
             method: "POST",
             headers: {
                 Authorization : `JWT ${localStorage.getItem('token')}`,
+            },
+            body: formData
+        });
+        const data = await response.json();
+        return data;
+    } catch(err) {
+        console.log('err');
+    }
+}
+
+export async function deleteProduct(productId) {
+    try {
+        const response = await fetch(API_URL+`products/${productId}/`, {
+            method: "DELETE",
+            headers: {
+                Authorization : `JWT ${localStorage.getItem('token')}`,
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(
-                formData
-            ),
         });
-        return response;
+        if(response.ok) {
+            window.routing('/center');
+        } else {
+            console.log('err');
+        }
     } catch(err) {
         console.log('err');
     }
