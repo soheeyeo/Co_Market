@@ -1,5 +1,6 @@
 import Component from "../abstractComponent.js";
 import { cartItemDelete } from "../../api/api.js";
+import { deleteProduct } from "../../api/api.js";
 
 export default class Modal extends Component {
     constructor(props) {
@@ -7,6 +8,8 @@ export default class Modal extends Component {
         this.modal = document.createElement('div');
         this.cartItemDelete = cartItemDelete;
         this.cartItemId = this.props.cartItemId;
+        this.deleteProduct = deleteProduct;
+        this.productId = this.props.productId;
     }
 
     deleteModal() {
@@ -20,6 +23,10 @@ export default class Modal extends Component {
 
     deleteCartItem() {
         this.cartItemDelete(this.cartItemId);
+    }
+
+    deleteProductItem() {
+        this.deleteProduct(this.productId);
     }
 
     render() {
@@ -48,15 +55,18 @@ export default class Modal extends Component {
         btn2.setAttribute('class', 'modalOkBtn');
         btn2.innerText = this.props.modalOkBtn;
 
-        if(window.location.pathname === '/cart') {
+        if(window.location.pathname === '/cart' || '/center') {
             btn1.classList.add('small');
             btn2.classList.add('small');
             btn2.addEventListener('click', (e) => {
                 e.preventDefault();
                 if(!this.props.modalCancelBtn) {
                     this.deleteModal();
-                } else {
+                } else if(window.location.pathname === '/cart') {
                     this.deleteCartItem();
+                    this.deleteModal();
+                } else if(window.location.pathname === '/center') {
+                    this.deleteProductItem();
                     this.deleteModal();
                 }
             });
