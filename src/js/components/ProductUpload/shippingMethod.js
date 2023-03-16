@@ -23,7 +23,6 @@ export default class ShippingMethod extends Component {
         shippingBtn1.setAttribute('class', 'parcel_btn');
         shippingBtn1.innerText = '택배,소포,등기';
         shippingBtn1.type = 'button';
-        shippingBtn1.classList.add('selected');
 
         shippingBtn1.addEventListener('click', (e) => {
             this.handleToggle(e)
@@ -38,6 +37,13 @@ export default class ShippingMethod extends Component {
             this.handleToggle(e)
         });
 
+        if(this.props.item.shipping_method === 'DELIVERY') {
+            shippingBtn2.classList.add('selected');
+            shippingBtn1.classList.remove('selected');
+        } else {
+            shippingBtn1.classList.add('selected');
+            shippingBtn2.classList.remove('selected');
+        }
 
         shippingMethodContainer.append(shippingBtn1, shippingBtn2);
 

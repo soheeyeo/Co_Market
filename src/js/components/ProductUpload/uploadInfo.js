@@ -54,7 +54,7 @@ export default class UploadInfo extends Component {
         shippingUploadLabel.htmlFor = 'shipping_upload';
         shippingUploadLabel.innerText = '배송방법';
 
-        const shippingMethod = new ShippingMethod();
+        const shippingMethod = new ShippingMethod({item:this.props.item});
 
         const shippingFeeUploadLabel = document.createElement('label');
         shippingFeeUploadLabel.htmlFor = 'shipping_fee_upload';
@@ -94,13 +94,16 @@ export default class UploadInfo extends Component {
         stockUploadInput.id = 'stock_upload';
         stockUploadInput.spellcheck = false;
 
-        stockUploadInput.addEventListener('input', () => {
-            stockUploadInput.value = stockUploadInput.value.replace(/[^0-9]/g,'');
-        });
-
         const stockType = document.createElement('span');
         stockType.setAttribute('class', 'upload_txt');
         stockType.innerText = '개';
+
+        if(this.props.item) {
+            nameUploadInput.value = this.props.item.product_name;
+            priceUploadInput.value = this.props.item.price.toLocaleString('ko-KR');
+            shippingFeeUploadInput.value = this.props.item.shipping_fee.toLocaleString('ko-KR');
+            stockUploadInput.value = this.props.item.stock;
+        }
 
         stockTxtContainer.append(stockUploadInput, stockType);
 

@@ -15,6 +15,10 @@ export default class UploadDetail extends Component {
         detailUploadInput.id = 'detail_upload';
         detailUploadInput.spellcheck = false;
 
+        if(this.props.detail) {
+            detailUploadInput.value = this.props.detail;
+        }
+
         detailUploadContainer.append(detailUploadLabel, detailUploadInput);
 
         return detailUploadContainer;

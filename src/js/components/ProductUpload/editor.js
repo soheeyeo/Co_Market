@@ -12,7 +12,7 @@ export default class Editor extends Component {
 
         const uploadForm = new UploadForm();
 
-        main.append(uploadNotice.render(), uploadForm.render());
+        main.append(uploadNotice.render(), uploadForm.initialize());
 
         return main;
     }
