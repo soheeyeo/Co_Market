@@ -28,7 +28,7 @@ export default class BuyBtn extends Component {
         if (window.location.pathname.includes('/product/')) {
             buyBtn.setAttribute('class', 'buy_btn');
             buyBtn.innerText = '구매하기';
-            if(this.props.prev) {
+            if(this.props.user === 'SELLER') {
                 buyBtn.classList.add('disabled');
             } else {
                 buyBtn.addEventListener('click', (e) => {
