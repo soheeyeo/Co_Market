@@ -50,7 +50,7 @@ export default class SellerItem extends Component {
         const td4 = document.createElement('td');
         td4.setAttribute('class', 'delete_btn_container');
 
-        const deleteBtn = new DashboardBtn({dashboardTxt: this.btnTxt2, productId: this.item.product_id});
+        const deleteBtn = new DashboardBtn({dashboardTxt: this.btnTxt2, product: this.item});
         td4.appendChild(deleteBtn.render());
 
         sellerItemContainer.append(td1, td2, td3, td4);

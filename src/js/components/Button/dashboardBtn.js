@@ -4,7 +4,7 @@ import Modal from "../Modal/modal.js";
 export default class DashboardBtn extends Component {
     constructor(props) {
         super(props);
-        this.productId = this.props.productId;
+        this.productId = this.props.product.product_id;
         this.product = this.props.product;
         this.modalContent = '상품을 삭제하시겠습니까?';
         this.modalCancelBtn = '취소';
