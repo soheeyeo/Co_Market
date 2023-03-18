@@ -19,10 +19,9 @@ export default class UploadForm extends Component {
         }
     }
 
-    handleChangeImg() {
-        const input = document.querySelector('#img_upload');
-        const file = input.files[0];
-        
+    handleChangeImg(e) {
+        const file = e.target.files[0];
+
         if(!file.type.match('image/.*')) {
             const root = document.getElementById('root');
             const reqModal = new Modal({modalContent:this.modalContent1, modalOkBtn:this.modalOkBtn});
@@ -43,11 +42,12 @@ export default class UploadForm extends Component {
     render() {
         const uploadForm = document.createElement('form');
         uploadForm.method = 'post';
+        uploadForm.setAttribute('class', 'upload_form');
 
         const productInfoContainer = document.createElement('div');
         productInfoContainer.setAttribute('class', 'product_info_upload_container');
 
-        const uploadImg = new UploadImg({img:this.state.img, handleChangeImg:this.handleChangeImg.bind(this), bgImg: this.item ? this.item.image : ''});
+        const uploadImg = new UploadImg({img:this.state.img, handleChangeImg:this.handleChangeImg.bind(this), bgImg:this.item ? this.item.image : ''});
 
         const uploadInfo = new UploadInfo({item:this.item ? this.item : ''});
 
@@ -63,7 +63,7 @@ export default class UploadForm extends Component {
         cancelBtn.innerText = '취소';
         cancelBtn.type = 'button';
 
-        const saveBtn = new SaveUploadBtn({image: this.item ? this.item.image : this.state.url, item:this.item});
+        const saveBtn = new SaveUploadBtn({image: this.state.url, item:this.item});
 
         btnContainer.append(cancelBtn, saveBtn.render());
 

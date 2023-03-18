@@ -18,8 +18,8 @@ export default class UploadImg extends Component {
         } else if(this.props.bgImg) {
             imgUploadBox.style.backgroundImage = `url(${this.props.bgImg})`;
         }
-        imgUploadBox.addEventListener('change', () => {
-            this.props.handleChangeImg();
+        imgUploadBox.addEventListener('change', (e) => {
+            this.props.handleChangeImg(e);
         })
 
         const imgUpload = document.createElement('input');
