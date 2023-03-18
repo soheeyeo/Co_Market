@@ -398,3 +398,19 @@ export async function deleteProduct(productId) {
         console.log('err');
     }
 }
+
+export async function modifyProduct(productId, method, formData) {
+    try {
+        const response = await fetch(API_URL+`products/${productId}/`, {
+            method: method,
+            headers: {
+                Authorization : `JWT ${localStorage.getItem('token')}`,
+            },
+            body: formData
+        });
+        const data = await response.json();
+        return data;
+    } catch(err) {
+        console.log('err');
+    }
+}
