@@ -6,6 +6,7 @@ export default class Dashboard extends Component {
 
     render() {
         const frag = document.createDocumentFragment();
+        sessionStorage.removeItem('item');
 
         const centerTop = document.createElement('div');
         centerTop.setAttribute('class', 'seller_center_top_container');
