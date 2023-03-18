@@ -55,20 +55,23 @@ export default class Modal extends Component {
         btn2.setAttribute('class', 'modalOkBtn');
         btn2.innerText = this.props.modalOkBtn;
 
-        if(window.location.pathname === '/cart' || '/center') {
+        if(window.location.pathname === '/cart') {
             btn1.classList.add('small');
             btn2.classList.add('small');
             btn2.addEventListener('click', (e) => {
                 e.preventDefault();
-                if(!this.props.modalCancelBtn) {
-                    this.deleteModal();
-                } else if(window.location.pathname === '/cart') {
-                    this.deleteCartItem();
-                    this.deleteModal();
-                } else if(window.location.pathname === '/center') {
-                    this.deleteProductItem();
-                    this.deleteModal();
-                }
+                if(!this.props.modalCancelBtn) this.deleteModal();
+                this.deleteCartItem();
+                this.deleteModal();
+            });
+        } else if(window.location.pathname === '/center') {
+            btn1.classList.add('small');
+            btn2.classList.add('small');
+            btn2.addEventListener('click', (e) => {
+                e.preventDefault();
+                if(!this.props.modalCancelBtn) this.deleteModal();
+                this.deleteProductItem();
+                this.deleteModal();
             });
         } else if(window.location.pathname === '/order') {
             btn2.addEventListener('click', (e) => {
@@ -79,7 +82,17 @@ export default class Modal extends Component {
                     e.preventDefault();
                     this.modalNavigateTo();
                 }
-            })
+            });
+        } else if(window.location.pathname === '/upload') {
+            btn2.addEventListener('click', (e) => {
+                if(!this.props.link) {
+                    e.preventDefault();
+                    this.deleteModal();
+                } else {
+                    e.preventDefault();
+                    this.modalNavigateTo();
+                }
+            });
         } else {
             btn2.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -105,7 +118,15 @@ export default class Modal extends Component {
                     e.preventDefault();
                     this.deleteModal();
                 }
-            } else {
+            } else if(window.location.pathname === '/upload') {
+                if(this.props.link) {
+                    e.preventDefault();
+                    this.modalNavigateTo();
+                } else {
+                    e.preventDefault();
+                    this.deleteModal();
+                }
+            }else {
                 e.preventDefault();
                 this.deleteModal();
             }

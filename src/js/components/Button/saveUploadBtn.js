@@ -1,7 +1,7 @@
 import Component from "../abstractComponent.js";
 import { uploadProduct } from "../../api/api.js";
 import Modal from "../Modal/modal.js";
-import { ModifyProduct } from "../../api/api.js";
+import { modifyProduct } from "../../api/api.js";
 
 export default class SaveUploadBtn extends Component {
     constructor(props) {
@@ -25,23 +25,21 @@ export default class SaveUploadBtn extends Component {
         let formData = new FormData();
 
         formData.append('product_name', product_name);
-        formData.append('image', image);
+        if(this.props.image) {
+            formData.append('image', image);
+        }
         formData.append('price', price);
         formData.append('shipping_method', shipping_method);
         formData.append('shipping_fee', shipping_fee);
         formData.append('stock', stock);
         formData.append('product_info', product_info);
-        
-        for (let key of formData.keys()) {
-            console.log(key, ":", formData.get(key));
-        }
 
         if(this.props.item) {
-            const data = await ModifyProduct(this.props.item.product_id, formData);
+            const data = await modifyProduct(this.props.item.product_id, this.props.image ? "PUT" : "PATCH", formData);
             if(data.product_id) {
                 sessionStorage.removeItem('item');
                 const root = document.getElementById('root');
-                const reqModal = new Modal({modalContent2:this.modalContent, modalOkBtn2:this.modalOkBtn, link:'/center'});
+                const reqModal = new Modal({modalContent:this.modalContent2, modalOkBtn:this.modalOkBtn2, link:'/center'});
                 root.appendChild(reqModal.initialize());
             } else {
                 const root = document.getElementById('root');
@@ -51,7 +49,6 @@ export default class SaveUploadBtn extends Component {
         } else {
             const data = await uploadProduct(formData);
             if(data.product_id) {
-                sessionStorage.setItem('prev', 'upload');
                 window.routing(`/product/${data.product_id}`);
             } else {
                 const root = document.getElementById('root');
