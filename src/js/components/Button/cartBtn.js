@@ -18,7 +18,7 @@ export default class CartBtn extends Component {
         this.modalCancelBtn = '아니오';
         this.modalOkBtn = '예';
         this.state = {
-            check: this.props.user === 'SELLER' ? '' : this.cartState()
+            check: this.props.user === 'SELLER' || this.props.user === '' ? '' : this.cartState()
         }
     }
 
