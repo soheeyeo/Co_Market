@@ -12,7 +12,6 @@ import CartBtn from "../Button/cartBtn.js";
 export default class ProductDetailCard extends Component {
     constructor(props) {
         super(props);
-        this.user = JSON.parse(localStorage.getItem('user')).user_type;
         this.state = {
             qty:1
         };
@@ -66,9 +65,9 @@ export default class ProductDetailCard extends Component {
             const btnContainer = document.createElement('div');
             btnContainer.setAttribute('class', 'btn_container');
     
-            const buyBtn = new BuyBtn({item:this.props.item, qty:this.state.qty, user:this.user ? this.user : ''});
+            const buyBtn = new BuyBtn({item:this.props.item, qty:this.state.qty, user:localStorage.length === 0 ? '' : JSON.parse(localStorage.getItem('user')).user_type});
     
-            const cartBtn = new CartBtn({productId:this.props.item.product_id, qty:this.state.qty, user:this.user ? this.user : ''});
+            const cartBtn = new CartBtn({productId:this.props.item.product_id, qty:this.state.qty, user:localStorage.length === 0 ? '' : JSON.parse(localStorage.getItem('user')).user_type});
     
             btnContainer.append(buyBtn.render(), cartBtn.initialize());
     
