@@ -9,34 +9,42 @@ export default class MainHome extends Component {
         this.state = {
             productData:[],
             product:[],
-            currentPage:0,
             pageNum:0,
+            page:1,
+            firstPage:0,
+            lastPage:0,
             isLoaded:false
         };
-        this.firstPage = this.state.currentPage - (this.state.currentPage % 5) + 1;
-        this.lastPage = this.state.currentPage - (this.state.currentPage % 5) + 5;
-        this.getAllProductData(this.state.currentPage);
+        this.getAllProductData(this.state.page);
     }
 
     async getAllProductData(i) {
         const pages = [];
-        for(let j = 0; j < this.lastPage; j++) {
-            pages.push(this.getProductData(j+1));
+        for(let j = 1; j < 7; j++) {
+            pages.push(this.getProductData(j));
         }
         const productData = await Promise.all(pages);
-        this.setState({productData:productData, product:productData[i].results, currentPage:i,pageNum:Math.ceil(productData[i].count / 15),isLoaded:true});
+        this.setState({...this.state, productData:productData, product:productData[i-1].results, page:i, pageNum:Math.ceil(productData[i-1].count / 15), firstPage:1, lastPage:this.state.lastPage < this.state.pageNum ? this.state.pageNum: 5, isLoaded:true});
     }
 
     setPage(i) {
-        this.setState({...this.state, product:this.state.productData[i].results, currentPage:i});
+        this.setState({...this.state, product:this.state.productData[i-1].results, page:i});
     }
 
     prevPage() {
-        this.setState({...this.state, product:this.state.productData[this.state.currentPage-1].results, currentPage:this.state.currentPage - 1});
+        if(this.state.page <= this.state.firstPage) {
+            this.setState({...this.state, product:this.state.productData[this.state.page-2].results, page:this.state.page - 1, firstPage:this.state.firstPage - 5, lastPage:this.state.lastPage - (this.state.pageNum - 5)})
+        } else {
+            this.setState({...this.state, product:this.state.productData[this.state.page-2].results, page:this.state.page - 1})
+        }
     }
 
     nextPage() {
-        this.setState({...this.state, product:this.state.productData[this.state.currentPage+1].results, currentPage:this.state.currentPage + 1});
+        if(this.state.page < this.state.lastPage) {
+            this.setState({...this.state, product:this.state.productData[this.state.page].results, page:this.state.page + 1})
+        } else {
+            this.setState({...this.state, product:this.state.productData[this.state.page].results, page:this.state.page + 1, firstPage:this.state.firstPage + 5, lastPage:this.state.lastPage < this.state.pageNum ? this.state.pageNum: this.state.lastPage+5})
+        }
     }
 
     render() {
@@ -51,7 +59,7 @@ export default class MainHome extends Component {
             
             const prevBtn = document.createElement('button');
             prevBtn.setAttribute('class', 'pagination_prev_btn');
-            if(this.state.currentPage === this.firstPage - 1) {
+            if(this.state.page === 1) {
                 prevBtn.disabled = true;
                 prevBtn.classList.add('left_disabled');
             }
@@ -60,18 +68,21 @@ export default class MainHome extends Component {
                 e.stopPropagation();
                 this.prevPage();
             })
-            paginationUl.append(prevBtn);
-            
-            for(let i = 0; i < this.state.pageNum; i++) {
+
+            while(paginationUl.hasChildNodes()) {
+                paginationUl.removeChild(paginationUl.lastChild);
+            }
+
+            for(let i = this.state.firstPage; i <= this.state.lastPage; i++) {
                 const paginationLi = document.createElement('li');
                 const paginationBtn = document.createElement('button');
-                paginationBtn.innerText = `${i+1}`;
+                paginationBtn.innerText = i;
                 paginationBtn.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     this.setPage(i);
                 })
-                if(this.state.currentPage === i) {
+                if(this.state.page === i) {
                     paginationBtn.classList.add('btn_on');
                 };
                 paginationLi.append(paginationBtn);
@@ -80,7 +91,7 @@ export default class MainHome extends Component {
 
             const nextBtn = document.createElement('button');
             nextBtn.setAttribute('class', 'pagination_next_btn');
-            if(this.state.currentPage === this.lastPage - 1) {
+            if(this.state.page === this.state.pageNum) {
                 nextBtn.disabled = true;
                 nextBtn.classList.add('right_disabled');
             }
@@ -89,10 +100,10 @@ export default class MainHome extends Component {
                 e.stopPropagation();
                 this.nextPage();
             })
+            paginationUl.prepend(prevBtn);
             paginationUl.append(nextBtn);
-            
             paginationContainer.append(paginationUl);
-
+            
             mainElement.append(productList.initialize(), paginationContainer);
         }
 
