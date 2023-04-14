@@ -4,7 +4,7 @@ import { ProductCard } from "../ProductCard/index.js";
 export default class ProductList extends Component{
     constructor(props) {
         super(props);
-        this.product = this.props.product;
+        this.product = window.location.pathname === '/' ? this.props.product : JSON.parse(sessionStorage.getItem('searchData'));
     }
 
     render() {

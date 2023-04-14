@@ -5,7 +5,7 @@ export default class ProductPrice extends Component{
     render() {
         const productPriceContainer = document.createElement('div');
 
-        if(window.location.pathname === '/') {
+        if(window.location.pathname === '/' || window.location.pathname === '/search') {
             productPriceContainer.setAttribute('class', 'price_container');
         } else if(window.location.pathname.includes('/product/')) {
             productPriceContainer.setAttribute('class', 'price_detail_container');
@@ -17,7 +17,7 @@ export default class ProductPrice extends Component{
 
         const productPrice = document.createElement('strong');
 
-        if(window.location.pathname === '/') {
+        if(window.location.pathname === '/' || window.location.pathname === '/search') {
             productPrice.setAttribute('class', 'product_price');
         } else if(window.location.pathname.includes('/product/')) {
             productPrice.setAttribute('class', 'product_detail_price');

@@ -4,7 +4,7 @@ export default class ProductName extends Component{
 
     render() {
         const productName = document.createElement('strong');
-        if(window.location.pathname === '/') {
+        if(window.location.pathname === '/' || window.location.pathname === '/search') {
             productName.setAttribute('class', 'product_name');
         } else if (window.location.pathname.includes('/product/')) {
             productName.setAttribute('class', 'product_detail_name');

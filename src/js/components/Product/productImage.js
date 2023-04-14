@@ -5,7 +5,7 @@ export default class ProductImage extends Component{
     render() {
         const productImgWrapper = document.createElement('div');
 
-        if(window.location.pathname === '/') {
+        if(window.location.pathname === '/' || window.location.pathname === '/search') {
             productImgWrapper.setAttribute('class', 'product_img');
         } else if(window.location.pathname.includes('/product/')) {
             productImgWrapper.setAttribute('class', 'product_detail_img');
