@@ -414,3 +414,18 @@ export async function modifyProduct(productId, method, formData) {
         console.log('err');
     }
 }
+
+export async function searchProduct(keyword) {
+    try {
+        const response = await fetch(API_URL+`products/?search=${keyword}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        const data = await response.json();
+        return data;
+    } catch(err) {
+        console.log('err');
+    }
+}
