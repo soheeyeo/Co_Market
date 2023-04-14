@@ -6,3 +6,4 @@ export {default as Cart} from './cart.js';
 export {default as Order} from './order.js';
 export {default as SellerCenter} from './sellerCenter.js';
 export {default as ProductUpload} from './productUpload.js';
+export {default as SearchProduct} from './searchProduct.js';
