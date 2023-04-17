@@ -1,5 +1,6 @@
 import Component from "../components/abstractComponent.js";
 import Header from "../components/Header/header.js";
+import SearchResults from "../components/Search/searchResults.js";
 import ProductList from "../components/ProductList/productList.js";
 
 export default class searchProduct extends Component {
@@ -11,9 +12,11 @@ export default class searchProduct extends Component {
 
         const main = document.createElement('main');
 
+        const searchResults = new SearchResults();
+
         const searchProductList = new ProductList();
 
-        main.appendChild(searchProductList.initialize());
+        main.append(searchResults.render(), searchProductList.initialize());
 
         frag.append(header.render(), main);
 

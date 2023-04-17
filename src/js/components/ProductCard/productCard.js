@@ -1,10 +1,9 @@
 import Component from "../abstractComponent.js";
 import { ProductImage, ProductStore, ProductName, ProductPrice } from '../Product/index.js';
-import Modal from "../Modal/modal.js";
+
 export default class ProductCard extends Component{
     constructor(props) {
         super(props);
-
     }
 
     render() {
