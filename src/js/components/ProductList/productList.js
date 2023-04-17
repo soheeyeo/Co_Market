@@ -15,16 +15,23 @@ export default class ProductList extends Component{
         heading.setAttribute('class', 'ir');
         heading.innerText = '메인 페이지';
     
-        const productList = document.createElement('ul');
-        productList.setAttribute('class', 'product_list');
-        this.product.forEach(async (item) => {
-            const productItem = document.createElement('li');
-            const productCard = new ProductCard({item:item});
-            productItem.appendChild(productCard.render());
-            productList.appendChild(productItem);
-        });
-    
-        productContainer.append(productList);
+        if(window.location.pathname === '/search' && this.product.length === 0) {
+            const searchResultEmpty = document.createElement('span');
+            searchResultEmpty.setAttribute('class', 'search_result_empty');
+            searchResultEmpty.innerText = '검색된 상품이 없습니다.';
+            productContainer.appendChild(searchResultEmpty);
+        } else {
+            const productList = document.createElement('ul');
+            productList.setAttribute('class', 'product_list');
+            this.product.forEach(async (item) => {
+                const productItem = document.createElement('li');
+                const productCard = new ProductCard({item:item});
+                productItem.appendChild(productCard.render());
+                productList.appendChild(productItem);
+            });
+        
+            productContainer.append(productList);
+        }
 
         return productContainer;
     }
