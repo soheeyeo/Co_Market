@@ -1825,3 +1825,33 @@ main {
     background-color: var(--border-color);
     cursor: default;
 }
+
+.search_results_container {
+    padding: 34px 0 24px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.search_results_keyword {
+    margin-right: 10px;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.search_results {
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+.search_results_count {
+    font-size: 24px;
+    color: var(--accent-color);
+}
+
+.search_result_empty {
+    display: block;
+    margin-top: 80px;
+    text-align: center;
+    font-size: 18px;
+    color: var(--sub-txt-color);
+}
